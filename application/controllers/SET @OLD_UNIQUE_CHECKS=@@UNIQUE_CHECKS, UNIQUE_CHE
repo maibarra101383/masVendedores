@@ -1,0 +1,108 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+CREATE SCHEMA IF NOT EXISTS `vendedores` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `vendedores` ;
+
+-- -----------------------------------------------------
+-- Table `vendedores`.`datos_generales`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vendedores`.`datos_generales` (
+  `id_datos_generales` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `apellido_p` VARCHAR(45) NULL,
+  `apellido_m` VARCHAR(45) NULL,
+  `email` VARCHAR(60) NULL,
+  `telefono` VARCHAR(45) NULL,
+  `telefono2` VARCHAR(45) NULL,
+  `direccion` VARCHAR(255) NULL,
+  `status` TINYINT NULL,
+  PRIMARY KEY (`id_datos_generales`),
+  UNIQUE INDEX `id_UNIQUE` (`id_datos_generales` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vendedores`.`usuarios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vendedores`.`usuarios` (
+  `id_usuarios` INT NOT NULL AUTO_INCREMENT,
+  `id_datos_generales` INT NOT NULL,
+  `usuario` VARCHAR(45) NULL,
+  `clave` VARCHAR(255) NULL,
+  `status` TINYINT NULL,
+  `es_admin` TINYINT NULL,
+  `zona` VARCHAR(45) NULL,
+  PRIMARY KEY (`id-usuarios`, `id_datos_generales`),
+  INDEX `fk_usuarios_datos_generales1_idx` (`id_datos_generales` ASC),
+  UNIQUE INDEX `id_UNIQUE` (`id_usuarios` ASC),
+  UNIQUE INDEX `id_datos_generales_UNIQUE` (`id_datos_generales` ASC),
+  CONSTRAINT `fk_usuarios_datos_generales1`
+    FOREIGN KEY (`id_datos_generales`)
+    REFERENCES `vendedores`.`datos_generales` (`id_datos_generales`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vendedores`.`clientes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vendedores`.`clientes` (
+  `id_cliente` INT NOT NULL AUTO_INCREMENT,
+  `id_usuarios` INT NOT NULL,
+  `id_datos_generales` INT NOT NULL,
+  `nombre` VARCHAR(255) NULL,
+  `status` TINYINT NULL,
+  PRIMARY KEY (`id_cliente`, `id_usuarios`, `id_datos_generales`),
+  INDEX `fk_clientes_usuarios_idx` (`id_usuarios` ASC),
+  INDEX `fk_clientes_datos_generales1_idx` (`id_datos_generales` ASC),
+  CONSTRAINT `fk_clientes_usuarios`
+    FOREIGN KEY (`id_usuarios`)
+    REFERENCES `vendedores`.`usuarios` (`id_usuarios`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_clientes_datos_generales1`
+    FOREIGN KEY (`id_datos_generales`)
+    REFERENCES `vendedores`.`datos_generales` (`id_datos_generales`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vendedores`.`catalogo_de_productos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vendedores`.`catalogo_de_productos` (
+  `id _producto` INT NOT NULL,
+  `nombre` VARCHAR(45) NULL,
+  `status` VARCHAR(45) NULL,
+  PRIMARY KEY (`id _producto`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vendedores`.`cliente_producto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vendedores`.`cliente_producto` (
+  `id_producto` INT NOT NULL,
+  `id_cliente` INT NOT NULL,
+  PRIMARY KEY (`id_producto`, `id_cliente`),
+  INDEX `fk_cliente_producto_clientes1_idx` (`id_cliente` ASC),
+  CONSTRAINT `fk_cliente_producto_catalogo_de_productos1`
+    FOREIGN KEY (`id_producto`)
+    REFERENCES `vendedores`.`catalogo_de_productos` (`id _producto`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cliente_producto_clientes1`
+    FOREIGN KEY (`id_cliente`)
+    REFERENCES `vendedores`.`clientes` (`id_cliente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
