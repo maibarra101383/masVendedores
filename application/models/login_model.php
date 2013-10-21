@@ -2,15 +2,16 @@
 
 class Login_model extends CI_Model {
 
-   public function get_usuarios($usuario,$password){
+   public function get_usuarios($usuario,$clave){
    	  $query= $this->db->get_where('usuarios', array('usuario' => $usuario,
-   	  										                   'clave'   => $password));
+   	  										                   'clave'   => $clave));
+
 
    	   if ($query->num_rows() > 0){
             
    	   	$userdata = $query->result_array(); 
 		      $admin    = $userdata[0]['es_admin'];
-            $id_user  = $userdata[0]['id'];
+            $id_user  = $userdata[0]['id_usuarios'];
 
    	  		$userdata = array('user_name' => $usuario,
                               'admin'     => $admin,

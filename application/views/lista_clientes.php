@@ -12,7 +12,11 @@
 	<tr>
 		<th>Cliente</th>
 		<th>Activo</th>
-		<th>Editar</th>
+        <th>Empresa</th>
+        <th>Telefono</th>
+         <th>Telefono2</th>
+        <th>Producto</th>
+
 	</tr></thead>
 <tfoot>
 	<tr>
@@ -63,9 +67,15 @@
 		foreach($aClientes as $aItem){
 			//print_r($aItem);
 			echo '<tr>';
-				echo '<td>'.$aItem['nombre_cliente'].'</td>';
+				echo '<td>'.$aItem['nombre'].'</td>';
 				echo '<td>'.$aItem['status'].'</td>';
-				echo '<td><a href="'.base_url('cliente/editar_cliente/'.$aItem['id']).'">'.$aItem['id'].'</a></td>';
+				echo '<td>'.$aItem['nombre'].'</td>';
+                echo '<td>'.$aItem['telefono'].'</td>';
+                echo '<td>'.$aItem['telefono2'].'</td>';
+                echo '<td>'.$aItem['productos'].'</td>';
+
+				echo '<td><a href="'.base_url('cliente/editar_clientes/'.$aItem['id_cliente']).'">'.$aItem['id_cliente'].'</a></td>';
+				echo '<td><a href="'.base_url('cliente/alta_clientes/'.$aItem['id_cliente']).'">'.$aItem['id_cliente'].'</a></td>';
 			echo '</tr>';
 		}
 		/*<tr>

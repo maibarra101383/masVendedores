@@ -2,9 +2,21 @@
 
 class Login extends CI_Controller {
 
+	public function __construct(){
+		parent::__construct();
+	} 
+
 	public function index(){
 
-		$this->form_validation->set_rules('clave', 'Clave', 'strip_tags|trim|required');
+		if($this->session->userdata('id_user')){
+			if($this->session->userdata('admin') == 0){
+    			redirect(base_url('cliente'));
+    		} else {
+    			redirect(base_url('vendedor'));
+    		}
+    	}
+
+		$this->form_validation->set_rules('clave', 'Clave', 'strip_tags|trim|required|md5');
 		$this->form_validation->set_rules('nombre', 'Usuario', 'strip_tags|trim|required');
 
 		 if($this->form_validation->run() === false){
@@ -20,8 +32,11 @@ class Login extends CI_Controller {
 	         $result = $this->login_model->get_usuarios($usuario,$clave);	
 
 	         if($result === true){
-
-	         	redirect(base_url('cliente'));
+	         	if($this->session->userdata('admin') == 0){
+    				redirect(base_url('cliente'));
+    			} else {
+    				redirect(base_url('vendedor'));
+    			}
 
 	         }else{
 
@@ -32,6 +47,11 @@ class Login extends CI_Controller {
 		 }
 			
 
+ 	}
+
+ 	public function logout(){
+ 		$this->session->sess_destroy();
+ 		redirect(base_url('login'));
  	}
 }
 ?>

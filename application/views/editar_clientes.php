@@ -5,27 +5,27 @@
 	 	/*if (isset($error_menssage)){
 	 		echo '<p>'.$error_menssage.'</p>';
 	 	}*/
-	 	echo form_label('DATOS DEL USUARIO ');
+	 	echo form_label('DATOS DEL CLIENTE ');
 	 	echo form_open();
             
             
-            echo form_label('Nombre Cliente : ');
+            echo form_label('Nombre del Cliente : ');
 		 	$data = array(
-		 		'name'  => 'nombre_cliente',
-		 		'id'    => 'nombre_cliente',
-		 		'value' => set_value('nombre_cliente',$nombre_cliente),
+		 		'name'  => 'usuario',
+		 		'id'    => 'usuario',
+		 		'value' => set_value('usuario',$usuario),
 		 		'style' => 'width:100%'
 		 	);
 
 		 	echo form_input($data);
-		 	echo form_error('nombre_cliente');
-           
-            echo form_label('  DATOS GENERALES  ');
+		 	echo form_error('usuario');
+            
+            echo form_label('DATOS GENERALES DEL CLIENTE  ');
 
             echo form_label('Nombre : ');
 		 	$data = array(
 		 		'name'  => 'nombre',
-		 		'id'    => 'usuario',
+		 		'id'    => 'nombre',
 		 		'value' => set_value('nombre',$nombre),
 		 		'style' => 'width:100%'
 		 	);
@@ -83,6 +83,18 @@
 		 	echo form_error('telefono');
 
 
+		 	echo form_label('Telefono2 : ');
+		 	$data = array(
+		 		'name'  => 'telefono2',
+		 		'id'    => 'telefono2',
+		 		'value' => set_value('telefono2',$telefono2),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('telefono2');
+
+
 		 	 echo form_label('Direccion : ');
 		 	$data = array(
 		 		'name'  => 'direccion',
@@ -95,21 +107,81 @@
 		 	echo form_error('direccion');
 
 
-		 	echo form_label('Status: ');
-
+		 	echo form_label('Cargo del Cliente : ');
 		 	$data = array(
-		    	'name'    => 'status',
-		    	'id'      => 'status',
-		    	'value' => set_value('status',$status),
+		 		'name'  => 'cargo del cliente',
+		 		'id'    => 'cargo del cliente',
+		 		'value' => set_value('cargo del cliente',$cargo_cliente),
 		 		'style' => 'width:100%'
-		    );
+		 	);
 
-		       echo form_input($data);
-		 	   echo form_error('status');
+		 	echo form_input($data);
+		 	echo form_error('cargo del cliente');
 
-		 	echo form_hidden('id_datos_generales', $id_datos_generales);
-		 	
+
+		 		 echo form_label('Giro de la Empresa : ');
 		 	$data = array(
+		 		'name'  => 'giro de la empresa',
+		 		'id'    => 'giro de la empresa',
+		 		'value' => set_value('giro de la empresa',$giro_empresa),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('giro de la empresa');
+
+
+             echo form_label('  PRODUCTOS ');
+
+             
+
+            echo form_label('Pagina Web : ');
+             $data = array(
+                'name'        => 'pagina web',
+                'id'          => 'pagina web',
+                'value'       => 'accept',
+                'checked'     => false,
+                'style'       => 'margin:10px',
+            );
+
+              echo form_checkbox($data);
+
+             echo form_label('Aplicacion Movil : ');
+             $data = array(
+                'name'        => 'aplicacion movil',
+                'id'          => 'aplicacion movil',
+                'value'       => 'accept',
+                'checked'     => false,
+                'style'       => 'margin:10px',
+            );
+
+              echo form_checkbox($data);
+
+              
+             echo form_label('Sistema : ');
+             $data = array(
+                'name'        => 'sistema',
+                'id'          => 'sistema',
+                'value'       => 'accept',
+                'checked'     => false,
+                'style'       => 'margin:10px',
+            );
+
+              echo form_checkbox($data);
+
+             echo form_label('Publicidad : ');
+             $data = array(
+                'name'        => 'publicidad',
+                'id'          => 'publicidad',
+                'value'       => 'accept',
+                'checked'     => false,
+                'style'       => 'margin:10px',
+            );
+
+              echo form_checkbox($data);
+              echo form_hidden('id_datos_generales', $id_datos_generales);
+
+                $data = array(
 		 		'name'  => 'login',
 		 		'id'    => 'login',
 		 		'value' => 'Registro',
@@ -117,7 +189,8 @@
 		 	);
 
 		 	echo form_submit($data);
-
+		 	
+            
 
  echo form_close(); 
 	 	

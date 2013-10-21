@@ -30,7 +30,7 @@
 		 		'style' => 'width:100%'
 		 	);
 
-		 	echo form_input($data);
+		 	echo form_password($data);
 		 	echo form_error('clave');
 
 		 	

@@ -83,6 +83,18 @@
 		 	echo form_error('telefono');
 
 
+		 	echo form_label('Telefono2 : ');
+		 	$data = array(
+		 		'name'  => 'telefono2',
+		 		'id'    => 'telefono2',
+		 		'value' => set_value('telefono2',$telefono2),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('telefono2');
+
+
 		 	 echo form_label('Direccion : ');
 		 	$data = array(
 		 		'name'  => 'direccion',
