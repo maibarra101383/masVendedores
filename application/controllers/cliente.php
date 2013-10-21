@@ -73,13 +73,13 @@ class Cliente extends CI_Controller{
 
 		if ($this->form_validation->run() === false){
 
-			$data = $this->cliente_model->get_cliente($this->session->userdata('id_cliente'));
+			$data = $this->cliente_model->get_cliente($id_cliente);
 			$data = array_pop($data);
 			$data['error_message'] = "";
 			$data['title'] = "pagina de registro";
 
 		    $data['view']  = "editar_clientes";
-
+		    
 			$this->load->view('template', $data);
 
 		} else {
@@ -88,7 +88,7 @@ class Cliente extends CI_Controller{
 			$cliente_data['usuario'] = $this->input->post('usuario');
 			$cliente_data['status'] = $this->input->post('status');
 
-			$id_dg = $this->input->post('id_datos_generales');;
+			$id_dg = $this->input->post('id_datos_generales');
 			$dg_data['nombre']       = $this->input->post('nombre');
 			$dg_data['apellido_p']   = $this->input->post('apat');
 			$dg_data['apellido_m']   = $this->input->post('amat');

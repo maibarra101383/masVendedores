@@ -51,11 +51,11 @@ class Cliente_model extends CI_Model {
    public function get_cliente ($id_cliente)
    {
 
+      $this->db->select('clientes.nombre as empresa, clientes.*');
+      $this->db->select('datos_generales.*');
       $this->db->where('clientes.id_cliente', $id_cliente);
-      $this->db->from('clientes');
       $this->db->join('datos_generales', 'datos_generales.id_datos_generales = clientes.id_datos_generales', 'left');
-      
-      $result = $this->db->get();
+      $result = $this->db->get('clientes');
 
       return $result->result_array();
 
@@ -67,7 +67,6 @@ class Cliente_model extends CI_Model {
       $this->db->select('datos_generales.*');
       $this->db->where('clientes.id_usuarios', $id_user);
       $this->db->join('datos_generales', 'datos_generales.id_datos_generales = clientes.id_datos_generales', 'left');
-      $this->db->join('cliente_producto','cliente_producto.id_cliente=clientes.id_cliente', 'inner');
       $result = $this->db->get('clientes');
 
 print_r($result->result_array());exit();

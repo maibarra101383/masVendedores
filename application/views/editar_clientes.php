@@ -13,7 +13,7 @@
 		 	$data = array(
 		 		'name'  => 'usuario',
 		 		'id'    => 'usuario',
-		 		'value' => set_value('usuario',$usuario),
+		 		'value' => set_value('usuario',$empresa),
 		 		'style' => 'width:100%'
 		 	);
 

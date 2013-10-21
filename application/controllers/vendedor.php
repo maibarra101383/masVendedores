@@ -6,7 +6,7 @@ class Vendedor extends CI_Controller{
     {
     	parent::__construct();
     	if(!$this->session->userdata('id_user')){
-    		redirect(base_url('login'));
+    		//redirect(base_url('login'));
     	}
     }
 	
@@ -85,7 +85,7 @@ class Vendedor extends CI_Controller{
 			$user_data['usuario'] = $this->input->post('usuario');
 			$user_data['zona']    = $this->input->post('zona');
 
-			$id_dg = $this->input->post('id_datos_generales');;
+			$id_dg = $this->input->post('id_datos_generales');
 			$dg_data['nombre']     = $this->input->post('nombre');
 			$dg_data['apellido_p'] = $this->input->post('apat');
 			$dg_data['apellido_m'] = $this->input->post('amat');
