@@ -75,7 +75,7 @@
 
 
 
-		 	echo " <br /> <a href=" . base_url('vendedor/alta_vendedor') . ">Registro</a><br />";
+		 	echo " <br /> <a href=" . base_url('vendedores/alta_vendedor') . ">Registro</a><br />";
 
 		 	$data = array(
 		 		'name'  =>  'login',

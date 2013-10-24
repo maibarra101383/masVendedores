@@ -72,30 +72,30 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `vendedores`.`catalogo_de_productos`
+-- Table `vendedores`.`productos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vendedores`.`catalogo_de_productos` (
-  `id _producto` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `vendedores`.`productos` (
+  `id_producto` INT NOT NULL,
   `nombre` VARCHAR(45) NULL,
   `status` VARCHAR(45) NULL,
-  PRIMARY KEY (`id _producto`))
+  PRIMARY KEY (`id_producto`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `vendedores`.`cliente_producto`
+-- Table `vendedores`.`clientes_productos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `vendedores`.`cliente_producto` (
+CREATE TABLE IF NOT EXISTS `vendedores`.`clientes_productos` (
   `id_producto` INT NOT NULL,
   `id_cliente` INT NOT NULL,
   PRIMARY KEY (`id_producto`, `id_cliente`),
-  INDEX `fk_cliente_producto_clientes1_idx` (`id_cliente` ASC),
-  CONSTRAINT `fk_cliente_producto_catalogo_de_productos1`
+  INDEX `fk_clientes_productos_clientes1_idx` (`id_cliente` ASC),
+  CONSTRAINT `fk_clientes_productos_productos1`
     FOREIGN KEY (`id_producto`)
-    REFERENCES `vendedores`.`catalogo_de_productos` (`id _producto`)
+    REFERENCES `vendedores`.`productos` (`id_producto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_cliente_producto_clientes1`
+  CONSTRAINT `fk_clientes_productos_clientes1`
     FOREIGN KEY (`id_cliente`)
     REFERENCES `vendedores`.`clientes` (`id_cliente`)
     ON DELETE NO ACTION

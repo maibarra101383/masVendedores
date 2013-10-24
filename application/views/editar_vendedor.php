@@ -13,20 +13,22 @@
 		 	$data = array(
 		 		'name'  => 'usuario',
 		 		'id'    => 'usuario',
-		 		'value' => set_value('usuario',$usuario),
+		 		'value' => set_value('usuario',$aVendedor->usuario),
 		 		'style' => 'width:100%'
 		 	);
 
 		 	echo form_input($data);
 		 	echo form_error('usuario');
-           
+
+            $aVendedor->datos_general->();
+            
             echo form_label('  DATOS GENERALES  ');
 
             echo form_label('Nombre : ');
 		 	$data = array(
 		 		'name'  => 'nombre',
 		 		'id'    => 'usuario',
-		 		'value' => set_value('nombre',$nombre),
+		 		'value' => set_value('nombre',$aVendedor->datos_general->nombre),
 		 		'style' => 'width:100%'
 		 	);
 

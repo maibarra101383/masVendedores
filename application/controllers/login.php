@@ -10,7 +10,7 @@ class Login extends CI_Controller {
 
 		if($this->session->userdata('id_user')){
 			if($this->session->userdata('admin') == 0){
-    			redirect(base_url('cliente'));
+    			redirect(base_url('clientes'));
     		} else {
     			redirect(base_url('vendedor'));
     		}
@@ -25,17 +25,25 @@ class Login extends CI_Controller {
 
 		 } else {
 
+		 	 $oUsuario = new Usuario();
+
 	 	     $usuario = $this->input->post('nombre');
 	 	     $clave   = $this->input->post('clave');
-	 	     
-	 	     $this->load->model('login_model');
-	         $result = $this->login_model->get_usuarios($usuario,$clave);	
 
-	         if($result === true){
+	 	     $usu = $oUsuario->where(array('usuario'=>$usuario,'clave'=>$clave))->get();	
+	 	     $result = $usu->count(); 
+	         if($result){
+
+	         	$userdata = array('user_name' => $usu->usuario,
+                              	  'admin'     => $usu->es_admin,
+                              	  'id_user'   => $usu->id);
+	         
+   	  			$this->session->set_userdata($userdata);
+
 	         	if($this->session->userdata('admin') == 0){
-    				redirect(base_url('cliente'));
+    				redirect(base_url('clientes'));
     			} else {
-    				redirect(base_url('vendedor'));
+    				redirect(base_url('vendedores'));
     			}
 
 	         }else{

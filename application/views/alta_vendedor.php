@@ -93,17 +93,76 @@
 		 	echo form_error('email');
 
 
-              echo form_label('Telefono : ');
+              echo form_label('Lada1 : ');
 		 	$data = array(
-		 		'name'  => 'telefono',
-		 		'id'    => 'telefono',
-		 		'value' => set_value('telefono'),
+		 		'name'  => 'lada1',
+		 		'id'    => 'lada1',
+		 		'value' => set_value('lada1'),
 		 		'style' => 'width:100%'
 		 	);
 
 		 	echo form_input($data);
-		 	echo form_error('telefono');
+		 	echo form_error('lada1');
 
+
+              echo form_label('Teléfono 1: ');
+		 	$data = array(
+		 		'name'  => 'telefono1',
+		 		'id'    => 'telefono1',
+		 		'value' => set_value('telefono1'),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('telefono1');
+
+              echo form_label('Extención 1 : ');
+		 	$data = array(
+		 		'name'  => 'ext1',
+		 		'id'    => 'ext1',
+		 		'value' => set_value('ext1'),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('ext1');
+
+            
+		 	  echo form_label('Lada 2 : ');
+		 	$data = array(
+		 		'name'  => 'lada2',
+		 		'id'    => 'lada2',
+		 		'value' => set_value('lada2'),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('lada2');
+
+
+
+		 	  echo form_label('Teléfono 2 : ');
+		 	$data = array(
+		 		'name'  => 'telefono2',
+		 		'id'    => 'telefono2',
+		 		'value' => set_value('telefono2'),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('telefono2');
+
+
+		 	  echo form_label('Extención 2 : ');
+		 	$data = array(
+		 		'name'  => 'ext2',
+		 		'id'    => 'ext2',
+		 		'value' => set_value('ext2'),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('ext2');
 
 		 	 echo form_label('Direccion : ');
 		 	$data = array(

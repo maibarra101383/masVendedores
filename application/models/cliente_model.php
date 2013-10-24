@@ -17,18 +17,18 @@ class Cliente_model extends CI_Model {
       $id_dg = $this->db->insert_id();
 
       $this->db->set("nombre", $cliente_data['usuario']);
-      $this->db->set("id_usuarios", $this->session->userdata('id_user'));
+      $this->db->set("usuario_id", $this->session->userdata('id_user'));
       $this->db->set("cargo_cliente",   $cliente_data['cargo_del_cliente']);
       $this->db->set("giro_empresa",    $cliente_data['giro_de_la_empresa']);
       $this->db->set("status", 1);
-      $this->db->set("id_datos_generales", $id_dg);
+      $this->db->set("id", $id_dg);
       $this->db->insert("clientes");
       $id_cliente = $this->db->insert_id();
 
       foreach($cliente_data['productos'] as $producto) {
-        $this->db->set("id_producto", $producto);
-        $this->db->set("id_cliente", $id_cliente);
-        $this->db->insert('cliente_producto'); 
+        $this->db->set("producto_id", $producto);
+        $this->db->set("cliente_id", $id_cliente);
+        $this->db->insert('clientes_productos'); 
     }
 
 
@@ -39,7 +39,7 @@ class Cliente_model extends CI_Model {
    public function editar_clientes ($id_dg, $dg_data, $id_cliente, $cliente_data)
    {
 
-      $this->db->where('id_datos_generales', $id_dg);
+      $this->db->where('id', $id_dg);
       $this->db->update('datos_generales', $dg_data);
 
       $this->db->where('id_cliente', $id_cliente);
@@ -69,7 +69,7 @@ class Cliente_model extends CI_Model {
       $this->db->join('datos_generales', 'datos_generales.id_datos_generales = clientes.id_datos_generales', 'left');
       $result = $this->db->get('clientes');
 
-print_r($result->result_array());exit();
+
 
       return $result->result_array();
 
@@ -78,7 +78,7 @@ print_r($result->result_array());exit();
    public function get_productos()
    {
 
-      $result = $this->db->get('catalogo_de_productos');
+      $result = $this->db->get('productos');
 
       return $result->result_array();
 

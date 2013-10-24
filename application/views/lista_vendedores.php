@@ -5,6 +5,7 @@
 	  .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #006699; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; color:#FFFFFF; font-size: 15px; font-weight: bold; border-left: 1px solid #0070A8; } .datagrid table thead th:first-child { border: none; }
 .datagrid table tbody td { color: #00496B; border-left: 1px solid #E1EEF4;font-size: 12px;font-weight: normal; }.datagrid table tbody .alt td { background: #E1EEF4; color: #00496B; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }.datagrid table tfoot td div { border-top: 1px solid #006699;background: #E1EEF4;} .datagrid table tfoot td { padding: 0; font-size: 12px } .datagrid table tfoot td div{ padding: 2px; }.datagrid table tfoot td ul { margin: 0; padding:0; list-style: none; text-align: right; }.datagrid table tfoot  li { display: inline; }.datagrid table tfoot li a { text-decoration: none; display: inline-block;  padding: 2px 8px; margin: 1px;color: #FFFFFF;border: 1px solid #006699;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; }.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}
 </style>
+<a href="<?= base_url('login/logout'); ?>">Cerrar sesión</a>
 <h1>BIENVENIDO ADMINISTRADOR</h1>    
 <div class="datagrid"><table>
 <thead>
@@ -12,13 +13,13 @@
 		<th>Nombre del Vendedor</th>
 		<th>Activo</th>
 		<th>Zona</th>
-		<th>Telefono</th>
-		<th>Telefono2</th>
+		<th>Telefono 1</th>
+		<th>Telefono 2</th>
 		<th>Editar</th>
 	</tr></thead>
 <tfoot>
 	<tr>
-		<td colspan="4">
+		<td colspan="100%">
 			<div id="paging">
 				<ul>
 					<li>
@@ -62,36 +63,20 @@
 	</tfoot>
 <tbody>
 	<?php
-		foreach($aVendedor as $aItem){
+		foreach($aVendedores as $aItem){
 			//print_r($aItem);
+			$aItem->datos_general->get();
 			echo '<tr>';
-				echo '<td>'.$aItem['usuario'].'</td>';
-				echo '<td>'.$aItem['status'].'</td>';
-				echo '<td>'.$aItem['zona'].'</td>';
-				echo '<td>'.$aItem['telefono'].'</td>';
-				echo '<td>'.$aItem['telefono2'].'</td>';
-		
-				echo '<td><a href="'.base_url('vendedor/editar_vendedor');'></a></td>';
-             echo '<td><a href="'.base_url('cliente/alta_clientes');'></a></td>';
-
+				echo '<td>'.$aItem->usuario.'</td>';
+				echo '<td>'.$aItem->status.'</td>';
+				echo '<td>'.$aItem->datos_general->zona.'</td>';
+				echo '<td>'.$aItem->datos_general->telefono1.'</td>';
+				echo '<td>'.$aItem->datos_general->telefono2.'</td>';
+				echo '<td><a href="'.base_url('vendedores/editar_vendedor/'.$aItem->id).'">Editar vendedor</a></td>';
 			echo '</tr>';
-
-
- 	
-	 	echo form_open();
-	 	echo form_label('AGREGAR CLIENTE ');
-        
-             
-
- echo form_close(); 
-
 		}
-		/*<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-		</tr>*/
 	?>
 
 </tbody>
-</table></div>
+</table>
+</div>

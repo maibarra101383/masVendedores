@@ -11,22 +11,24 @@
             
             echo form_label('Nombre del Cliente : ');
 		 	$data = array(
-		 		'name'  => 'usuario',
-		 		'id'    => 'usuario',
-		 		'value' => set_value('usuario',$empresa),
+		 		'name'  => 'cliente',
+		 		'id'    => 'cliente',
+		 		'value' => set_value('cliente',$aCliente->nombre),
 		 		'style' => 'width:100%'
 		 	);
 
 		 	echo form_input($data);
-		 	echo form_error('usuario');
+		 	echo form_error('cliente');
             
+			$aCliente->datos_general->get();
+
             echo form_label('DATOS GENERALES DEL CLIENTE  ');
 
             echo form_label('Nombre : ');
 		 	$data = array(
 		 		'name'  => 'nombre',
 		 		'id'    => 'nombre',
-		 		'value' => set_value('nombre',$nombre),
+		 		'value' => set_value('nombre',$aCliente->datos_general->nombre),
 		 		'style' => 'width:100%'
 		 	);
 
@@ -38,7 +40,7 @@
 		 	$data = array(
 		 		'name'  => 'apat',
 		 		'id'    => 'apat',
-		 		'value' => set_value('apat',$apellido_p),
+		 		'value' => set_value('apat',$aCliente->datos_general->apellido_p),
 		 		'style' => 'width:100%'
 		 	);
 
@@ -50,7 +52,7 @@
 		 	$data = array(
 		 		'name'  => 'amat',
 		 		'id'    => 'amat',
-		 		'value' => set_value('amat',$apellido_m),
+		 		'value' => set_value('amat',$aCliente->datos_general->apellido_m),
 		 		'style' => 'width:100%'
 		 	);
 
@@ -63,7 +65,7 @@
 		 	$data = array(
 		 		'name'  => 'email',
 		 		'id'    => 'email',
-		 		'value' => set_value('email',$email),
+		 		'value' => set_value('email',$aCliente->datos_general->email),
 		 		'style' => 'width:100%'
 		 	);
 
@@ -71,23 +73,59 @@
 		 	echo form_error('email');
 
 
-              echo form_label('Telefono : ');
+             echo form_label('Lada1 : ');
 		 	$data = array(
-		 		'name'  => 'telefono',
-		 		'id'    => 'telefono',
-		 		'value' => set_value('telefono',$telefono),
+		 		'name'  => 'lada1',
+		 		'id'    => 'lada1',
+		 		'value' => set_value('lada1',$aCliente->datos_general->lada1),
 		 		'style' => 'width:100%'
 		 	);
 
 		 	echo form_input($data);
-		 	echo form_error('telefono');
+		 	echo form_error('lada1');
 
 
-		 	echo form_label('Telefono2 : ');
+              echo form_label('Teléfono 1: ');
+		 	$data = array(
+		 		'name'  => 'telefono1',
+		 		'id'    => 'telefono1',
+		 		'value' => set_value('telefono1',$aCliente->datos_general->telefono1),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('telefono1');
+
+              echo form_label('Extención 1 : ');
+		 	$data = array(
+		 		'name'  => 'ext1',
+		 		'id'    => 'ext1',
+		 		'value' => set_value('ext1',$aCliente->datos_general->ext1),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('ext1');
+
+            
+		 	  echo form_label('Lada 2 : ');
+		 	$data = array(
+		 		'name'  => 'lada2',
+		 		'id'    => 'lada2',
+		 		'value' => set_value('lada2',$aCliente->datos_general->lada2),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('lada2');
+
+
+
+		 	  echo form_label('Teléfono 2 : ');
 		 	$data = array(
 		 		'name'  => 'telefono2',
 		 		'id'    => 'telefono2',
-		 		'value' => set_value('telefono2',$telefono2),
+		 		'value' => set_value('telefono2',$aCliente->datos_general->telefono2),
 		 		'style' => 'width:100%'
 		 	);
 
@@ -95,11 +133,22 @@
 		 	echo form_error('telefono2');
 
 
+		 	  echo form_label('Extención 2 : ');
+		 	$data = array(
+		 		'name'  => 'ext2',
+		 		'id'    => 'ext2',
+		 		'value' => set_value('ext2',$aCliente->datos_general->ext2),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('ext2');
+
 		 	 echo form_label('Direccion : ');
 		 	$data = array(
 		 		'name'  => 'direccion',
 		 		'id'    => 'direccion',
-		 		'value' => set_value('direccion',$direccion),
+		 		'value' => set_value('direccion',$aCliente->datos_general->direccion),
 		 		'style' => 'width:100%'
 		 	);
 
@@ -109,77 +158,54 @@
 
 		 	echo form_label('Cargo del Cliente : ');
 		 	$data = array(
-		 		'name'  => 'cargo del cliente',
-		 		'id'    => 'cargo del cliente',
-		 		'value' => set_value('cargo del cliente',$cargo_cliente),
+		 		'name'  => 'cargo_cliente',
+		 		'id'    => 'cargo_cliente',
+		 		'value' => set_value('cargo_cliente',$aCliente->cargo_cliente),
 		 		'style' => 'width:100%'
 		 	);
 
 		 	echo form_input($data);
-		 	echo form_error('cargo del cliente');
+		 	echo form_error('cargo_cliente');
 
 
 		 		 echo form_label('Giro de la Empresa : ');
 		 	$data = array(
-		 		'name'  => 'giro de la empresa',
-		 		'id'    => 'giro de la empresa',
-		 		'value' => set_value('giro de la empresa',$giro_empresa),
+		 		'name'  => 'giro_empresa',
+		 		'id'    => 'giro_empresa',
+		 		'value' => set_value('giro_empresa',$aCliente->giro_empresa),
 		 		'style' => 'width:100%'
 		 	);
 
 		 	echo form_input($data);
-		 	echo form_error('giro de la empresa');
+		 	echo form_error('giro_empresa');
 
 
              echo form_label('  PRODUCTOS ');
 
-             
+			$aCliente->producto->get();
 
-            echo form_label('Pagina Web : ');
-             $data = array(
-                'name'        => 'pagina web',
-                'id'          => 'pagina web',
-                'value'       => 'accept',
-                'checked'     => false,
+			foreach($aCliente->producto->all as $cliente_producto){
+             			$aChecked[$cliente_producto->id] = $cliente_producto->id;
+             }
+
+             if(!isset($aChecked))
+             	$aChecked[0] = 0;
+
+             foreach($aProductos as $producto){
+
+             	echo form_label($producto->nombre);
+
+             	$data = array(
+              	'name'        => 'productos[]',
+                'value'       => $producto->id,
+                'checked'     => (in_array($producto->id,$aChecked))?true:false,
                 'style'       => 'margin:10px',
-            );
+            	);
 
               echo form_checkbox($data);
+             }
 
-             echo form_label('Aplicacion Movil : ');
-             $data = array(
-                'name'        => 'aplicacion movil',
-                'id'          => 'aplicacion movil',
-                'value'       => 'accept',
-                'checked'     => false,
-                'style'       => 'margin:10px',
-            );
-
-              echo form_checkbox($data);
-
-              
-             echo form_label('Sistema : ');
-             $data = array(
-                'name'        => 'sistema',
-                'id'          => 'sistema',
-                'value'       => 'accept',
-                'checked'     => false,
-                'style'       => 'margin:10px',
-            );
-
-              echo form_checkbox($data);
-
-             echo form_label('Publicidad : ');
-             $data = array(
-                'name'        => 'publicidad',
-                'id'          => 'publicidad',
-                'value'       => 'accept',
-                'checked'     => false,
-                'style'       => 'margin:10px',
-            );
-
-              echo form_checkbox($data);
-              echo form_hidden('id_datos_generales', $id_datos_generales);
+              echo form_hidden('id_datos_generales', $aCliente->datos_general->id_datos_generales);
 
                 $data = array(
 		 		'name'  => 'login',

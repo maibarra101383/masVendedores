@@ -11,16 +11,16 @@
             
             echo form_label('Nombre del Cliente : ');
 		 	$data = array(
-		 		'name'  => 'usuario',
-		 		'id'    => 'usuario',
-		 		'value' => set_value('usuario'),
+		 		'name'  => 'cliente',
+		 		'id'    => 'cliente',
+		 		'value' => set_value('cliente'),
 		 		'style' => 'width:100%'
 		 	);
 
 		 	echo form_input($data);
-		 	echo form_error('usuario');
+		 	echo form_error('cliente');
             
-            echo form_label('  DATOS GENERALES DEL CLIENTE  ');
+            echo form_label('  DATOS GENERALES DEL CONTACTO ');
 
             echo form_label('Nombre : ');
 		 	$data = array(
@@ -31,7 +31,7 @@
 		 	);
 
 		 	echo form_input($data);
-		 	echo form_error('usuario');
+		 	echo form_error('nombre');
 
 
             echo form_label('Apellido Paterno : ');
@@ -71,18 +71,55 @@
 		 	echo form_error('email');
 
 
-              echo form_label('Telefono : ');
+              echo form_label('Lada1 : ');
 		 	$data = array(
-		 		'name'  => 'telefono',
-		 		'id'    => 'telefono',
-		 		'value' => set_value('telefono'),
+		 		'name'  => 'lada1',
+		 		'id'    => 'lada1',
+		 		'value' => set_value('lada1'),
 		 		'style' => 'width:100%'
 		 	);
 
 		 	echo form_input($data);
-		 	echo form_error('telefono');
+		 	echo form_error('lada1');
 
-		 	  echo form_label('Telefono2 : ');
+
+              echo form_label('Teléfono 1: ');
+		 	$data = array(
+		 		'name'  => 'telefono1',
+		 		'id'    => 'telefono1',
+		 		'value' => set_value('telefono1'),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('telefono1');
+
+              echo form_label('Extención 1 : ');
+		 	$data = array(
+		 		'name'  => 'ext1',
+		 		'id'    => 'ext1',
+		 		'value' => set_value('ext1'),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('ext1');
+
+            
+		 	  echo form_label('Lada 2 : ');
+		 	$data = array(
+		 		'name'  => 'lada2',
+		 		'id'    => 'lada2',
+		 		'value' => set_value('lada2'),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('lada2');
+
+
+
+		 	  echo form_label('Teléfono 2 : ');
 		 	$data = array(
 		 		'name'  => 'telefono2',
 		 		'id'    => 'telefono2',
@@ -94,7 +131,19 @@
 		 	echo form_error('telefono2');
 
 
-		 	 echo form_label('Direccion : ');
+		 	  echo form_label('Extención 2 : ');
+		 	$data = array(
+		 		'name'  => 'ext2',
+		 		'id'    => 'ext2',
+		 		'value' => set_value('ext2'),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('ext2');
+
+
+		 	 echo form_label('Dirección : ');
 		 	$data = array(
 		 		'name'  => 'direccion',
 		 		'id'    => 'direccion',
@@ -108,37 +157,48 @@
 
 		 	echo form_label('Cargo del Cliente : ');
 		 	$data = array(
-		 		'name'  => 'cargo del cliente',
-		 		'id'    => 'cargo del cliente',
-		 		'value' => set_value('cargo del cliente'),
+		 		'name'  => 'cargo_cliente',
+		 		'id'    => 'cargo_cliente',
+		 		'value' => set_value('cargo_cliente'),
 		 		'style' => 'width:100%'
 		 	);
 
 		 	echo form_input($data);
-		 	echo form_error('cargo del cliente');
+		 	echo form_error('cargo_cliente');
 
 
 		 		 echo form_label('Giro de la Empresa : ');
 		 	$data = array(
-		 		'name'  => 'giro de la empresa',
-		 		'id'    => 'giro de la empresa',
-		 		'value' => set_value('giro de la empresa'),
+		 		'name'  => 'giro_empresa',
+		 		'id'    => 'giro_empresa',
+		 		'value' => set_value('giro_empresa'),
 		 		'style' => 'width:100%'
 		 	);
 
 		 	echo form_input($data);
-		 	echo form_error('giro de la empresa');
+		 	echo form_error('giro_empresa');
+
+
+		 	 echo form_label('Proyecto en Proceso : ');
+		 	$data = array(
+		 		'name'  => 'status',
+		 		'id'    => 'status',
+		 		'value' => set_value('status'),
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_checkbox($data);
 
 
              echo form_label('  PRODUCTOS ');
 
              foreach($aProductos as $aItem){
 
-            	echo form_label($aItem['nombre']);
+            	echo form_label($aItem->nombre);
 
             	$data = array(
                 	'name'        => 'productos[]',
-                	'value'       => $aItem['id _producto'], 
+                	'value'       => $aItem->id, 
                 	'style'       => 'margin:10px',
             	);
 
@@ -153,6 +213,10 @@
 		 	);
 
 		 	echo form_submit($data);
+
+            
+
+
 		 	
             
 

@@ -11,7 +11,7 @@ class Login_model extends CI_Model {
             
    	   	$userdata = $query->result_array(); 
 		      $admin    = $userdata[0]['es_admin'];
-            $id_user  = $userdata[0]['id_usuarios'];
+            $id_user  = $userdata[0]['id'];
 
    	  		$userdata = array('user_name' => $usuario,
                               'admin'     => $admin,

@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+i<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Producto_model extends CI_Model {
 
@@ -11,7 +11,7 @@ class Producto_model extends CI_Model {
 
       $this->db->set("nombre", $cliente_data['nombre']);
       $this->db->set("status", 1);
-      $this->db->insert("catalogo_de_productos");
+      $this->db->insert("productos");
 
       return true;
       
@@ -21,7 +21,7 @@ class Producto_model extends CI_Model {
    {
 
       $this->db->where('id', $id_producto);
-      $this->db->update('cliente_producto', $clipro_data);
+      $this->db->update('clientes_productos', $clipro_data);
 
       return true;
    }
@@ -30,8 +30,8 @@ class Producto_model extends CI_Model {
    {
 
       $this->db->where('producto.id', $id_producto);
-      $this->db->from('catalogo_de_productos');
-      $this->db->join('catalogo_de_productos', 'catalogo_de_productos.id = clientes_producto.id_cliente', 'left');
+      $this->db->from('productos');
+      $this->db->join('productos', 'productos.id = clientes_producto.id_cliente', 'left');
       
       $result = $this->db->get();
 
@@ -41,8 +41,8 @@ class Producto_model extends CI_Model {
 
    public function get_productos ($id_nombre)
    {
-      $this->db->where('catalogo_de_productos.id_producto', $id_nombre);
-      $result = $this->db->get('catalogo_de_productos');
+      $this->db->where('productos.id_producto', $id_nombre);
+      $result = $this->db->get('productos');
 
       return $result->result_array();
 
