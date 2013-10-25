@@ -75,7 +75,7 @@
 			$aItem->producto->get();
 			echo '<tr>';
 				echo '<td>'.$aItem->nombre.'</td>';
-				echo '<td>'.$aItem->datos_general->status.'</td>';
+				echo '<td>'.$aItem->status.'</td>';
 				echo '<td>'.$aItem->datos_general->nombre.'</td>';
 				echo '<td>'.$aItem->datos_general->lada1.'</td>';
 				echo '<td>'.$aItem->datos_general->telefono1.'</td>';

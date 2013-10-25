@@ -16,6 +16,7 @@
 		<th>Telefono 1</th>
 		<th>Telefono 2</th>
 		<th>Editar</th>
+		<th>Lista de clientes</th>
 	</tr></thead>
 <tfoot>
 	<tr>
@@ -73,6 +74,7 @@
 				echo '<td>'.$aItem->datos_general->telefono1.'</td>';
 				echo '<td>'.$aItem->datos_general->telefono2.'</td>';
 				echo '<td><a href="'.base_url('vendedores/editar_vendedor/'.$aItem->id).'">Editar vendedor</a></td>';
+				echo '<td><a href="'.base_url('clientes/index/'.$aItem->id).'">Lista de clientes</a></td>';
 			echo '</tr>';
 		}
 	?>

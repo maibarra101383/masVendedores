@@ -179,11 +179,11 @@
 		 	echo form_error('giro_empresa');
 
 
-		 	 echo form_label('Proyecto en Proceso : ');
+		 	echo form_label('Proyecto en Proceso : ');
 		 	$data = array(
 		 		'name'  => 'status',
 		 		'id'    => 'status',
-		 		'value' => set_value('status'),
+		 		'value' => 1,
 		 		'style' => 'width:100%'
 		 	);
 

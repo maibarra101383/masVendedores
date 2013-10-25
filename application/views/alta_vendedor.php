@@ -53,7 +53,7 @@
 		 	);
 
 		 	echo form_input($data);
-		 	echo form_error('usuario');
+		 	echo form_error('nombre');
 
 
             echo form_label('Apellido Paterno : ');
@@ -178,7 +178,7 @@
             
             echo form_label('Zona: ');
 		 	$data = array(
-		 		'name'  =>  'zona',
+		 		'name'  => 'zona',
 		 		'id'    => 'zona',
 		 		'value' => set_value('zona'),
 		 		'style' => 'width:100%'

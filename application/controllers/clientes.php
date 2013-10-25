@@ -10,13 +10,18 @@ class Clientes extends CI_Controller{
     	}
     }
 
-	public function index()
+	public function index($id_vendedor = NULL)
 	{
 
 		$clientes = new Cliente();
 
-    	$data['aClientes'] = $clientes->where('usuario_id', $this->session->userdata('id_user'))->get();
-		$this->load->view('lista_clientes',$data);
+		if($id_vendedor == NULL){
+    		$data['aClientes'] = $clientes->where('usuario_id', $this->session->userdata('id_user'))->get();
+    	} else {
+    		$data['aClientes'] = $clientes->where('usuario_id', $id_vendedor)->get();
+    	}
+    	$data['view'] = 'lista_clientes';
+		$this->load->view('template',$data);
 
 	}
 
@@ -63,7 +68,6 @@ class Clientes extends CI_Controller{
 			$datosGenerales->telefono2     = $this->input->post('telefono2');
 			$datosGenerales->ext2          = $this->input->post('ext2');
 			$datosGenerales->direccion     = $this->input->post('direccion');
-			$datosGenerales->status        = $this->input->post('status');
 			$datosGenerales->id_cliente    = $this->session->userdata('id_cliente');
 
 			if ($datosGenerales->save()){
@@ -71,7 +75,12 @@ class Clientes extends CI_Controller{
 				$clientes->nombre           = $this->input->post('cliente');
 				$clientes->cargo_cliente    = $this->input->post('cargo_cliente');
 				$clientes->giro_empresa     = $this->input->post('giro_empresa');
-				$clientes->status           = 1;
+				if($this->input->post('status') && $this->input->post('status') == 1){
+		  		$status = 1;
+				}else{
+	  				$status = 0;
+				}
+				$oCliente->status = $status;
 				$clientes->datos_general_id = $datosGenerales->id;
 				$clientes->usuario_id       = $this->session->userdata('id_user');
 				$productos->where_in('id',$this->input->post('productos'))->get();
@@ -130,9 +139,14 @@ class Clientes extends CI_Controller{
 
 			$oCliente->datos_general->get();
 			$oCliente->nombre = $this->input->post('cliente');
-			$$oCliente->status = $this->input->post('status');
 			$oCliente->cargo_cliente= $this->input->post('cargo_cliente');
 			$oCliente->giro_empresa = $this->input->post('giro_empresa');
+			if($this->input->post('status') && $this->input->post('status') == 1){
+		  		$status = 1;
+			}else{
+  				$status = 0;
+			}
+			$oCliente->status = $status;
 			
 			$oCliente->datos_general->nombre       = $this->input->post('nombre');
 			$oCliente->datos_general->apellido_p   = $this->input->post('apat');

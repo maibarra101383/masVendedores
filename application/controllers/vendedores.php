@@ -67,7 +67,6 @@ if ($this->form_validation->run() === false){
 			$datosGenerales->ext2          = $this->input->post('ext2');
 			$datosGenerales->direccion     = $this->input->post('direccion');
 			$datosGenerales->status        = $this->input->post('status');
-			$datosGenerales->id_user    = $this->session->userdata('id_user');
 
 			if ($datosGenerales->save()){
 
@@ -85,7 +84,7 @@ if ($this->form_validation->run() === false){
 
 	}
 
-    public function editar_vendedor()
+    public function editar_vendedor($id_vendedor)
 	{
  		
  		if(!$this->session->userdata('id_user')){
@@ -93,8 +92,6 @@ if ($this->form_validation->run() === false){
     	}
 
     	$this->form_validation->set_rules('usuario', 'Usuario', 'strip_tags|trim|required|valid_email');
-    	$this->form_validation->set_rules('clave', 'Clave', 'strip_tags|trim|required|md5');
-        $this->form_validation->set_rules('claveconf', 'Clave Confirmada', 'strip_tags|trim|required|md5');
     	$this->form_validation->set_rules('nombre', 'Nombre', 'strip_tags|trim|required|alpha');
 		$this->form_validation->set_rules('apat', 'Apellido Paterno', 'strip_tags|trim|required|alpha');
 		$this->form_validation->set_rules('amat', 'Apellido Materno', 'strip_tags|trim|required|alpha');
@@ -106,19 +103,15 @@ if ($this->form_validation->run() === false){
 		$this->form_validation->set_rules('telefono2', 'Teléfono 2', 'strip_tags|trim|numeric|max_length[13]');
 		$this->form_validation->set_rules('ext2', 'Extención 2', 'strip_tags|trim|numeric|max_length[5]');
 		$this->form_validation->set_rules('direccion', 'Dirección', 'strip_tags|trim|required');
-        $this->form_validation->set_rules('cargo_cliente', 'Cargo del Cliente', 'strip_tags|trim|required|alpha');
-        $this->form_validation->set_rules('giro_empresa', 'Giro de la Empresa', 'strip_tags|trim|required|alpha');
+		$this->form_validation->set_rules('zona', 'Zona', 'strip_tags|trim|required');
 
         $vendedor = new Usuario();
  		$datosGenerales = new Datos_general();
 
-
-		$oVendedor = $clientes->where('id')->get();
+		$oVendedor = $vendedor->where('id', $id_vendedor)->get();
 
 		if ($this->form_validation->run() === false){
 
-			//$data = $this->cliente_model->get_cliente($id_cliente);
-			//$data = array_pop($data);
 			$data['aVendedor']   = $oVendedor;
 			$data['error_message'] = "";
 			$data['title'] = "pagina de registro";
@@ -129,10 +122,15 @@ if ($this->form_validation->run() === false){
 		} else {
 
 			$oVendedor->datos_general->get();
+
 			$oVendedor->nombre = $this->input->post('usuario');
-			$$oVendedor->status = $this->input->post('clave');
-		
-			
+			if($this->input->post('status') && $this->input->post('status') == 1){
+		  		$status = 1;
+			}else{
+  				$status = 0;
+			}
+			$oVendedor->status = $status;
+
 			$oVendedor->datos_general->nombre       = $this->input->post('nombre');
 			$oVendedor->datos_general->apellido_p   = $this->input->post('apat');
 			$oVendedor->datos_general->apellido_m   = $this->input->post('amat');
@@ -144,14 +142,11 @@ if ($this->form_validation->run() === false){
 	        $oVendedor->datos_general->telefono2    = $this->input->post('telefono2');
 		    $oVendedor->datos_general->ext2         = $this->input->post('ext2');
 			$oVendedor->datos_general->direccion    = $this->input->post('direccion');
-		
+			$oVendedor->datos_general->zona         = $this->input->post('zona');
 
-			$result = $this->vendedor_model->edit_vendedor($id_dg, $dg_data, $id_user, $user_data);
-
-			if ($result === true){
-				redirect(base_url('vendedor'));
-
-		  }
+			if ($oVendedor->save() && $oVendedor->datos_general->save()){
+				redirect(base_url('vendedores'));
+			}
 
 		}
 

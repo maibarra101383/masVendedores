@@ -179,6 +179,16 @@
 		 	echo form_input($data);
 		 	echo form_error('giro_empresa');
 
+			echo form_label('Proyecto en Proceso : ');
+		 	$data = array(
+		 		'name'  => 'status',
+		 		'id'    => 'status',
+		 		'value' => 1,
+		 		'checked' => ($aCliente->status)?"checked":"",
+		 		'style' => 'width:100%'
+		 	);
+
+		 	echo form_checkbox($data);
 
              echo form_label('  PRODUCTOS ');
 
