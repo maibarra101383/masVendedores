@@ -9,7 +9,11 @@ class Cliente_model extends CI_Model {
       $this->db->set("apellido_p",      $cliente_data['apat']);
       $this->db->set("apellido_m",      $cliente_data['amat']);
       $this->db->set("email",           $cliente_data['email']);
-      $this->db->set("telefono",        $cliente_data['telefono']);
+      $this->db->set("lada1",           $cliente_data['lada1']);
+      $this->db->set("ext1",           $cliente_data['ext1']);
+      $this->db->set("telefono1",        $cliente_data['telefono1']);
+      $this->db->set("lada2",           $cliente_data['lada2']);
+      $this->db->set("ext2",           $cliente_data['ext2']);
       $this->db->set("telefono2",       $cliente_data['telefono2']);
       $this->db->set("direccion",       $cliente_data['direccion']);
       $this->db->set("status", 1);
@@ -21,6 +25,9 @@ class Cliente_model extends CI_Model {
       $this->db->set("cargo_cliente",   $cliente_data['cargo_del_cliente']);
       $this->db->set("giro_empresa",    $cliente_data['giro_de_la_empresa']);
       $this->db->set("status", 1);
+       $this->db->set("fecha_c",   $cliente_data['fecha_c']);
+      $this->db->set("fecha_v",   $cliente_data['fecha_v']);
+
       $this->db->set("id", $id_dg);
       $this->db->insert("clientes");
       $id_cliente = $this->db->insert_id();

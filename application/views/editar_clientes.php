@@ -5,11 +5,11 @@
 	 	/*if (isset($error_menssage)){
 	 		echo '<p>'.$error_menssage.'</p>';
 	 	}*/
-	 	echo form_label('DATOS DEL CLIENTE ');
+	 	echo form_label('DATOS DEL CLIENTE  <br><br>');
 	 	echo form_open();
             
             
-            echo form_label('Nombre del Cliente : ');
+            echo form_label('Nombre de la Empresa: ');
 		 	$data = array(
 		 		'name'  => 'cliente',
 		 		'id'    => 'cliente',
@@ -22,7 +22,7 @@
             
 			$aCliente->datos_general->get();
 
-            echo form_label('DATOS GENERALES DEL CLIENTE  ');
+            echo form_label('DATOS GENERALES DEL CLIENTE <br><br> ');
 
             echo form_label('Nombre : ');
 		 	$data = array(
@@ -179,7 +179,34 @@
 		 	echo form_input($data);
 		 	echo form_error('giro_empresa');
 
-			echo form_label('Proyecto en Proceso : ');
+
+
+           echo form_label('Fecha de Contacto : ');
+		 	$data = array(
+		 		'name'  => 'fecha_c_show',
+		 		'id'    => 'fecha_c_show',
+		 		'value' => set_value('fecha_c_show',$aCliente->fecha_c),
+		 		'style' => 'width:18%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('fecha_c_show');
+
+
+		 	 echo form_label('<br><br>Fecha de Visita : ');
+		 	$data = array(
+		 		'name'  => 'fecha_v_show',
+		 		'id'    => 'fecha_v_show',
+		 		'value' => set_value('fecha_v_show',$aCliente->fecha_v),
+		 		'style' => 'width:30%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('fecha_v_show');
+		 	echo form_error('fecha_v');
+
+
+           echo form_label('<br><br>Proyecto en Proceso : ');
 		 	$data = array(
 		 		'name'  => 'status',
 		 		'id'    => 'status',
@@ -187,9 +214,7 @@
 		 		'checked' => ($aCliente->status)?"checked":"",
 		 		'style' => 'width:100%'
 		 	);
-
-		 	echo form_checkbox($data);
-
+             echo form_checkbox($data);
              echo form_label('  PRODUCTOS ');
 
 			$aCliente->producto->get();
@@ -214,7 +239,8 @@
 
               echo form_checkbox($data);
              }
-
+              
+              echo form_hidden('id_vendedor', $aCliente->usuario_id);
               echo form_hidden('id_datos_generales', $aCliente->datos_general->id_datos_generales);
 
                 $data = array(
@@ -225,10 +251,28 @@
 		 	);
 
 		 	echo form_submit($data);
-		 	
-            
 
+ echo '<input name="fecha_v" type="hidden" id="fecha_v" />';
+ echo '<input name="fecha_c" type="hidden" id="fecha_c" />';
  echo form_close(); 
 	 	
 	 ?>
 </div>
+
+
+<script>
+$('#fecha_v_show').datetimepicker({
+	controlType: 'select',
+	altField: "#fecha_v",
+	altFieldTimeOnly: false,
+	altFormat: "yy-mm-dd",
+	altTimeFormat: "HH:mm"
+});
+
+$('#fecha_c_show').datepicker({
+	altField: "#fecha_c",
+	altFormat: "yy-mm-dd"
+
+});
+
+</script>

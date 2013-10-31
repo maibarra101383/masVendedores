@@ -25,8 +25,8 @@ class Vendedor_model extends CI_Model {
 		return true;
 		
 	}
-
-	public function edit_vendedor ($id_dg, $dg_data, $id_user, $user_data)
+      
+public function edit_vendedor ($id_dg, $dg_data, $id_user, $user_data)
 	{
 
 		$this->db->where('id_datos_generales', $id_dg);

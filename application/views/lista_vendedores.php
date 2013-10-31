@@ -11,10 +11,17 @@
 <thead>
 	<tr>
 		<th>Nombre del Vendedor</th>
+		<th>Apellido Paterno</th>
+		<th>Apellido Materno</th>
 		<th>Activo</th>
 		<th>Zona</th>
-		<th>Telefono 1</th>
-		<th>Telefono 2</th>
+		 <th>Lada 1</th>
+        <th>Telefono 1</th>
+        <th>Extencion 1</th>
+         <th>Lada 2</th>
+         <th>Telefono 2</th>
+          <th>Extencion 2</th>
+          <th>Email</th>
 		<th>Editar</th>
 		<th>Lista de clientes</th>
 	</tr></thead>
@@ -68,11 +75,19 @@
 			//print_r($aItem);
 			$aItem->datos_general->get();
 			echo '<tr>';
-				echo '<td>'.$aItem->usuario.'</td>';
-				echo '<td>'.$aItem->status.'</td>';
+				
+                echo '<td>'.$aItem->datos_general->nombre.'</td>';
+                echo '<td>'.$aItem->datos_general->apellido_p.'</td>';
+                echo '<td>'.$aItem->datos_general->apellido_m.'</td>';
+                    echo '<td>'.$aItem->status.'</td>';
 				echo '<td>'.$aItem->datos_general->zona.'</td>';
+				echo '<td>'.$aItem->datos_general->lada1.'</td>';
 				echo '<td>'.$aItem->datos_general->telefono1.'</td>';
+				echo '<td>'.$aItem->datos_general->ext1.'</td>';
+				echo '<td>'.$aItem->datos_general->lada2.'</td>';
 				echo '<td>'.$aItem->datos_general->telefono2.'</td>';
+				echo '<td>'.$aItem->datos_general->ext2.'</td>';
+				echo '<td>'.$aItem->datos_general->email.'</td>';
 				echo '<td><a href="'.base_url('vendedores/editar_vendedor/'.$aItem->id).'">Editar vendedor</a></td>';
 				echo '<td><a href="'.base_url('clientes/index/'.$aItem->id).'">Lista de clientes</a></td>';
 			echo '</tr>';

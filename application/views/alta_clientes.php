@@ -1,3 +1,4 @@
+ <h1>Pagina de Registro</h1> 
 <div id="login_form" 
 	 style="width:400px; margin:100px auto; border-radius:5px; border:1px solid #909090; pading:20px" >
 
@@ -5,11 +6,11 @@
 	 	/*if (isset($error_menssage)){
 	 		echo '<p>'.$error_menssage.'</p>';
 	 	}*/
-	 	echo form_label('DATOS DEL CLIENTE ');
+	 	echo form_label('DATOS DEL CLIENTE <br><br>');
 	 	echo form_open();
             
             
-            echo form_label('Nombre del Cliente : ');
+            echo form_label('Nombre de la Empresa : ');
 		 	$data = array(
 		 		'name'  => 'cliente',
 		 		'id'    => 'cliente',
@@ -20,7 +21,7 @@
 		 	echo form_input($data);
 		 	echo form_error('cliente');
             
-            echo form_label('  DATOS GENERALES DEL CONTACTO ');
+            echo form_label('  DATOS GENERALES DEL CONTACTO  <br><br>');
 
             echo form_label('Nombre : ');
 		 	$data = array(
@@ -179,7 +180,35 @@
 		 	echo form_error('giro_empresa');
 
 
-		 	echo form_label('Proyecto en Proceso : ');
+
+            echo form_label('Fecha de Contacto : ');
+		 	$data = array(
+		 		'name'  => 'fecha_c_show',
+		 		'id'    => 'fecha_c_show',
+		 		'value' => set_value('fecha_c_show'),
+		 		'style' => 'width:18%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('fecha_c_show');
+
+
+
+		 	 echo form_label('<br><br>Fecha de Visita : ');
+		 	$data = array(
+		 		'name'  => 'fecha_v_show',
+		 		'id'    => 'fecha_v_show',
+		 		'value' => set_value('fecha_v_show'),
+		 		'style' => 'width:30%'
+		 	);
+
+		 	echo form_input($data);
+		 	echo form_error('fecha_v_show');
+
+
+		 	
+
+            echo form_label('<br><br>Proyecto en Proceso :  ');
 		 	$data = array(
 		 		'name'  => 'status',
 		 		'id'    => 'status',
@@ -190,7 +219,7 @@
 		 	echo form_checkbox($data);
 
 
-             echo form_label('  PRODUCTOS ');
+             echo form_label(' <br><br>  PRODUCTOS:  <br><br>');
 
              foreach($aProductos as $aItem){
 
@@ -213,14 +242,27 @@
 		 	);
 
 		 	echo form_submit($data);
-
-            
-
-
-		 	
-            
-
+ echo '<input name="fecha_v" type="hidden" id="fecha_v" />';
+ echo '<input name="fecha_c" type="hidden" id="fecha_c" />';
  echo form_close(); 
 	 	
 	 ?>
 </div>
+
+
+<script>
+$('#fecha_v_show').datetimepicker({
+	controlType: 'select',
+	altField: "#fecha_v",
+	altFieldTimeOnly: false,
+	altFormat: "yy-mm-dd",
+	altTimeFormat: "HH:mm"
+});
+
+$('#fecha_c_show').datepicker({
+	altField: "#fecha_c",
+	altFormat: "yy-mm-dd"
+
+});
+
+</script>

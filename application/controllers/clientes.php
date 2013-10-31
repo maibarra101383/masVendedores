@@ -6,7 +6,7 @@ class Clientes extends CI_Controller{
     {
     	parent::__construct();
     	if(!$this->session->userdata('id_user')){
-    		redirect(base_url('login'));
+    		//redirect(base_url('login'));
     	}
     }
 
@@ -41,7 +41,8 @@ class Clientes extends CI_Controller{
 		$this->form_validation->set_rules('direccion', 'Dirección', 'strip_tags|trim|required');
         $this->form_validation->set_rules('cargo_cliente', 'Cargo del Cliente', 'strip_tags|trim|required|alpha');
         $this->form_validation->set_rules('giro_empresa', 'Giro de la Empresa', 'strip_tags|trim|required|alpha');
-
+        $this->form_validation->set_rules('fecha_c_show', 'Fecha de Contacto', 'strip_tags|trim|required');
+        $this->form_validation->set_rules('fecha_v_show', 'Fecha de Visita', 'strip_tags|trim|required');
  		$clientes = new Cliente();
  		$productos = new Producto();
  		$datosGenerales = new Datos_general();
@@ -50,10 +51,21 @@ class Clientes extends CI_Controller{
 		$data['title'] = "pagina de registro";
 		$data['view']  = "alta_clientes";
 
+
 		if ($this->form_validation->run() === false){
 
-			$data['error_message'] = "";
+
+			$data['cssFiles']  = array('themes/base/jquery-ui.css');
+            $data['jsFiles']   = array('jquery.js', 
+            						   'jquery-ui/ui/jquery-ui.js',
+            						   'jquery-timepicker.js');
+   
+            
+
+
+            $data['error_message'] = "";
 			$this->load->view('template', $data);
+
 
 		} else {
 			
@@ -75,6 +87,9 @@ class Clientes extends CI_Controller{
 				$clientes->nombre           = $this->input->post('cliente');
 				$clientes->cargo_cliente    = $this->input->post('cargo_cliente');
 				$clientes->giro_empresa     = $this->input->post('giro_empresa');
+				$clientes->fecha_c          = $this->input->post('fecha_c');
+				$clientes->fecha_v          = $this->input->post('fecha_v').':00';
+				$clientes->fecha_a = date("Y-m-d H:i:s");
 				if($this->input->post('status') && $this->input->post('status') == 1){
 		  		$status = 1;
 				}else{
@@ -84,14 +99,19 @@ class Clientes extends CI_Controller{
 				$clientes->datos_general_id = $datosGenerales->id;
 				$clientes->usuario_id       = $this->session->userdata('id_user');
 				$productos->where_in('id',$this->input->post('productos'))->get();
-				$clientes->save($productos->all);
+				$clientes->save($productos->all && $clientes->save());
 
 			}
 				redirect(base_url('clientes'));
 
 		}
+		
+			}
 
-	}
+
+
+
+
 
     public function editar_cliente($id_cliente)
 	{
@@ -114,10 +134,15 @@ class Clientes extends CI_Controller{
 		$this->form_validation->set_rules('direccion', 'Dirección', 'strip_tags|trim|required');
         $this->form_validation->set_rules('cargo_cliente', 'Cargo del Cliente', 'strip_tags|trim|required|alpha');
         $this->form_validation->set_rules('giro_empresa', 'Giro de la Empresa', 'strip_tags|trim|required|alpha');
+        $this->form_validation->set_rules('fecha_c', 'Fecha de Contacto', 'strip_tags|trim|required');
+        $this->form_validation->set_rules('fecha_v', 'Fecha de Visita', 'strip_tags|trim|required');
+        
 
+         //$this->form_validation->set_rules('id_user');
 
 		$clientes = new Cliente();
 		$productos = new Producto();
+
 
 		$oCliente = $clientes->where('id', $id_cliente)->get();
 
@@ -125,6 +150,13 @@ class Clientes extends CI_Controller{
 
 			//$data = $this->cliente_model->get_cliente($id_cliente);
 			//$data = array_pop($data);
+
+			$data['cssFiles']  = array('themes/base/jquery-ui.css');
+            $data['jsFiles']   = array('jquery.js', 
+            						   'jquery-ui/ui/jquery-ui.js',
+            						   'jquery-timepicker.js');
+    
+
 			$data['aCliente']   = $oCliente;
 			$data['aProductos'] = $productos->get();
 
@@ -141,6 +173,11 @@ class Clientes extends CI_Controller{
 			$oCliente->nombre = $this->input->post('cliente');
 			$oCliente->cargo_cliente= $this->input->post('cargo_cliente');
 			$oCliente->giro_empresa = $this->input->post('giro_empresa');
+			$oCliente->fecha_c = $this->input->post('fecha_c');
+			$oCliente->fecha_v = $this->input->post('fecha_v').':00';
+			$oCliente->fecha_m = date("Y-m-d H:i:s");
+
+			//print_r($this->input->post('fecha_v').':00');exit();
 			if($this->input->post('status') && $this->input->post('status') == 1){
 		  		$status = 1;
 			}else{
@@ -159,12 +196,14 @@ class Clientes extends CI_Controller{
 	        $oCliente->datos_general->telefono2    = $this->input->post('telefono2');
 		    $oCliente->datos_general->ext2         = $this->input->post('ext2');
 			$oCliente->datos_general->direccion    = $this->input->post('direccion');
+            $id_vendedor = $this->input->post('id_vendedor');
 			$oCliente->producto->get();
 			$oCliente->delete($oCliente->producto->all);
 			$productos->where_in('id',$this->input->post('productos'))->get();
 
 			if ($oCliente->save($productos->all) && $oCliente->datos_general->save()){
-				redirect(base_url('clientes'));
+
+				redirect(base_url('clientes/index/'.$id_vendedor));
 			}
 
 		}

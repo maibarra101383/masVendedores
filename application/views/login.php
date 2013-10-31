@@ -1,5 +1,6 @@
+ <h1>BIENVENIDO</h1> 
 <div id="login_form" 
-	 style="width:400px; margin:100px auto; border-radius:5px; border:1px solid #909090; pading:20px" >
+	 style="width:400px; margin:100px auto; border-radius:5px; border:1px solid #909090; pading:20px" > 
 
 	 <?php
 	 	//echo '<p>'.$error_message.'</p>';

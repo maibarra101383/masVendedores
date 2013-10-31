@@ -5,11 +5,11 @@
 	 	/*if (isset($error_menssage)){
 	 		echo '<p>'.$error_menssage.'</p>';
 	 	}*/
-	 	echo form_label('DATOS DEL USUARIO ');
+	 	echo form_label('DATOS DEL USUARIO <br><br> ');
 	 	echo form_open();
             
             
-            echo form_label('Usuario : ');
+            echo form_label('Usuario(email) : ');
 		 	$data = array(
 		 		'name'  => 'usuario',
 		 		'id'    => 'usuario',
@@ -22,7 +22,7 @@
 
             $aVendedor->datos_general->get();
             
-            echo form_label('  DATOS GENERALES  ');
+            echo form_label('  DATOS GENERALES <br><br> ');
 
             echo form_label('Nombre : ');
 		 	$data = array(
@@ -157,7 +157,7 @@
 		 	echo form_error('direccion');
 
 
-		 	echo form_label('Status : ');
+		 	echo form_label('Status :  ');
 		 	$data = array(
 		 		'name'  => 'status',
 		 		'id'    => 'status',

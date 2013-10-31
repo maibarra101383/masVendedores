@@ -26,7 +26,7 @@ class Vendedores extends CI_Controller{
 
    public function alta_vendedor(){
 
-		$this->form_validation->set_rules('usuario', 'Usuario', 'strip_tags|trim|required|is_unique[usuarios.usuario]|valid_email');
+		$this->form_validation->set_rules('usuario', 'Usuario', 'strip_tags|trim|callback_masQweb|required|valid_email');
         $this->form_validation->set_rules('clave', 'Clave', 'strip_tags|trim|required|matches[claveconf]|md5');
         $this->form_validation->set_rules('claveconf', 'Clave Confirmada', 'strip_tags|trim|required|md5');
         $this->form_validation->set_rules('nombre', 'Nombre', 'strip_tags|trim|required|alpha');
@@ -66,6 +66,7 @@ if ($this->form_validation->run() === false){
 			$datosGenerales->telefono2     = $this->input->post('telefono2');
 			$datosGenerales->ext2          = $this->input->post('ext2');
 			$datosGenerales->direccion     = $this->input->post('direccion');
+			$datosGenerales->zona          = $this->input->post('zona');
 			$datosGenerales->status        = $this->input->post('status');
 
 			if ($datosGenerales->save()){
@@ -91,7 +92,7 @@ if ($this->form_validation->run() === false){
     		redirect(base_url('login'));
     	}
 
-    	$this->form_validation->set_rules('usuario', 'Usuario', 'strip_tags|trim|required|valid_email');
+    	$this->form_validation->set_rules('usuario', 'Usuario', 'strip_tags|trim|required[usuarios.usuario]|valid_email');
     	$this->form_validation->set_rules('nombre', 'Nombre', 'strip_tags|trim|required|alpha');
 		$this->form_validation->set_rules('apat', 'Apellido Paterno', 'strip_tags|trim|required|alpha');
 		$this->form_validation->set_rules('amat', 'Apellido Materno', 'strip_tags|trim|required|alpha');
@@ -107,7 +108,7 @@ if ($this->form_validation->run() === false){
 
         $vendedor = new Usuario();
  		$datosGenerales = new Datos_general();
-
+       
 		$oVendedor = $vendedor->where('id', $id_vendedor)->get();
 
 		if ($this->form_validation->run() === false){

@@ -1,3 +1,4 @@
+ <h1>Pagina de Registro</h1> 
 <div id="login_form" 
 	 style="width:400px; margin:100px auto; border-radius:5px; border:1px solid #909090; pading:20px" >
 
@@ -5,11 +6,11 @@
 	 	/*if (isset($error_menssage)){
 	 		echo '<p>'.$error_menssage.'</p>';
 	 	}*/
-	 	echo form_label('DATOS DEL VENDEDOR ');
+	 	echo form_label('DATOS DEL VENDEDOR <br><br> ');
 	 	echo form_open();
             
             
-            echo form_label('Usuario : ');
+            echo form_label('Usuario(email) : ');
 		 	$data = array(
 		 		'name'  => 'usuario',
 		 		'id'    => 'usuario',
@@ -42,7 +43,7 @@
             
 		 	
             
-            echo form_label('  DATOS GENERALES  ');
+            echo form_label('  DATOS GENERALES <br><br> ');
 
             echo form_label('Nombre : ');
 		 	$data = array(
