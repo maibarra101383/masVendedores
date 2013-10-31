@@ -20,7 +20,7 @@ class Requerimientos extends CI_Controller{
     	} else {
     		$data['aClientes'] = $clientes->where('usuario_id', $id_vendedor)->get();
     	}
-    	$data['view'] = 'requerimientos_view';
+    	$data['view'] = 'lista_clientes';
 		$this->load->view('template',$data);
 
 	}
@@ -125,17 +125,8 @@ class Requerimientos extends CI_Controller{
 		$this->form_validation->set_rules('apat', 'Apellido Paterno', 'strip_tags|trim|required|alpha');
 		$this->form_validation->set_rules('amat', 'Apellido Materno', 'strip_tags|trim|required|alpha');
 		$this->form_validation->set_rules('email', 'Email', 'strip_tags|trim|required|valid_email');
-		$this->form_validation->set_rules('lada1', 'Lada 1', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('telefono1', 'Teléfono 1', 'strip_tags|trim|required|numeric|max_length[13]');
-		$this->form_validation->set_rules('ext1', 'Extención 1', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('lada2', 'Lada 2', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('telefono2', 'Teléfono 2', 'strip_tags|trim|numeric|max_length[13]');
-		$this->form_validation->set_rules('ext2', 'Extención 2', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('direccion', 'Dirección', 'strip_tags|trim|required');
         $this->form_validation->set_rules('cargo_cliente', 'Cargo del Cliente', 'strip_tags|trim|required|alpha');
         $this->form_validation->set_rules('giro_empresa', 'Giro de la Empresa', 'strip_tags|trim|required|alpha');
-        $this->form_validation->set_rules('fecha_c', 'Fecha de Contacto', 'strip_tags|trim|required');
-        $this->form_validation->set_rules('fecha_v', 'Fecha de Visita', 'strip_tags|trim|required');
         
 
          //$this->form_validation->set_rules('id_user');
@@ -151,10 +142,10 @@ class Requerimientos extends CI_Controller{
 			//$data = $this->cliente_model->get_cliente($id_cliente);
 			//$data = array_pop($data);
 
-			$data['cssFiles']  = array('themes/base/jquery-ui.css');
+			/*$data['cssFiles']  = array('themes/base/jquery-ui.css');
             $data['jsFiles']   = array('jquery.js', 
             						   'jquery-ui/ui/jquery-ui.js',
-            						   'jquery-timepicker.js');
+            						   'jquery-timepicker.js');*/
     
 
 			$data['aCliente']   = $oCliente;
@@ -163,7 +154,7 @@ class Requerimientos extends CI_Controller{
 			$data['error_message'] = "";
 			$data['title'] = "pagina de registro";
 
-		    $data['view']  = "editar_clientes";
+		    $data['view']  = "editar_requerimiento";
 		    
 			$this->load->view('template', $data);
 
@@ -173,9 +164,6 @@ class Requerimientos extends CI_Controller{
 			$oCliente->nombre = $this->input->post('cliente');
 			$oCliente->cargo_cliente= $this->input->post('cargo_cliente');
 			$oCliente->giro_empresa = $this->input->post('giro_empresa');
-			$oCliente->fecha_c = $this->input->post('fecha_c');
-			$oCliente->fecha_v = $this->input->post('fecha_v').':00';
-			$oCliente->fecha_m = date("Y-m-d H:i:s");
 
 			//print_r($this->input->post('fecha_v').':00');exit();
 			if($this->input->post('status') && $this->input->post('status') == 1){
@@ -203,7 +191,7 @@ class Requerimientos extends CI_Controller{
 
 			if ($oCliente->save($productos->all) && $oCliente->datos_general->save()){
 
-				redirect(base_url('clientes/index/'.$id_vendedor));
+				redirect(base_url('requerimientos/index/'.$id_vendedor));
 			}
 
 		}

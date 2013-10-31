@@ -88,7 +88,7 @@
                 echo '<td>'.$aItem->datos_general->ext2.'</td>';
                 echo '<td>'.$aItem->fecha_c.'</td>';
                 echo '<td>'.$aItem->fecha_v.'</td>';
-                echo '<td>'.$aItem->requerimiento.'</td>';
+                echo '<td>'.$aItem->requerimiento.'</td>'; echo '<td><a href="'.base_url('requerimientos/editar_requerimiento/'.$aItem->id).'">Ver Requerimiento</a></td>';
                 echo '<td>';
                 		foreach($aItem->producto->all as $productos){
 
@@ -96,10 +96,8 @@
 							echo '<br />';
 
 						}
-                
-
                 echo '</td>';
-                echo '<td><a href="'.base_url('clientes/editar_cliente/'.$aItem->id).'">Editar</a></td>';
+              echo  '<td><a href="'.base_url('clientes/editar_cliente/'.$aItem->id).'">Editar</a></td>';
 				
 			echo '</tr>';
 		}
