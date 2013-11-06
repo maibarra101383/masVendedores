@@ -23,94 +23,8 @@ class Requerimientos extends CI_Controller{
     	$data['view'] = 'lista_clientes';
 		$this->load->view('template',$data);
 
+
 	}
-
-	public function alta_requerimiento(){
-
-		$this->form_validation->set_rules('cliente', 'Cliente', 'strip_tags|trim|required');
-		$this->form_validation->set_rules('nombre', 'Nombre', 'strip_tags|trim|required|alpha');
-		$this->form_validation->set_rules('apat', 'Apellido Paterno', 'strip_tags|trim|required|alpha');
-		$this->form_validation->set_rules('amat', 'Apellido Materno', 'strip_tags|trim|required|alpha');
-		$this->form_validation->set_rules('email', 'Email', 'strip_tags|trim|required|valid_email');
-		$this->form_validation->set_rules('lada1', 'Lada 1', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('telefono1', 'Teléfono 1', 'strip_tags|trim|required|numeric|max_length[13]');
-		$this->form_validation->set_rules('ext1', 'Extención 1', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('lada2', 'Lada 2', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('telefono2', 'Teléfono 2', 'strip_tags|trim|numeric|max_length[13]');
-		$this->form_validation->set_rules('ext2', 'Extención 2', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('direccion', 'Dirección', 'strip_tags|trim|required');
-        $this->form_validation->set_rules('cargo_cliente', 'Cargo del Cliente', 'strip_tags|trim|required|alpha');
-        $this->form_validation->set_rules('giro_empresa', 'Giro de la Empresa', 'strip_tags|trim|required|alpha');
-        $this->form_validation->set_rules('fecha_c_show', 'Fecha de Contacto', 'strip_tags|trim|required');
-        $this->form_validation->set_rules('fecha_v_show', 'Fecha de Visita', 'strip_tags|trim|required');
- 		$clientes = new Cliente();
- 		$productos = new Producto();
- 		$datosGenerales = new Datos_general();
-    
-        $data['aProductos'] = $productos->get();
-		$data['title'] = "pagina de registro";
-		$data['view']  = "alta_clientes";
-
-
-		if ($this->form_validation->run() === false){
-
-
-			$data['cssFiles']  = array('themes/base/jquery-ui.css');
-            $data['jsFiles']   = array('jquery.js', 
-            						   'jquery-ui/ui/jquery-ui.js',
-            						   'jquery-timepicker.js');
-   
-            
-
-
-            $data['error_message'] = "";
-			$this->load->view('template', $data);
-
-
-		} else {
-			
-			$datosGenerales->nombre        = $this->input->post('nombre');
-			$datosGenerales->apellido_p    = $this->input->post('apat');
-		    $datosGenerales->apellido_m    = $this->input->post('amat');
-			$datosGenerales->email         = $this->input->post('email');
-			$datosGenerales->lada1         = $this->input->post('lada1');
-			$datosGenerales->telefono1     = $this->input->post('telefono1');
-			$datosGenerales->ext1          = $this->input->post('ext1');
-			$datosGenerales->lada2         = $this->input->post('lada2');
-			$datosGenerales->telefono2     = $this->input->post('telefono2');
-			$datosGenerales->ext2          = $this->input->post('ext2');
-			$datosGenerales->direccion     = $this->input->post('direccion');
-			$datosGenerales->id_cliente    = $this->session->userdata('id_cliente');
-
-			if ($datosGenerales->save()){
-
-				$clientes->nombre           = $this->input->post('cliente');
-				$clientes->cargo_cliente    = $this->input->post('cargo_cliente');
-				$clientes->giro_empresa     = $this->input->post('giro_empresa');
-				$clientes->fecha_c          = $this->input->post('fecha_c');
-				$clientes->fecha_v          = $this->input->post('fecha_v').':00';
-				$clientes->fecha_a = date("Y-m-d H:i:s");
-				if($this->input->post('status') && $this->input->post('status') == 1){
-		  		$status = 1;
-				}else{
-	  				$status = 0;
-				}
-				$oCliente->status = $status;
-				$clientes->datos_general_id = $datosGenerales->id;
-				$clientes->usuario_id       = $this->session->userdata('id_user');
-				$productos->where_in('id',$this->input->post('productos'))->get();
-				$clientes->save($productos->all && $clientes->save());
-
-			}
-				redirect(base_url('clientes'));
-
-		}
-		
-			}
-
-
-
-
 
 
     public function editar_requerimiento($id_cliente)
@@ -120,36 +34,18 @@ class Requerimientos extends CI_Controller{
     		redirect(base_url('login'));
     	}
 
-    	$this->form_validation->set_rules('cliente', 'Cliente', 'strip_tags|trim|required');
-    	$this->form_validation->set_rules('nombre', 'Nombre', 'strip_tags|trim|required|alpha');
-		$this->form_validation->set_rules('apat', 'Apellido Paterno', 'strip_tags|trim|required|alpha');
-		$this->form_validation->set_rules('amat', 'Apellido Materno', 'strip_tags|trim|required|alpha');
-		$this->form_validation->set_rules('email', 'Email', 'strip_tags|trim|required|valid_email');
-        $this->form_validation->set_rules('cargo_cliente', 'Cargo del Cliente', 'strip_tags|trim|required|alpha');
-        $this->form_validation->set_rules('giro_empresa', 'Giro de la Empresa', 'strip_tags|trim|required|alpha');
-        
-
-         //$this->form_validation->set_rules('id_user');
-
-		$clientes = new Cliente();
-		$productos = new Producto();
-
+		$clientes        = new Cliente();
+        $requerimientos  = new Requerimiento();
+        $clienteProducto = new Cliente_producto(); 
 
 		$oCliente = $clientes->where('id', $id_cliente)->get();
+        $oRequerimiento =$requerimientos->where('cliente_id',$id_cliente)->get();
+		
 
-		if ($this->form_validation->run() === false){
-
-			//$data = $this->cliente_model->get_cliente($id_cliente);
-			//$data = array_pop($data);
-
-			/*$data['cssFiles']  = array('themes/base/jquery-ui.css');
-            $data['jsFiles']   = array('jquery.js', 
-            						   'jquery-ui/ui/jquery-ui.js',
-            						   'jquery-timepicker.js');*/
+		if (!$this->input->post()){
     
-
 			$data['aCliente']   = $oCliente;
-			$data['aProductos'] = $productos->get();
+			$data['aRequerimiento']   = $oRequerimiento;
 
 			$data['error_message'] = "";
 			$data['title'] = "pagina de registro";
@@ -160,41 +56,29 @@ class Requerimientos extends CI_Controller{
 
 		} else {
 
-			$oCliente->datos_general->get();
-			$oCliente->nombre = $this->input->post('cliente');
-			$oCliente->cargo_cliente= $this->input->post('cargo_cliente');
-			$oCliente->giro_empresa = $this->input->post('giro_empresa');
+	$oCliente->producto->get();
 
-			//print_r($this->input->post('fecha_v').':00');exit();
-			if($this->input->post('status') && $this->input->post('status') == 1){
-		  		$status = 1;
-			}else{
-  				$status = 0;
-			}
-			$oCliente->status = $status;
-			
-			$oCliente->datos_general->nombre       = $this->input->post('nombre');
-			$oCliente->datos_general->apellido_p   = $this->input->post('apat');
-			$oCliente->datos_general->apellido_m   = $this->input->post('amat');
-		    $oCliente->datos_general->email        = $this->input->post('email');
-            $oCliente->datos_general->lada1        = $this->input->post('lada1');
-            $oCliente->datos_general->telefono1    = $this->input->post('telefono1');
-	        $oCliente->datos_general->ext1         = $this->input->post('ext1');
-	        $oCliente->datos_general->lada2        = $this->input->post('lada2');
-	        $oCliente->datos_general->telefono2    = $this->input->post('telefono2');
-		    $oCliente->datos_general->ext2         = $this->input->post('ext2');
-			$oCliente->datos_general->direccion    = $this->input->post('direccion');
-            $id_vendedor = $this->input->post('id_vendedor');
-			$oCliente->producto->get();
-			$oCliente->delete($oCliente->producto->all);
-			$productos->where_in('id',$this->input->post('productos'))->get();
+  	foreach ($oCliente->producto->all as $producto){
 
-			if ($oCliente->save($productos->all) && $oCliente->datos_general->save()){
+		$oRequerimiento->notas       = $this->input->post('nota_'.$producto->id);
+	    $oRequerimiento->usuario_id  = $this->input->post('usuario');
+	    $oRequerimiento->cliente_id  = $id_cliente;
+	    $oRequerimiento->descripcion = $this->input->post('des_'.$producto->id);
+ 		
+ 		$oRequerimiento->save();
 
-				redirect(base_url('requerimientos/index/'.$id_vendedor));
+ 		$clienteProducto->where(array('cliente_id'  => $id_cliente,
+ 									  'producto_id' => $producto->id))->get();
+
+
+ 		$clienteProducto->requerimiento_id = $oRequerimiento->id;
+
+           if ($clienteProducto->save()){
+				redirect(base_url('clientes/index/'.$id_vendedor));
 			}
 
 		}
 
 	}
+  }
 }

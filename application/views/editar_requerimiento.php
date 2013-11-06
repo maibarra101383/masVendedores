@@ -45,65 +45,32 @@
 		 		 echo form_label('<br><br>Giro de la Empresa : ');
 		  echo form_label ($aCliente->datos_general->giro_empresa);
 
-
-
-            /*echo form_label('Fecha de Contacto : ');
-		 	$data = array(
-		 		'name'  => 'fecha_c_show',
-		 		'id'    => 'fecha_c_show',
-		 		'value' => set_value('fecha_c_show'),
-		 		'style' => 'width:18%'
-		 	);
-
-		 	echo form_input($data);
-		 	echo form_error('fecha_c_show');
-
-
-
-		 	 echo form_label('<br><br>Fecha de Visita : ');
-		 	$data = array(
-		 		'name'  => 'fecha_v_show',
-		 		'id'    => 'fecha_v_show',
-		 		'value' => set_value('fecha_v_show'),
-		 		'style' => 'width:30%'
-		 	);
-
-		 	echo form_input($data);
-		 	echo form_error('fecha_v_show');
-
-
-		 	
-
-            echo form_label('<br><br>Proyecto en Proceso :  ');
-		 	$data = array(
-		 		'name'  => 'status',
-		 		'id'    => 'status',
-		 		'value' => 1,
-		 		'style' => 'width:100%'
-		 	);
-
-		 	echo form_checkbox($data);*/
-
-
              echo form_label(' <br><br>  PRODUCTOS:  <br><br>');
 
-             foreach($aProductos as $aItem){
+             $prod_cli = $aCliente->producto->get();
 
-            	echo form_label($aItem->nombre);
+			foreach ($prod_cli as $prod){
+				$nota = '';
+				$descripcion = '';
 
-            	$data = array(
-                	'name'        => 'productos[]',
-                	'value'       => $aItem->id, 
-                	'style'       => 'margin:10px',
-            	);
+				foreach($aRequerimiento as $requerimiento){
+					$requerimiento->cliente_producto->get();
+					if($requerimiento->cliente_producto->producto_id == $prod->id){
+						$nota = $requerimiento->notas;
+						$descripcion = $requerimiento->descripcion;
+						
+					}
+				}
 
-            	 echo form_checkbox($data);	
+          echo  form_label($prod->nombre);
+
           echo form_label(' <br><br>  DESCRIPCION:  <br><br>');
 
           $data = array(
-		 		'name'  => 'des',
-		 		'id'    => 'des',
-		 		'style' => 'width:100%'
+		 		'name'  => 'des_'.$prod->id,
+		 		'id'    => 'des_'. $prod->id,
+		 		'style' => 'width:100%',
+		 		'value' => $descripcion
 		 	);
 
 		 	echo form_textarea($data);
@@ -112,12 +79,14 @@
           echo form_label(' <br><br>  NOTAS:  <br><br>');
 
           $data = array(
-		 		'name'  => 'nota',
-		 		'id'    => 'nota',
-		 		'style' => 'width:100%'
+		 		'name'  => 'nota_'.$prod->id,
+		 		'id'    => 'nota_'.$prod->id,
+		 		'style' => 'width:100%',
+		 		'value' => $nota
 		 	);
 
 		 	echo form_textarea($data);
+			
 
 
              }
@@ -131,6 +100,32 @@
 
 		 	echo form_submit($data);
 
+
+		 	
+
+		  	$data = array(
+		 		'usuario'  => $aCliente->usuario_id
+		 	);
+	 echo form_hidden ($data);
+
+
+
+	/*$data = array(
+		 		'name'  => 'producto',
+		 		'id'    => 'producto',
+		 		'value' => $aCliente->producto_id,
+		 		'style' => 'width:100%'
+		 	);
+	 echo form_hidden ($data);*/
+
+
+
+
+
+
+
+		 		
+                	
  /*echo '<input name="fecha_v" type="hidden" id="fecha_v" />';
  echo '<input name="fecha_c" type="hidden" id="fecha_c" />';*/
  echo form_close(); 

@@ -20,7 +20,9 @@ class Clientes extends CI_Controller{
     	} else {
     		$data['aClientes'] = $clientes->where('usuario_id', $id_vendedor)->get();
     	}
+
     	$data['view'] = 'lista_clientes';
+    	$data['cssFiles']  = array('style.css');
 		$this->load->view('template',$data);
 
 	}
@@ -59,10 +61,6 @@ class Clientes extends CI_Controller{
             $data['jsFiles']   = array('jquery.js', 
             						   'jquery-ui/ui/jquery-ui.js',
             						   'jquery-timepicker.js');
-   
-            
-
-
             $data['error_message'] = "";
 			$this->load->view('template', $data);
 
@@ -91,7 +89,7 @@ class Clientes extends CI_Controller{
 				$clientes->fecha_v          = $this->input->post('fecha_v').':00';
 				$clientes->fecha_a = date("Y-m-d H:i:s");
 				if($this->input->post('status') && $this->input->post('status') == 1){
-		  		$status = 1;
+		  			$status = 1;
 				}else{
 	  				$status = 0;
 				}
@@ -99,7 +97,7 @@ class Clientes extends CI_Controller{
 				$clientes->datos_general_id = $datosGenerales->id;
 				$clientes->usuario_id       = $this->session->userdata('id_user');
 				$productos->where_in('id',$this->input->post('productos'))->get();
-				$clientes->save($productos->all && $clientes->save());
+				$clientes->save($productos->all);
 
 			}
 				redirect(base_url('clientes'));
@@ -151,7 +149,7 @@ class Clientes extends CI_Controller{
 			//$data = $this->cliente_model->get_cliente($id_cliente);
 			//$data = array_pop($data);
 
-			$data['cssFiles']  = array('themes/base/jquery-ui.css');
+			$data['cssFiles']  = array('themes/base/jquery-ui.css','style.css');
             $data['jsFiles']   = array('jquery.js', 
             						   'jquery-ui/ui/jquery-ui.js',
             						   'jquery-timepicker.js');

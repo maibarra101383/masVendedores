@@ -44,7 +44,7 @@
 
 		 		 echo form_label('<br><br>Giro de la Empresa : ');
 		  echo form_label ($aCliente->datos_general->giro_empresa);
-
+   print_r($clientes->get();)exit;
 
 
             /*echo form_label('Fecha de Contacto : ');

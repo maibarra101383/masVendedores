@@ -19,7 +19,8 @@ class Vendedores extends CI_Controller{
         $vendedor = new Usuario();
 
     	$data['aVendedores'] = $vendedor->get();
-    	$data['view'] = 'lista_vendedores';
+        $data['view'] = 'lista_vendedores';
+        $data['cssFiles']  = array('style.css');
 		$this->load->view('template',$data);
 
 	}
