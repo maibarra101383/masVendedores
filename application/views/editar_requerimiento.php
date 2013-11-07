@@ -1,4 +1,5 @@
 <h1>Requerimiento para propuesta de solución</h1> 
+<a href="<?= base_url('clientes/'); ?>">Regresar a Lista Clientes</a>
 <div id="login_form" 
 	 style="width:700px; margin:100px auto; border-radius:5px; border:1px solid #909090; pading:20px" >
 
@@ -101,13 +102,13 @@
 		 	echo form_submit($data);
 
 
-		 	
+
 
 		  	$data = array(
 		 		'usuario'  => $aCliente->usuario_id
 		 	);
 	 echo form_hidden ($data);
-
+//echo  '<td><a href="'.base_url('editar_requerimiento/clientes/'.$aItem->id).'">Regresar</a></td>';
 
 
 	/*$data = array(

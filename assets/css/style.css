@@ -26,3 +26,4 @@
 .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}
 tr:nth-child(even) { background: #ddd }
 tr:nth-child(odd) { background: #fff}
+

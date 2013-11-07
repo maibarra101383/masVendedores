@@ -22,6 +22,7 @@ class Requerimientos extends CI_Controller{
     	}
     	$data['view'] = 'lista_clientes';
 		$this->load->view('template',$data);
+		$oRequerimiento->fecha_a = date("Y-m-d H:i:s");
 
 
 	}
@@ -40,7 +41,7 @@ class Requerimientos extends CI_Controller{
 
 		$oCliente = $clientes->where('id', $id_cliente)->get();
         $oRequerimiento =$requerimientos->where('cliente_id',$id_cliente)->get();
-		
+
 
 		if (!$this->input->post()){
     
@@ -64,7 +65,7 @@ class Requerimientos extends CI_Controller{
 	    $oRequerimiento->usuario_id  = $this->input->post('usuario');
 	    $oRequerimiento->cliente_id  = $id_cliente;
 	    $oRequerimiento->descripcion = $this->input->post('des_'.$producto->id);
- 		
+ 		$oRequerimiento->fecha_m = date("Y-m-d H:i:s");
  		$oRequerimiento->save();
 
  		$clienteProducto->where(array('cliente_id'  => $id_cliente,

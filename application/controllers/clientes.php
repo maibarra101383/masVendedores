@@ -10,10 +10,11 @@ class Clientes extends CI_Controller{
     	}
     }
 
-	public function index($id_vendedor = NULL)
+	public function index($id_vendedor = NULL,$pag=1)
 	{
 
 		$clientes = new Cliente();
+       
 
 		if($id_vendedor == NULL){
     		$data['aClientes'] = $clientes->where('usuario_id', $this->session->userdata('id_user'))->get();
@@ -21,7 +22,11 @@ class Clientes extends CI_Controller{
     		$data['aClientes'] = $clientes->where('usuario_id', $id_vendedor)->get();
     	}
 
+        $clientes->get();
     	$data['view'] = 'lista_clientes';
+        $clientes->order_by('nombre','asc');
+    	$clientes->get_paged($pag,10);
+
     	$data['cssFiles']  = array('style.css');
 		$this->load->view('template',$data);
 

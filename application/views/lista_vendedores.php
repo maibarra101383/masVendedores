@@ -1,5 +1,5 @@
-<a href="<?= base_url('login/logout'); ?>">Cerrar sesión</a>
-<h1>BIENVENIDO ADMINISTRADOR</h1>    
+<h1>BIENVENIDO ADMINISTRADOR</h1> 
+<a href="<?= base_url('login/logout'); ?>">Cerrar sesión</a>   
 <div class="datagrid"><table>
 <thead>
 	<tr>

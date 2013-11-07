@@ -12,7 +12,9 @@ class Vendedores extends CI_Controller{
 	
 	public function index()
 	{       
-		if($this->session->userdata('admin')==0){
+		 if($this->session->userdata('admin')==0)        		
+
+		{
     		redirect(base_url('clientes'));
     	}
 
