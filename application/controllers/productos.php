@@ -16,7 +16,7 @@ class Producto extends CI_Controller{
     	$this->load->model('producto_model');
     	$data['aProducto'] = $this->producto_model->get_producto($this->session->userdata('id_user'));
 
-		$this->load->view('lista_producto',$data);
+		$this->load->view('sistema/lista_producto',$data);
 
 	}
 
@@ -25,7 +25,7 @@ class Producto extends CI_Controller{
 		$this->form_validation->set_rules('usuario', 'Usuario', 'strip_tags|trim|required|is_unique[usuarios.usuario]');
 
 		$data['title'] = "pagina de registro";
-		$data['view']  = "alta_productos";
+		$data['view']  = "sistema/alta_productos";
 		//$this->load->view('template',$data);
 
 		if ($this->form_validation->run() === false){
@@ -67,7 +67,7 @@ class Producto extends CI_Controller{
 			$data = array_pop($data);
 			$data['error_message'] = "";
 			$data['title'] = "pagina de registro";
-			$data['view']  = "editar_producto";
+			$data['view']  = "sistema/editar_producto";
 
 			$this->load->view('template', $data);
 

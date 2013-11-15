@@ -13,7 +13,7 @@ class Login extends CI_Controller {
 			if($this->session->userdata('admin') == 0){
     			redirect(base_url('clientes'));
     		} else {
-    			redirect(base_url('vendedor'));
+    			redirect(base_url('vendedores'));
     		}
     	
     	}
@@ -24,9 +24,15 @@ class Login extends CI_Controller {
 		 if($this->form_validation->run() === false){
                
               
-
+   
 		 	         $data['error_message'] = "";
                      $data['view'] = 'login';
+                     $data['cssFiles'] = array('styles.css');
+		             $data['jsFiles']  = array('jquery.js',
+								  'jquery-validation/dist/jquery.validate.js',
+								  'jquery-validation/localization/messages_es.js',
+								  'valid_forms.js');
+		
 			         $this->load->view('template', $data);
 
     
@@ -50,9 +56,14 @@ class Login extends CI_Controller {
 	 	     
 	         if($usu->id){
 
-	         	$userdata = array('user_name' => $usu->usuario,
+	         	$usu->datos_general->get();
+
+	         	$userdata = array('usuario' => $usu->usuario,
                               	  'admin'     => $usu->es_admin,
-                              	  'id_user'   => $usu->id);
+                              	  'id_user'   => $usu->id,
+                              	  'nombre_completo' => $usu->datos_general->nombre.' '.
+	                              					   $usu->datos_general->apellido_p.' '.
+	                              					   $usu->datos_general->apellido_m);
 	         
    	  			$this->session->set_userdata($userdata);
 

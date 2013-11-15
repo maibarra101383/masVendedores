@@ -10,23 +10,32 @@ class Clientes extends CI_Controller{
     	}
     }
 
-	public function index($id_vendedor = NULL,$pag=1)
+	public function index($page = 1, $id_vendedor = NULL)
 	{
 
 		$clientes = new Cliente();
        
 
 		if($id_vendedor == NULL){
-    		$data['aClientes'] = $clientes->where('usuario_id', $this->session->userdata('id_user'))->get();
+
+			$clientes->where('usuario_id', $this->session->userdata('id_user'));
+			$clientes->order_by('nombre');
+    		$clientes->get_paged_iterated($page,10);
+
+    		$data['aClientes'] = $clientes;
+
     	} else {
-    		$data['aClientes'] = $clientes->where('usuario_id', $id_vendedor)->get();
+
+			$clientes->where('usuario_id', $id_vendedor);
+    		$clientes->order_by('nombre');
+    		$clientes->get_paged_iterated($page,10);
+
+    		$data['aClientes'] = $clientes;
     	}
-
-        $clientes->get();
-    	$data['view'] = 'lista_clientes';
-        $clientes->order_by('nombre','asc');
-    	$clientes->get_paged($pag,10);
-
+		
+		$data['id_vendedor'] = $id_vendedor;		
+		$data['paginaActual'] = $page;        
+        $data['view'] ='sistema/lista_clientes';
     	$data['cssFiles']  = array('style.css');
 		$this->load->view('template',$data);
 
@@ -56,7 +65,7 @@ class Clientes extends CI_Controller{
     
         $data['aProductos'] = $productos->get();
 		$data['title'] = "pagina de registro";
-		$data['view']  = "alta_clientes";
+		$data['view']  = "sistema/alta_clientes";
 
 
 		if ($this->form_validation->run() === false){
@@ -166,7 +175,7 @@ class Clientes extends CI_Controller{
 			$data['error_message'] = "";
 			$data['title'] = "pagina de registro";
 
-		    $data['view']  = "editar_clientes";
+		    $data['view']  = "sistema/editar_clientes";
 		    
 			$this->load->view('template', $data);
 
@@ -179,6 +188,7 @@ class Clientes extends CI_Controller{
 			$oCliente->fecha_c = $this->input->post('fecha_c');
 			$oCliente->fecha_v = $this->input->post('fecha_v').':00';
 			$oCliente->fecha_m = date("Y-m-d H:i:s");
+			$oCliente->datos_general->save();
 
 			//print_r($this->input->post('fecha_v').':00');exit();
 			if($this->input->post('status') && $this->input->post('status') == 1){
@@ -202,7 +212,7 @@ class Clientes extends CI_Controller{
             $id_vendedor = $this->input->post('id_vendedor');
 			$oCliente->producto->get();
 			$oCliente->delete($oCliente->producto->all);
-			$productos->where_in('id',$this->input->post('productos'))->get();
+			$productos->where_in('id',$this->input->post('productos'))->get()->save();
 
 			if ($oCliente->save($productos->all) && $oCliente->datos_general->save()){
 

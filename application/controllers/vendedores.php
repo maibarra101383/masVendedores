@@ -21,7 +21,7 @@ class Vendedores extends CI_Controller{
         $vendedor = new Usuario();
 
     	$data['aVendedores'] = $vendedor->get();
-        $data['view'] = 'lista_vendedores';
+        $data['view'] = 'sistema/lista_vendedores';
         $data['cssFiles']  = array('style.css');
 		$this->load->view('template',$data);
 
@@ -49,7 +49,7 @@ class Vendedores extends CI_Controller{
  		$datosGenerales = new Datos_general();
        
  		$data['title'] = "pagina de registro";
-		$data['view']  = "alta_vendedor";
+		$data['view']  = "sistema/alta_vendedor";
   
 if ($this->form_validation->run() === false){
 
@@ -119,7 +119,7 @@ if ($this->form_validation->run() === false){
 			$data['aVendedor']   = $oVendedor;
 			$data['error_message'] = "";
 			$data['title'] = "pagina de registro";
-		    $data['view']  = "editar_vendedor";
+		    $data['view']  = "sistema/editar_vendedor";
 		    
 			$this->load->view('template', $data);
 

@@ -20,7 +20,7 @@ class Requerimientos extends CI_Controller{
     	} else {
     		$data['aClientes'] = $clientes->where('usuario_id', $id_vendedor)->get();
     	}
-    	$data['view'] = 'lista_clientes';
+    	$data['view'] = 'sistema/lista_clientes';
 		$this->load->view('template',$data);
 		$oRequerimiento->fecha_a = date("Y-m-d H:i:s");
 
@@ -51,7 +51,7 @@ class Requerimientos extends CI_Controller{
 			$data['error_message'] = "";
 			$data['title'] = "pagina de registro";
 
-		    $data['view']  = "editar_requerimiento";
+		    $data['view']  = "sistema/editar_requerimiento";
 		    
 			$this->load->view('template', $data);
 

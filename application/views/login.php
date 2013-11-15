@@ -1,14 +1,18 @@
+ <script>
+	$(function(){ Valid.login() });
+</script>
  <h1>BIENVENIDO</h1> 
 <div id="login_form" 
 	 style="width:400px; margin:100px auto; border-radius:5px; border:1px solid #909090; pading:20px" > 
 
 	 <?php
-	 	//echo '<p>'.$error_message.'</p>';
-	 	//echo validation_errors();
-	 	if (isset($error_menssage)){
-	 		echo '<p>'.$error_menssage.'</p>';
-	 	}
 
+	 	if (isset($error_menssage)){
+	 		echo '<div class="error">'.$error_menssage.'</div>';
+	 	}
+        $attributes = array('id' => 'loginForm');
+
+	 	echo form_open(null,$attributes);
 
 	 	echo form_open();
 
@@ -35,48 +39,7 @@
 		 	echo form_error('clave');
 
 		 	
-            
-		 	/*echo form_label('Status: ');
-
-		 	$data = array(
-		    	'name'    => 'status',
-		    	'id'      => 'status',
-		    	'value' => set_value('status'),
-		 		'style' => 'width:100%'
-		    );
-
-		       echo form_input($data);
-		 	   echo form_error('status');
-
-
-
-	 		echo form_label('Es_admin: ');
-		 	$data = array(
-		 		'es_admin'  =>  'es_admin',
-		 		'id'    => 'es_admin',
-		 		'value' => set_value('es_admin'),
-		 		'style' => 'width:100%'
-		 	);
-
-		 	echo form_input($data);
-		 	echo form_error('es_admin');
-
-            
-            echo form_label('Zona: ');
-		 	$data = array(
-		 		'zona'  =>  'zona',
-		 		'id'    => 'zona',
-		 		'value' => set_value('zona'),
-		 		'style' => 'width:100%'
-		 	);
-
-		 	echo form_input($data);
-		 	echo form_error('zona');*/
-
-
-
-
-		 	echo " <br /> <a href=" . base_url('vendedores/alta_vendedor') . ">Registro</a><br />";
+       echo " <br /> <a href=" . base_url('vendedores/alta_vendedor') . ">Registro</a><br />";
 
 		 	$data = array(
 		 		'name'  =>  'login',

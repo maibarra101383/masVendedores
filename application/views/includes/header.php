@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><img src="<?=base_url('assets/imagenes/m1.jpg');?>"align="top" WIDTH=300 HEIGHT=150 />
+<html lang="en"><img src="<?=base_url('assets/imagenes/m2.jpg');?>"align="right" WIDTH=200 HEIGHT=100 />
 <head>
 <meta charset="utf-8" />
 <?php 
@@ -14,9 +14,24 @@
                     echo '<script src="'.base_url('assets/js/'.$jsFile).'" type="text/javascript"></script>';
                 }
             }
+
+?>
+            </head>
+    <body>
+       <?php if ($this->session->userdata('usuario')): ?>
+                        <div id="welcome">
+                            <p>Bienvenido:</p><strong><?= "&nbsp".$this->session->userdata('nombre_completo'); ?></strong>
+                        </div>
+                    <?php endif; ?>
+                    
+                </div>
+            </div>
+        </header>
+    <div id="wrapper">
+
         
 
 
 
 
-        ?>
+    

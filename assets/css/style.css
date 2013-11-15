@@ -1,8 +1,15 @@
 .datagrid table {
 	 border-collapse: collapse; text-align: left; width: 100%;
 	  } 
-.datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden;
-     border: 1px solid #006699; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+.datagrid {
+	font: normal 12px/150% 
+	Arial, Helvetica, sans-serif; 
+	background: #fff; overflow: hidden;
+     border: 1px solid #006699; 
+     -webkit-border-radius: 3px; 
+     -moz-border-radius: 3px; 
+     border-radius: 3px; 
+ }
 .datagrid table td, 
 .datagrid table th { padding: 3px 10px; }
 .datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) )
