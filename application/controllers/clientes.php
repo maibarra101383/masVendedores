@@ -43,20 +43,20 @@ class Clientes extends CI_Controller{
 
 	public function alta_cliente(){
 
-		$this->form_validation->set_rules('cliente', 'Cliente', 'strip_tags|trim|required');
-		$this->form_validation->set_rules('nombre', 'Nombre', 'strip_tags|trim|required|alpha');
-		$this->form_validation->set_rules('apat', 'Apellido Paterno', 'strip_tags|trim|required|alpha');
-		$this->form_validation->set_rules('amat', 'Apellido Materno', 'strip_tags|trim|required|alpha');
+		$this->form_validation->set_rules('cliente', 'Cliente', 'strip_tags|trim|required|ctype_alpha');
+		$this->form_validation->set_rules('nombre', 'Nombre', 'strip_tags|trim|required|ctype_alpha');
+		$this->form_validation->set_rules('apat', 'Apellido Paterno', 'strip_tags|trim|required|ctype_alpha');
+		$this->form_validation->set_rules('amat', 'Apellido Materno', 'strip_tags|trim|required|ctype_alpha');
 		$this->form_validation->set_rules('email', 'Email', 'strip_tags|trim|required|valid_email');
 		$this->form_validation->set_rules('lada1', 'Lada 1', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('telefono1', 'Teléfono 1', 'strip_tags|trim|required|numeric|max_length[13]');
-		$this->form_validation->set_rules('ext1', 'Extención 1', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('lada2', 'Lada 2', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('telefono2', 'Teléfono 2', 'strip_tags|trim|numeric|max_length[13]');
-		$this->form_validation->set_rules('ext2', 'Extención 2', 'strip_tags|trim|numeric|max_length[5]');
+		$this->form_validation->set_rules('telefono1', 'Teléfono 1', 'strip_tags|trim|required|ctype_alnum_plus|max_length[13]|');
+		$this->form_validation->set_rules('ext1', 'Extención 1', 'strip_tags|trim|ctype_alnum_plus|max_length[5]');
+		$this->form_validation->set_rules('lada2', 'Lada 2', 'strip_tags|trim|ctype_alnum_plus|max_length[5]');
+		$this->form_validation->set_rules('telefono2', 'Teléfono 2', 'strip_tags|trim|ctype_alnum_plus|max_length[13]');
+		$this->form_validation->set_rules('ext2', 'Extención 2', 'strip_tags|trim|ctype_alnum_plus|max_length[5]');
 		$this->form_validation->set_rules('direccion', 'Dirección', 'strip_tags|trim|required');
-        $this->form_validation->set_rules('cargo_cliente', 'Cargo del Cliente', 'strip_tags|trim|required|alpha');
-        $this->form_validation->set_rules('giro_empresa', 'Giro de la Empresa', 'strip_tags|trim|required|alpha');
+        $this->form_validation->set_rules('cargo_cliente', 'Cargo del Cliente', 'strip_tags|trim|required|ctype_alpha');
+        $this->form_validation->set_rules('giro_empresa', 'Giro de la Empresa', 'strip_tags|trim|required|ctype_alpha');
         $this->form_validation->set_rules('fecha_c_show', 'Fecha de Contacto', 'strip_tags|trim|required');
         $this->form_validation->set_rules('fecha_v_show', 'Fecha de Visita', 'strip_tags|trim|required');
  		$clientes = new Cliente();
@@ -74,7 +74,7 @@ class Clientes extends CI_Controller{
 			$data['cssFiles']  = array('themes/base/jquery-ui.css');
             $data['jsFiles']   = array('jquery.js', 
             						   'jquery-ui/ui/jquery-ui.js',
-            						   'jquery-timepicker.js');
+            						   'jquery-timepicker.js','jquery.ui.datepicker-es.js');
             $data['error_message'] = "";
 			$this->load->view('template', $data);
 
