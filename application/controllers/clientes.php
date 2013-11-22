@@ -169,10 +169,11 @@ class Clientes extends CI_Controller{
 			//$data = $this->cliente_model->get_cliente($id_cliente);
 			//$data = array_pop($data);
           
-			$data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+			$data['cssFiles']  = array('themes/base/jquery-ui.css','sistema.css');
             $data['jsFiles']   = array('jquery.js', 
             						   'jquery-ui/ui/jquery-ui.js',
-            						   'jquery-timepicker.js');
+            						   'jquery-timepicker.js','jquery.ui.datepicker-es.js');
+            
 
     
 
@@ -227,7 +228,7 @@ class Clientes extends CI_Controller{
 			if ($oCliente->save($productos->all) && $oCliente->datos_general->save()){
 
 
-				redirect(base_url('clientes/index/'.$id_vendedor));
+				redirect(base_url('clientes/index/1/'.$id_vendedor));
 			}
 
 		}

@@ -49,6 +49,7 @@
 		 	);
 
 		 	echo form_submit($data);
+		 	$data['cssFiles'] = array('login/css/style.css');
 
 	 	echo form_close(); 
 	 ?>

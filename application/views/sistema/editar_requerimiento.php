@@ -1,7 +1,7 @@
 <h3>Requerimiento para propuesta de solución</h3> 
 <a href="<?= base_url('clientes/'); ?>">Regresar a Lista Clientes</a>
 <div id="login_form" 
-	 style="width:700px; margin:100px auto; border-radius:5px; border:1px solid #909090; pading:20px" >
+	 style="width:700px; margin:100px auto; border-radius:5px; border:5px solid #58ACFA; pading:20px" >
 
 	 <?php
 	 	/*if (isset($error_menssage)){
@@ -70,7 +70,7 @@
           $data = array(
 		 		'name'  => 'des_'.$prod->id,
 		 		'id'    => 'des_'. $prod->id,
-		 		'style' => 'width:100%',
+		 		'style' => 'width:99%',
 		 		'value' => $descripcion
 		 	);
 
@@ -82,7 +82,7 @@
           $data = array(
 		 		'name'  => 'nota_'.$prod->id,
 		 		'id'    => 'nota_'.$prod->id,
-		 		'style' => 'width:100%',
+		 		'style' => 'width:99%',
 		 		'value' => $nota
 		 	);
 
@@ -95,7 +95,7 @@
                 $data = array(
 		 		'name'  => 'login',
 		 		'id'    => 'login',
-		 		'value' => 'Registro',
+		 		'value' => 'Guardar',
 		 		'style' => 'width:100%'
 		 	);
 

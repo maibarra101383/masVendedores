@@ -87,7 +87,7 @@ class Requerimientos extends CI_Controller{
  		$clienteProducto->requerimiento_id = $oRequerimiento->id;
 
            if ($clienteProducto->save()&& $oRequerimiento->save()){
-				redirect(base_url('clientes/index/'.$id_vendedor));
+				redirect(base_url('clientes/index/1/16/'.$id_vendedor));
 			}
 
 		}

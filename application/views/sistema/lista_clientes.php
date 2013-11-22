@@ -1,9 +1,20 @@
 <h3>Mi Lista de Clientes</h3> 
-<a href="<?= base_url('clientes/alta_cliente/'); ?>">Alta Clientes</a>
-<a href="<?= base_url('login/logout'); ?>">Cerrar sesión</a>
-<?php if($this->session->userdata('admin')==1): ?> 
-	<a href="<?= base_url('vendedores/'); ?>">Regresar a Lista Vendedores</a>
+<br>
+  <tr><td><a href="<?= base_url('clientes/alta_cliente'); ?>">
+  <img src="<?=base_url('assets/imagenes/clientes.jpg');?>"align="left" WIDTH=35 HEIGHT=35  HSPACE="10"  title="Alta Clientes" /> 
+</td>
+<td><a href="<?= base_url('login/logout'); ?>">
+  <img src="<?=base_url('assets/imagenes/salida.jpg');?>"align="left" WIDTH=35 HEIGHT=35 HSPACE="10"  title="Salida"/>  
+</td>
+<td>
+<?php if($this->session->userdata('admin')==1): ?>
+<a href="<?= base_url('vendedores'); ?>">
+  <img src="<?=base_url('assets/imagenes/list_vta.png');?>"align="left" WIDTH=35 HEIGHT=35 HSPACE="10" title="Lista Vendedores" /> 
+
 <?php endif; ?>
+</td></tr>
+<br>
+<br>
 <div class="datagrid"><table>
 <thead>
 	<tr>

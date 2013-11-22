@@ -1,5 +1,5 @@
 <div id="login_form" 
-	 style="width:400px; margin:100px auto; border-radius:5px; border:1px solid #909090; pading:20px" >
+	 style="width:400px; margin:100px auto; border-radius:5px; border:5px solid #58ACFA; pading:20px" >
 
 	 <?php
 	 	/*if (isset($error_menssage)){
@@ -251,8 +251,8 @@
 
 		 	echo form_submit($data);
 
- echo '<input name="fecha_v" type="hidden" id="fecha_v" value="'.$aCliente->fecha_v.'"/>';
- echo '<input name="fecha_c" type="hidden" id="fecha_c" value="'.$aCliente->fecha_c.'"/>';
+ echo '<input name="fecha_v" type="hidden" id="fecha_v_show" value="'.$aCliente->fecha_v.'"/>';
+ echo '<input name="fecha_c" type="hidden" id="fecha_c_show" value="'.$aCliente->fecha_c.'"/>';
  echo form_close(); 
 	 	
 	 ?>

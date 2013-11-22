@@ -16,7 +16,7 @@ class Login_model extends CI_Model {
    	  		$userdata = array('user_name' => $usuario,
                               'admin'     => $admin,
                               'id_user'   => $id_user);
-            $data['cssFiles'] = array('styles.css','sistema.css');
+            $data['cssFiles'] = array('login/css/style.css','style.css');
                    $data['jsFiles']  = array('jquery.js',
                           'jquery-validation/dist/jquery.validate.js',
                           'jquery-validation/localization/messages_es.js',

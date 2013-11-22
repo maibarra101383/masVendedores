@@ -28,7 +28,8 @@ class Login extends CI_Controller {
    
 		 	         $data['error_message'] = "";
                      $data['view'] = 'login';
-                     $data['cssFiles'] = array('styles.css','sistema.css');
+                     $data['cssFiles'] = array('style.css','login/8-login-form/css/style.css');
+
 		             $data['jsFiles']  = array('jquery.js',
 								  'jquery-validation/dist/jquery.validate.js',
 								  'jquery-validation/localization/messages_es.js',
@@ -95,6 +96,7 @@ class Login extends CI_Controller {
 	{
 
 	     $mail=explode('@', $masqweb);
+	     $data['cssFiles'] = array('styles.css','sistema.css','login/style2.css');
 
 	    if ($mail[1]=='masqweb.com')
 	    return true;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><img src="<?=base_url('assets/imagenes/m2.jpg');?>"align="right" WIDTH=200 HEIGHT=100 />
+
 <head>
 <meta charset="utf-8" />
 <?php 
