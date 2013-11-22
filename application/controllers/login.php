@@ -18,6 +18,7 @@ class Login extends CI_Controller {
     	
     	}
 
+        $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
         $this->form_validation->set_rules('nombre', 'Usuario', 'strip_tags|trim|required|valid_email|callback_masQweb');
 		$this->form_validation->set_rules('clave', 'Clave', 'strip_tags|trim|required|md5');
         
@@ -27,7 +28,7 @@ class Login extends CI_Controller {
    
 		 	         $data['error_message'] = "";
                      $data['view'] = 'login';
-                     $data['cssFiles'] = array('styles.css');
+                     $data['cssFiles'] = array('styles.css','sistema.css');
 		             $data['jsFiles']  = array('jquery.js',
 								  'jquery-validation/dist/jquery.validate.js',
 								  'jquery-validation/localization/messages_es.js',

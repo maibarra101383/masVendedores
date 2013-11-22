@@ -22,34 +22,39 @@ class Vendedores extends CI_Controller{
 
     	$data['aVendedores'] = $vendedor->get();
         $data['view'] = 'sistema/lista_vendedores';
-        $data['cssFiles']  = array('style.css');
+        $data['cssFiles']  = array('style.css','sistema.css');
 		$this->load->view('template',$data);
 
 	}
 
    public function alta_vendedor(){
 
+        $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
 		$this->form_validation->set_rules('usuario', 'Usuario', 'strip_tags|trim|callback_masQweb|required|valid_email');
         $this->form_validation->set_rules('clave', 'Clave', 'strip_tags|trim|required|matches[claveconf]|md5');
         $this->form_validation->set_rules('claveconf', 'Clave Confirmada', 'strip_tags|trim|required|md5');
-        $this->form_validation->set_rules('nombre', 'Nombre', 'strip_tags|trim|required|alpha');
-		$this->form_validation->set_rules('apat', 'Apellido Paterno', 'strip_tags|trim|required|alpha');
-		$this->form_validation->set_rules('amat', 'Apellido Materno', 'strip_tags|trim|required|alpha');
+        $this->form_validation->set_rules('nombre', 'Nombre', 'strip_tags|trim|required|ctype_alpha');
+		$this->form_validation->set_rules('apat', 'Apellido Paterno', 'strip_tags|trim|required|ctype_alpha');
+		$this->form_validation->set_rules('amat', 'Apellido Materno', 'strip_tags|trim|required|ctype_alpha');
 		$this->form_validation->set_rules('email', 'Email', 'strip_tags|trim|required|valid_email');
 		$this->form_validation->set_rules('lada1', 'Lada 1', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('telefono1', 'Teléfono 1', 'strip_tags|trim|required|numeric|max_length[13]');
+		$this->form_validation->set_rules('telefono1', 'Teléfono 1', 'strip_tags|trim|required|ctype_alnum_plus|max_length[13]');
 		$this->form_validation->set_rules('ext1', 'Extención 1', 'strip_tags|trim|numeric|max_length[5]');
 		$this->form_validation->set_rules('lada2', 'Lada 2', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('telefono2', 'Teléfono 2', 'strip_tags|trim|numeric|max_length[13]');
+		$this->form_validation->set_rules('telefono2', 'Teléfono 2', 'strip_tags|trim|ctype_alnum_plus|max_length[13]');
 		$this->form_validation->set_rules('ext2', 'Extención 2', 'strip_tags|trim|numeric|max_length[5]');
 		$this->form_validation->set_rules('direccion', 'Dirección', 'strip_tags|trim|required');
-		$this->form_validation->set_rules('zona', 'Zona', 'strip_tags|trim|required');
+		$this->form_validation->set_rules('zona', 'Zona', 'strip_tags|trim|required|ctype_alnum_plus');
        
         $vendedor = new Usuario();
  		$datosGenerales = new Datos_general();
        
  		$data['title'] = "pagina de registro";
 		$data['view']  = "sistema/alta_vendedor";
+		$data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+            $data['jsFiles']   = array('jquery.js', 
+            						   'jquery-ui/ui/jquery-ui.js',
+            						   'jquery-timepicker.js');
   
 if ($this->form_validation->run() === false){
 
@@ -94,20 +99,20 @@ if ($this->form_validation->run() === false){
  		if(!$this->session->userdata('id_user')){
     		redirect(base_url('login'));
     	}
-
+        $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
     	$this->form_validation->set_rules('usuario', 'Usuario', 'strip_tags|trim|required[usuarios.usuario]|valid_email');
-    	$this->form_validation->set_rules('nombre', 'Nombre', 'strip_tags|trim|required|alpha');
-		$this->form_validation->set_rules('apat', 'Apellido Paterno', 'strip_tags|trim|required|alpha');
-		$this->form_validation->set_rules('amat', 'Apellido Materno', 'strip_tags|trim|required|alpha');
+    	$this->form_validation->set_rules('nombre', 'Nombre', 'strip_tags|trim|required|ctype_alpha');
+		$this->form_validation->set_rules('apat', 'Apellido Paterno', 'strip_tags|trim|required|ctype_alpha');
+		$this->form_validation->set_rules('amat', 'Apellido Materno', 'strip_tags|trim|required|ctype_alpha');
 		$this->form_validation->set_rules('email', 'Email', 'strip_tags|trim|required|valid_email');
 		$this->form_validation->set_rules('lada1', 'Lada 1', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('telefono1', 'Teléfono 1', 'strip_tags|trim|required|numeric|max_length[13]');
+		$this->form_validation->set_rules('telefono1', 'Teléfono 1', 'strip_tags|trim|required|ctype_alnum_plus|max_length[13]');
 		$this->form_validation->set_rules('ext1', 'Extención 1', 'strip_tags|trim|numeric|max_length[5]');
 		$this->form_validation->set_rules('lada2', 'Lada 2', 'strip_tags|trim|numeric|max_length[5]');
-		$this->form_validation->set_rules('telefono2', 'Teléfono 2', 'strip_tags|trim|numeric|max_length[13]');
+		$this->form_validation->set_rules('telefono2', 'Teléfono 2', 'strip_tags|trim|ctype_alnum_plus|max_length[13]');
 		$this->form_validation->set_rules('ext2', 'Extención 2', 'strip_tags|trim|numeric|max_length[5]');
 		$this->form_validation->set_rules('direccion', 'Dirección', 'strip_tags|trim|required');
-		$this->form_validation->set_rules('zona', 'Zona', 'strip_tags|trim|required');
+		$this->form_validation->set_rules('zona', 'Zona', 'strip_tags|trim|required|ctype_alnum_plus');
 
         $vendedor = new Usuario();
  		$datosGenerales = new Datos_general();
@@ -120,6 +125,10 @@ if ($this->form_validation->run() === false){
 			$data['error_message'] = "";
 			$data['title'] = "pagina de registro";
 		    $data['view']  = "sistema/editar_vendedor";
+		    $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+            $data['jsFiles']   = array('jquery.js', 
+            						   'jquery-ui/ui/jquery-ui.js',
+            						   'jquery-timepicker.js');
 		    
 			$this->load->view('template', $data);
 

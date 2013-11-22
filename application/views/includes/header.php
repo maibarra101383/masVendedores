@@ -19,8 +19,9 @@
             </head>
     <body>
        <?php if ($this->session->userdata('usuario')): ?>
-                        <div id="welcome">
-                            <p>Bienvenido:</p><strong><?= "&nbsp".$this->session->userdata('nombre_completo'); ?></strong>
+                        <div id="welcome" class="nombre">
+                           <p class="bienvenido" <strong style="display: inline-block;">Bienvenido:</p><strong><?= "&nbsp".$this->session->userdata('nombre_completo'); ?></strong>
+        
                         </div>
                     <?php endif; ?>
                     

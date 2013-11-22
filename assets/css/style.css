@@ -33,3 +33,14 @@
 .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}
 tr:nth-child(even) { background: #ddd }
 tr:nth-child(odd) { background: #fff}
+
+div .error{
+  color:red;
+  font-weight: bold;
+  font-size: 13px;
+  margin: 3px;
+}
+
+.error{
+  color:red;
+}

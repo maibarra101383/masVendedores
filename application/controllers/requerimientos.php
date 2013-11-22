@@ -20,7 +20,15 @@ class Requerimientos extends CI_Controller{
     	} else {
     		$data['aClientes'] = $clientes->where('usuario_id', $id_vendedor)->get();
     	}
-    	$data['view'] = 'sistema/lista_clientes';
+    	       
+
+    	       $data['view'] = 'sistema/lista_clientes';
+    	       $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+               $data['jsFiles']   = array('jquery.js', 
+            						   'jquery-ui/ui/jquery-ui.js',
+            						   'jquery-timepicker.js');
+
+               
 		$this->load->view('template',$data);
 		$oRequerimiento->fecha_a = date("Y-m-d H:i:s");
 
@@ -52,6 +60,10 @@ class Requerimientos extends CI_Controller{
 			$data['title'] = "pagina de registro";
 
 		    $data['view']  = "sistema/editar_requerimiento";
+		    $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+            $data['jsFiles']   = array('jquery.js', 
+            						   'jquery-ui/ui/jquery-ui.js',
+            						   'jquery-timepicker.js');
 		    
 			$this->load->view('template', $data);
 
@@ -74,7 +86,7 @@ class Requerimientos extends CI_Controller{
 
  		$clienteProducto->requerimiento_id = $oRequerimiento->id;
 
-           if ($clienteProducto->save()){
+           if ($clienteProducto->save()&& $oRequerimiento->save()){
 				redirect(base_url('clientes/index/'.$id_vendedor));
 			}
 
