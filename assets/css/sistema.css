@@ -112,7 +112,7 @@ border-left: none;
 
 /********* Estilos para Formulario *********/
 
-form > label{
+label{
   
   color:#58ACFA;
   margin: 5px;
@@ -224,4 +224,18 @@ div .error{
   font-size: 15px;
   margin: 3px;
 display: inline-block;
+}
+
+
+/*tablas*/
+table.header tr:first-child {
+    font-weight: bold;
+    color:#fff;
+    background-color: #444;
+    border-bottom:1px #000 solid;
+}
+ 
+/*Todas las filas a partir de la segunda*/
+table.header tr:nth-child(n+2) {
+    text-align: right;
 }
