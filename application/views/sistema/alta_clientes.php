@@ -18,7 +18,6 @@ echo'</ul>';
 
 echo'<div id="tabs-1" "style= background-color:#c2ECCFA">';
 echo'<table>';
-echo'<form>';
         echo'<tr>';
         echo '<td width=20% valing="top">';
 	 	echo form_open();
@@ -348,6 +347,7 @@ echo'<table>';
                 echo'<tr>';
                 echo '<td width=15% valing="top">';
             	echo form_label($aItem->nombre);
+            	echo'</td>';
             	echo'</tr>';
 
             	echo'<tr>';
@@ -369,7 +369,7 @@ echo'<table>';
 
  echo '<input name="fecha_v" type="hidden" id="fecha_v" />';
  echo '<input name="fecha_c" type="hidden" id="fecha_c" />';
- echo form_close(); 
+ 
 	 	
 	 ?>
 </div>
@@ -399,8 +399,8 @@ $('#fecha_c_show').datepicker({
 <?php
 
  echo' <tr>';
- echo '<center>'; 
-  echo'<td valing="center" colspan="100%">';
+ 
+  echo'<td  colspan="50%">';
                 $data = array(
 		 		'name'  => 'login',
 		 		'id'    => 'login',
@@ -409,7 +409,7 @@ $('#fecha_c_show').datepicker({
 		 	);
 
 		 	echo form_submit($data);
-		 	echo'</form>';
+		 	echo form_close(); 
 		 	echo'</center>';
 		 	
 		 	?>

@@ -14,7 +14,6 @@ class Clientes extends CI_Controller{
 	{
 
 		$clientes = new Cliente();
-       
 
 		if($id_vendedor == NULL){
 
@@ -33,11 +32,10 @@ class Clientes extends CI_Controller{
     		$data['aClientes'] = $clientes;
     	}
 		
-		$data['id_vendedor'] = $id_vendedor;		
+		$data['id_vendedor']  = $id_vendedor;		
 		$data['paginaActual'] = $page;        
-        $data['view'] ='sistema/lista_clientes';
-    	$data['cssFiles']  = array('style.css','sistema.css');
-    	
+        $data['view']         ='sistema/lista_clientes';
+    	$data['cssFiles']     = array('style.css','sistema.css');
 
 		$this->load->view('template',$data);
 
@@ -67,8 +65,9 @@ class Clientes extends CI_Controller{
  		$datosGenerales = new Datos_general();
     
         $data['aProductos'] = $productos->get();
-		$data['title'] = "pagina de registro";
-		$data['view']  = "sistema/alta_clientes";
+		$data['title']      = "pagina de registro";
+		$data['view']       = "sistema/alta_clientes";
+		
        
 
 		if ($this->form_validation->run() === false){
@@ -220,7 +219,12 @@ class Clientes extends CI_Controller{
 			$oCliente->datos_general->direccion    = $this->input->post('direccion');
             $id_vendedor = $this->input->post('id_vendedor');
 			$oCliente->producto->get();
-			$oCliente->delete($oCliente->producto->all);
+		
+			foreach($oCliente->producto->all as $producto){
+				if(!in_array($producto->id, $this->input->post('productos'))){
+					$oCliente->delete($producto);
+				}	
+			}
 
 			$productos->where_in('id',$this->input->post('productos'))->get()->save();
 

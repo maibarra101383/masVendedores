@@ -8,6 +8,7 @@ class Requerimientos extends CI_Controller{
     	if(!$this->session->userdata('id_user')){
     		//redirect(base_url('login'));
     	}
+    	define("FILEPATH", "/var/www/masVendedores/propuestas/");
     }
 
 	public function index($id_vendedor = NULL)
@@ -35,8 +36,121 @@ class Requerimientos extends CI_Controller{
 
 	}
 
+ public function editar_requerimiento($id_requerimiento)
+	{
+ 		
+ 		if(!$this->session->userdata('id_user')){
+    		redirect(base_url('login'));
+    	}
 
-    public function editar_requerimiento($id_cliente)
+		
+        $requerimientos  = new Requerimiento(); 
+	
+        $oRequerimiento = $requerimientos->where('id',$id_requerimiento)->get();
+
+		if (!$this->input->post()){
+			
+			$data['oRequerimiento'] = $oRequerimiento;
+
+			$data['error_message']  = "";
+			$data['title']          = "pagina de registro";
+
+		    $data['view']      = "sistema/editar_requerimiento";
+		    $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+            $data['jsFiles']   = array('jquery.js', 
+            						   'jquery-ui/ui/jquery-ui.js',
+            						   'jquery-timepicker.js');
+		    
+			$this->load->view('template', $data);
+
+		} else {
+
+			if($_FILES['userfile']['error'] == 0){ 
+
+				$config['upload_path']   = FILEPATH;
+				$config['allowed_types'] = 'pdf|ppt';
+				$config['file_name']     = $_FILES['userfile']['name'];
+				$config['max_size']	     = '3000';
+                
+				$this->load->library('upload', $config);
+				
+				
+
+				if ( ! $this->upload->do_upload())
+				{
+					$error = array('error' => $this->upload->display_errors());
+					print_r($error);
+					exit();
+				} else {
+					$oRequerimiento->propuesta   =  $_FILES['userfile']['name'];
+				}			
+
+			}
+
+	  		$oRequerimiento->notas       = $this->input->post('nota');
+			$oRequerimiento->descripcion = $this->input->post('des');
+	 		$oRequerimiento->fecha_m     = date("Y-m-d H:i:s");
+
+	 		if ($oRequerimiento->save()){
+	 			$this->_sendEmail($id_requerimiento);
+	 			redirect(base_url('requerimientos/requerimiento/'.$oRequerimiento->cliente_id));
+	 		}
+
+		}
+}
+
+
+ public function alta_requerimiento($id_producto = null, $id_cliente = null)
+	{
+ 		
+ 		if(!$this->session->userdata('id_user')){
+    		redirect(base_url('login'));
+    	}
+
+        $requerimientos  = new Requerimiento(); 
+
+		if (!$this->input->post()){
+
+			$data['title']          = "pagina de registro";
+
+		    $data['view']      = "sistema/alta_requerimiento";
+		    $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+            $data['jsFiles']   = array('jquery.js', 
+            						   'jquery-ui/ui/jquery-ui.js',
+            						   'jquery-timepicker.js');
+		    
+			$this->load->view('template', $data);
+
+		} else {
+
+	  		$requerimientos->notas       = $this->input->post('nota');
+			$requerimientos->descripcion = $this->input->post('des');
+			$requerimientos->cliente_id  = $id_cliente;
+			$requerimientos->usuario_id  = $this->session->userdata('id_user');
+			$requerimientos->fecha_a     = date("Y-m-d H:i:s");
+	 	
+	 		if ($requerimientos->save()){
+
+	 			$clienteProducto  = new Cliente_producto();
+
+	 			$clienteProducto->where(array('cliente_id'  => $id_cliente,
+		 		   							  'producto_id' => $id_producto))->get();
+
+	 			$clienteProducto->requerimiento_id = $requerimientos->id;
+
+	 			if ($clienteProducto->save()){
+	 				$this->_sendEmail($id_requerimiento);
+
+	 				redirect(base_url('requerimientos/requerimiento/'.$id_cliente));
+
+	 			}
+	 		}
+
+	}
+}
+
+
+         public function requerimiento($id_cliente)
 	{
  		
  		if(!$this->session->userdata('id_user')){
@@ -58,7 +172,7 @@ class Requerimientos extends CI_Controller{
 			$data['error_message'] = "";
 			$data['title'] = "pagina de registro";
 
-		    $data['view']      = "sistema/editar_requerimiento";
+		    $data['view']      = "sistema/requerimiento";
 		    $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
             $data['jsFiles']   = array('jquery.js', 
             						   'jquery-ui/ui/jquery-ui.js',
@@ -101,4 +215,42 @@ class Requerimientos extends CI_Controller{
 
 	}
   }
+
+	private function _sendEmail($id_requerimiento){
+
+		$config = Array(
+						'protocol'  => 'smtp',
+				        'smtp_host' => 'ssl://smtp.googlemail.com',
+				        'smtp_port' => 465,
+				        'smtp_user' => 'masqwebemail@gmail.com',
+				        'smtp_pass' => 'masqweb123',
+				        'mailtype'  => 'html', 
+				        'charset'   => 'utf-8',
+				        'wordwrap'  => TRUE
+
+				    );
+
+				    $this->load->library('email', $config);
+				    $this->email->set_newline("\r\n");
+				    $email_setting  = array('mailtype'=>'html');
+				    $this->email->initialize($email_setting);
+
+				    $email_body ='<div>Se ha creado un nuevo Requerimiento
+				    				<a href="'.base_url('requerimientos/editar_requerimiento/'.$id_requerimiento).'">Ver Requerimiento</a>
+				    			</div>';
+
+				    $this->email->from('masqwebemail@gmail.com', 'Sistema masContactos');
+
+				    $this->email->to('amelo@masqweb.com');
+				    //$this->email->bcc('recursoshumanos@masqweb.com');
+				    $this->email->subject('Nuevo Requerimiento');
+				    $this->email->message($email_body);
+
+				    if($this->email->send()){
+				    	return true;
+				    }else {
+				    	return $this->email->print_debugger();
+					}
+
+	}
 }

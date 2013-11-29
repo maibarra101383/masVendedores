@@ -1,18 +1,23 @@
 <h3>Mi Lista de Clientes</h3> 
 <br>
-  <tr><td><a href="<?= base_url('clientes/alta_cliente'); ?>">
-  <img src="<?=base_url('assets/imagenes/clientes.jpg');?>"align="left" WIDTH=35 HEIGHT=35  HSPACE="10"  title="Alta Clientes" /> 
-</td>
-<td><a href="<?= base_url('login/logout'); ?>">
-  <img src="<?=base_url('assets/imagenes/salida.jpg');?>"align="left" WIDTH=35 HEIGHT=35 HSPACE="10"  title="Salida"/>  
+<tr><td><a href="<?= base_url('clientes/alta_cliente'); ?>">
+  <img src="<?=base_url('assets/imagenes/agregarcli.jpg');?>"align="left" WIDTH=35 HEIGHT=35  HSPACE="10"  title="Alta Clientes" /> 
+        </a>
+   </td>
+<td>
+   <a href="<?= base_url('login/logout'); ?>">
+      <img src="<?=base_url('assets/imagenes/salida.jpg');?>"align="left" WIDTH=35 HEIGHT=35 HSPACE="10"  title="Salida"/>  
+   </a>
 </td>
 <td>
-<?php if($this->session->userdata('admin')==1): ?>
-<a href="<?= base_url('vendedores'); ?>">
-  <img src="<?=base_url('assets/imagenes/list_vta.png');?>"align="left" WIDTH=35 HEIGHT=35 HSPACE="10" title="Lista Vendedores" /> 
-
+  <?php if($this->session->userdata('admin')==1): ?>
+    <a href="<?= base_url('vendedores'); ?>">
+     <img src="<?=base_url('assets/imagenes/listavn.jpg');?>"align="left" WIDTH=35 HEIGHT=35 HSPACE="10" title="Lista Vendedores" /> 
+    </a>
+</td>
+</tr>
 <?php endif; ?>
-</td></tr>
+
 <br>
 <br>
 <div class="datagrid"><table>
@@ -105,24 +110,38 @@
                 echo '<td>'.$aItem->fecha_v.'</td>'; 
                   $aItem->producto->get();
 				           echo '<td>';
+
+				$cliente_prod = new Cliente_producto();
+
+
 				foreach($aItem->producto->all as $productos){
 
+					$cliente_prod->where(array('cliente_id' => $aItem->id,
+												'producto_id' => $productos->id))->get();
+
+					$requerimiento = $cliente_prod->requerimiento->get();
+
 							echo $productos->nombre;
-							echo '<br />';
+							if($requerimiento->propuesta != ""){
+								echo '<a href="'.base_url('propuestas/'.$requerimiento->propuesta).'">
+								<img src="'.base_url('assets/imagenes/archivos.jpg').'" width=30 heigth=30 title="ver propuesta">
+								</a>';
+							}
+
+							echo '<br/>';
+
 						}
-                echo '<td><a href="'.base_url('requerimientos/editar_requerimiento/'.$aItem->id).'">
-                <img src="'.base_url('assets/imagenes/v.png').'" width=25 heigth=25 title="ver"> </a></td>';
+
+                echo '<td><a href="'.base_url('requerimientos/requerimiento/'.$aItem->id).'">
+                <center>
+                <img src="'.base_url('assets/imagenes/v.png').'" width=25 heigth=25 title="ver"></center> </a></td>';
                 echo  '<td><a href="'.base_url('clientes/editar_cliente/'.$aItem->id).'">
                           <img src="'.base_url('assets/imagenes/Edit.png').'" width=25 heigth=25 title="Editar"></a></td>';
                 echo '</tr>';
 		}
 
 				
-		/*<tr>
-			<td>data</td>
-			<td>data</td>
-			<td>data</td>
-		</tr>*/
+		
 	?>
 
 </tbody>

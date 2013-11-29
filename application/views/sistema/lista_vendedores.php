@@ -88,8 +88,8 @@
 				echo '<td>'.$aItem->datos_general->email.'</td>';
 				echo '<td><a href="'.base_url('vendedores/editar_vendedor/'.$aItem->id).'">
 				<img src="'.base_url('assets/imagenes/Edit.png').'" width=25 heigth=25 title="Editar"></a></td>';
-				echo '<td><a href="'.base_url('clientes/index/1/'.$aItem->id).'">
-				<img src="'.base_url('assets/imagenes/list.jpg').'" width=30 heigth=30 title="Lista"></a></td>';
+				echo '<td> <center> <a href="'.base_url('clientes/index/1/'.$aItem->id).'">
+				<img src="'.base_url('assets/imagenes/list.jpg').'" width=30 heigth=30 title="Lista"></center></a></td>';
 			echo '</tr>';
 		}
 	?>
