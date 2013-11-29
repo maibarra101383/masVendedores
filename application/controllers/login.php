@@ -28,7 +28,7 @@ class Login extends CI_Controller {
    
 		 	         $data['error_message'] = "";
                      $data['view'] = 'login';
-                     $data['cssFiles'] = array('style.css','login/8-login-form/css/style.css');
+                     $data['cssFiles'] = array('style.css','sistema.css','login/8-login-form/css/style.css');
 
 		             $data['jsFiles']  = array('jquery.js',
 								  'jquery-validation/dist/jquery.validate.js',
