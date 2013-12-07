@@ -2,6 +2,7 @@
 
 <a href="<?= base_url('login/logout'); ?>">
   <img src="<?=base_url('assets/imagenes/salida.jpg');?>"align="left" WIDTH=35 HEIGHT=35 /> 
+</a>
   <br> 
   <br>
 <div class="datagrid"><table>

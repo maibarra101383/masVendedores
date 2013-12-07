@@ -211,7 +211,7 @@ class Requerimientos extends CI_Controller{
 
 			}
 
-			redirect(base_url('clientes/index/1/'.$id_vendedor));
+			redirect(base_url('clientes/index/'.$id_vendedor));
 
 	}
   }
