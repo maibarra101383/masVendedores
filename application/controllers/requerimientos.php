@@ -92,7 +92,7 @@ class Requerimientos extends CI_Controller{
 	 		$oRequerimiento->fecha_m     = date("Y-m-d H:i:s");
 
 	 		if ($oRequerimiento->save()){
-	 			$this->_sendEmail($id_requerimiento);
+	 			//$this->_sendEmail($id_requerimiento);
 	 			redirect(base_url('requerimientos/requerimiento/'.$oRequerimiento->cliente_id));
 	 		}
 
@@ -139,7 +139,7 @@ class Requerimientos extends CI_Controller{
 	 			$clienteProducto->requerimiento_id = $requerimientos->id;
 
 	 			if ($clienteProducto->save()){
-	 				$this->_sendEmail($id_requerimiento);
+	 				//$this->_sendEmail($id_requerimiento);
 
 	 				redirect(base_url('requerimientos/requerimiento/'.$id_cliente));
 
@@ -147,7 +147,8 @@ class Requerimientos extends CI_Controller{
 	 		}
 
 	}
-}
+  }
+
 
 
          public function requerimiento($id_cliente)
@@ -195,7 +196,7 @@ class Requerimientos extends CI_Controller{
 
 		  		$requerimientosEdit->notas       = $this->input->post('nota_'.$producto->id);
 				$requerimientosEdit->usuario_id  = $this->input->post('usuario');
-				$requerimientosEdit->cliente_id  = $id_cliente;
+				$requerimientosEdit->cliente_id  = $clienteProducto->cliente_id;
 				$requerimientosEdit->descripcion = $this->input->post('des_'.$producto->id);
 		 		$requerimientosEdit->fecha_m     = date("Y-m-d H:i:s");
 		 		$requerimientosEdit->save();

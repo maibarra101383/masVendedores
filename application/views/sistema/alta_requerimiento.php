@@ -31,7 +31,8 @@
 		 		'name'  => 'login',
 		 		'id'    => 'login',
 		 		'value' => 'Registro',
-		 		'style' => 'width:100%'
+		 		'style' => 'width:100%',
+		 		'onClick' => "alert('Tu requerimiento se guardó y se envió por correo al administrador de masQweb');"
 		 	);
 
 		 	echo form_submit($data);

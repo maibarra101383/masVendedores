@@ -319,13 +319,11 @@ echo'<table>';
             echo '</td>';
 		 	echo'</tr>';
 
-
+            
 		 	echo'<tr>';
-            echo '<td width=15%>';
-            echo form_label('<br><br>Proyecto en Proceso : ');
+            echo '<td width=18%>';
+            echo form_label('Proyecto en Proceso : ');
             echo '</td>';
-            echo'<br>';
-            echo'<br>';
             echo '<td colpan="15%">';
 		 	$data = array(
 		 		'name'  => 'status',
@@ -373,15 +371,32 @@ echo'<table>';
               echo'</tr>';
              }
               
-             
-
-               
-
  echo '<input name="fecha_v" type="hidden" id="fecha_v_show" value="'.$aCliente->fecha_v.'"/>';
  echo '<input name="fecha_c" type="hidden" id="fecha_c_show" value="'.$aCliente->fecha_c.'"/>';
+ 
+
+
 
 	 	
 	 ?>
+	 <?php
+ echo' <tr>';
+ echo'<center>';
+               echo'<td valing="center" colspan="100%">';
+                $data = array(
+		 		'name'  => 'login',
+		 		'id'    => 'login',
+		 		'value' => 'Actualizar',
+		 		'style' => 'width:20%'
+		 	);
+            echo'</center>';
+		 	echo form_submit($data);
+		 	
+		 	echo form_close(); 
+		 	?>
+
+
+
 </div>
 
 
@@ -409,19 +424,5 @@ $('#fecha_c_show').datepicker({
 
  echo form_hidden('id_vendedor', $aCliente->usuario_id);
  echo form_hidden('id_datos_generales', $aCliente->datos_general->id_datos_generales);
-
- echo' <tr>';
- echo '<center>'; 
-  echo'<td valing="center" colspan="100%">';
-                $data = array(
-		 		'name'  => 'login',
-		 		'id'    => 'login',
-		 		'value' => 'Actualizar',
-		 		'style' => 'width:20%'
-		 	);
-
-		 	echo form_submit($data);
-		 	echo form_close(); 
-		 	echo'</center>';
 		 	
 		 	?>

@@ -364,14 +364,31 @@ echo'<table>';
 
              }
              
-         
-		 	
-
  echo '<input name="fecha_v" type="hidden" id="fecha_v" />';
  echo '<input name="fecha_c" type="hidden" id="fecha_c" />';
  
+  ?>
+
+
+	 <?php
+ echo' <tr>';
+ echo'<center>';
+               echo'<td valing="center" colspan="100%">';
+                $data = array(
+		 		'name'  => 'login',
+		 		'id'    => 'login',
+		 		'value' => 'Actualizar',
+		 		'style' => 'width:20%'
+		 	);
+            echo'</center>';
+		 	echo form_submit($data);
+		 	
+		 	echo form_close(); 
+		 	?>
+
+
 	 	
-	 ?>
+
 </div>
 
 
@@ -396,20 +413,3 @@ $('#fecha_c_show').datepicker({
 </div>
 </body>
 </html>
-<?php
-
- echo' <tr>';
- 
-  echo'<td  colspan="50%">';
-                $data = array(
-		 		'name'  => 'login',
-		 		'id'    => 'login',
-		 		'value' => 'Registro',
-		 		'style' => 'width:20%'
-		 	);
-
-		 	echo form_submit($data);
-		 	echo form_close(); 
-		 	echo'</center>';
-		 	
-		 	?>

@@ -3,7 +3,7 @@
 </script>
  <h1>BIENVENIDO</h1> 
 <div id="login_form" 
-	 style="width:400px; margin:100px auto; border-radius:5px; border:1px solid #909090; pading:20px" > 
+	 style="width:400px; margin:100px auto; border-radius:5px; border:1px solid #909090; pading:20px"> 
 
 	 <?php
 
@@ -13,7 +13,7 @@
         $attributes = array('id' => 'loginForm');
 
 	 	echo form_open(null,$attributes);
-
+        echo'<div class="login">';
 	 	echo form_open();
 
 	 		echo form_label('Usuario : ');
@@ -21,7 +21,8 @@
 		 		'name'  =>  'nombre',
 		 		'id'    => 'nombre',
 		 		'value' => set_value('nombre'),
-		 		'style' => 'width:100%'
+		 		'class' =>'login',
+		 		'style' => 'width:90%'
 		 	);
 
 		 	echo form_input($data);
@@ -31,8 +32,9 @@
 		 	$data = array(
 		 		'name'  =>  'clave',
 		 		'id'    => 'clave',
-		 		'value' => '',
-		 		'style' => 'width:100%'
+		 		'value' => set_value('clave'),
+		 		'class' =>'login',
+		 		'style' => 'width:90%'
 		 	);
 
 		 	echo form_password($data);
@@ -53,4 +55,5 @@
 
 	 	echo form_close(); 
 	 ?>
+	</div>
 </div>

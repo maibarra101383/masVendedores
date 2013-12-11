@@ -14,11 +14,13 @@ class Clientes extends CI_Controller{
 	{
 
 		$clientes = new Cliente();
+		
 
 		if($id_vendedor == NULL){
 
 			$clientes->where('usuario_id', $this->session->userdata('id_user'));
-			$clientes->order_by('nombre');
+			$clientes->order_by ('TIMESTAMPDIFF(MINUTE,fecha_a ,now())DESC');
+    		$clientes->limit('10');
     		$clientes->get_paged_iterated($page,10);
 
     		$data['aClientes'] = $clientes;
@@ -26,7 +28,9 @@ class Clientes extends CI_Controller{
     	} else {
 
 			$clientes->where('usuario_id', $id_vendedor);
-    		$clientes->order_by('nombre');
+    		$clientes->order_by ('TIMESTAMPDIFF(MINUTE,fecha_a ,now())DESC');
+    		$clientes->limit('10');
+           
     		$clientes->get_paged_iterated($page,10);
 
     		$data['aClientes'] = $clientes;
@@ -36,10 +40,46 @@ class Clientes extends CI_Controller{
 		$data['paginaActual'] = $page;        
         $data['view']         ='sistema/lista_clientes';
     	$data['cssFiles']     = array('style.css','sistema.css');
+    	$data['return']       = 'clientes/index/1/'.$id_vendedor; 
 
-		$this->load->view('template',$data);
 
-	}
+
+
+
+		if($this->input->post()){
+			
+			
+
+			$input_count = 0;
+
+			foreach ($this->input->post() as $input_name => $input) {
+				if($input_name != 'buscar' && $input_name != 'nombre_value' && $input != ''){
+			 		$clientes->like($input_name, $input);
+			 		$input_count++;
+			 	}
+			 } 
+
+			if($input_count > 0){
+				if($id_vendedor == NULL){
+					$clientes->where('usuario_id',$this->session->userdata('id_user'));
+				} else {
+					$clientes->where('usuario_id',$id_vendedor);
+				}
+				$clientes->order_by('nombre');
+				$clientes->get_paged_iterated($page, 8);
+
+		
+				$data['paginaActual'] = $page;
+				$data['buscar']       = true;
+
+
+			}
+
+		}
+			$this->load->view('template',$data);
+	
+    }
+
 
 	public function alta_cliente(){
 

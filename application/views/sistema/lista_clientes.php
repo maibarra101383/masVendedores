@@ -17,7 +17,34 @@
 </td>
 </tr>
 <?php endif; ?>
+<div class="subir">
 
+<?php
+echo form_open();
+    
+    echo form_label('Nombre:','nombre');
+   
+
+    echo form_input(array('name'  => 'nombre', 
+                          'id'    => 'nombre', 
+                          'size'  => '20', 
+                          'value' => set_value('nombre'),
+                          'class' => 'color_form'));
+  
+        ($data     = array('name'  => 'buscar', 
+                           'id'    => 'buscar',
+                           'class' => 'abutton',
+                           'value' => 'Buscar',
+                           'style' => 'margin:0px'));
+
+            echo form_submit($data);	
+		 	echo '<a href="'.base_url($return).'" class="abutton_cancel">Cancelar</a>';
+			echo form_close(); 
+
+  
+  echo form_close();
+
+?>
 <br>
 <br>
 <div class="datagrid"><table>
@@ -32,6 +59,7 @@
          <th>Lada 2</th>
          <th>Telefono2</th>
           <th>Extencion 2</th>
+          <th>Email</th>
          <th>Fecha Contacto</th>
          <th>Fecha Visita</th>
          <th>Producto</th>
@@ -106,6 +134,7 @@
                 echo '<td>'.$aItem->datos_general->lada2.'</td>';
                 echo '<td>'.$aItem->datos_general->telefono2.'</td>';
                 echo '<td>'.$aItem->datos_general->ext2.'</td>';
+                 echo '<td>'.$aItem->datos_general->email.'</td>';
                 echo '<td>'.$aItem->fecha_c.'</td>';
                 echo '<td>'.$aItem->fecha_v.'</td>'; 
                   $aItem->producto->get();
