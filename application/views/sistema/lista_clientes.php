@@ -1,5 +1,6 @@
 <h3>Mi Lista de Clientes</h3> 
 <br>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <tr><td><a href="<?= base_url('clientes/alta_cliente'); ?>">
   <img src="<?=base_url('assets/imagenes/agregarcli.jpg');?>"align="left" WIDTH=35 HEIGHT=35  HSPACE="10"  title="Alta Clientes" /> 
         </a>
@@ -18,6 +19,9 @@
 </tr>
 <?php endif; ?>
 <div class="subir">
+	<form method="post" action="<?=base_url()?>lista_clientes/pdfs/generar" />
+<table align="center">
+	 <input type="submit" value="Crear PDF" title="Crear PDF" />
 
 <?php
 echo form_open();

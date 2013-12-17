@@ -51,7 +51,7 @@ class Vendedores extends CI_Controller{
        
  		$data['title'] = "pagina de registro";
 		$data['view']  = "sistema/alta_vendedor";
-		$data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+		$data['cssFiles']  = array('themes/base/jquery-ui.css','sistema.css');
             $data['jsFiles']   = array('jquery.js', 
             						   'jquery-ui/ui/jquery-ui.js',
             						   'jquery-timepicker.js');
@@ -125,7 +125,7 @@ if ($this->form_validation->run() === false){
 			$data['error_message'] = "";
 			$data['title'] = "pagina de registro";
 		    $data['view']  = "sistema/editar_vendedor";
-		    $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+		    $data['cssFiles']  = array('themes/base/jquery-ui.css','sistema.css');
             $data['jsFiles']   = array('jquery.js', 
             						   'jquery-ui/ui/jquery-ui.js',
             						   'jquery-timepicker.js');

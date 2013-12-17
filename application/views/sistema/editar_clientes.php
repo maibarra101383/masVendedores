@@ -17,7 +17,7 @@ echo'<li><a href="#tabs-2">DATOS GENERALES DEL CONTACTO</a></li>';
 echo'<li><a href="#tabs-3">DATOS DEL PROYECTO O PRODUCTO</a></li>';
 echo'</ul>';
 
-echo'<div id="tabs-1" "style= background-color:#c2ECCFA">';
+echo'<div id="tabs-1">';
 echo'<table>';
 
         echo'<tr>';
@@ -40,7 +40,7 @@ echo'<table>';
 		 	echo'</tr>';
 		    
 		   
-		    echo'<tr BGCOLOR=>';
+		    echo'<tr>';
             echo '<td width=15% valing="top">';
             echo form_label('Cargo del Cliente : ');
             echo'</td>';
