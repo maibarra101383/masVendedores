@@ -39,7 +39,10 @@ class Clientes extends CI_Controller{
 		$data['id_vendedor']  = $id_vendedor;		
 		$data['paginaActual'] = $page;        
         $data['view']         ='sistema/lista_clientes';
-    	$data['cssFiles']     = array('style.css','sistema.css');
+    	$data['cssFiles']  = array('themes/base/jquery-ui.css','sistema.css','style.css');
+        $data['jsFiles']   = array('jquery.js', 
+            					   'jquery-ui/ui/jquery-ui.js',
+            					'jquery-timepicker.js','jquery.ui.datepicker-es.js');
     	$data['return']       = 'clientes/index/1/'.$id_vendedor; 
 
 

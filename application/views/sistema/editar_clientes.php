@@ -1,3 +1,4 @@
+<body id="wrapper_cli">
 <script>
 $(function() {
 $( "#tabs" ).tabs();
@@ -6,6 +7,9 @@ $( "#tabs" ).tabs();
 
 
 <?php
+
+
+echo'<br>';
 echo'<br>';
 echo'<br>';
 echo'<br>';
@@ -293,7 +297,7 @@ echo'<table>';
 		 		'name'  => 'fecha_c_show',
 		 		'id'    => 'fecha_c_show',
 		 		'value' => set_value('fecha_c_show',$aCliente->fecha_c),
-		 		'style' => 'width:10%'
+		 		'style' => 'width:20%'
 		 	);
 
 		 	echo form_input($data);
@@ -311,7 +315,7 @@ echo'<table>';
 		 		'name'  => 'fecha_v_show',
 		 		'id'    => 'fecha_v_show',
 		 		'value' => set_value('fecha_v_show',$aCliente->fecha_v),
-		 		'style' => 'width:15%'
+		 		'style' => 'width:25%'
 		 	);
 
 		 	echo form_input($data);
@@ -321,7 +325,7 @@ echo'<table>';
 
             
 		 	echo'<tr>';
-            echo '<td width=18%>';
+            echo '<td width=20%>';
             echo form_label('Proyecto en Proceso : ');
             echo '</td>';
             echo '<td colpan="15%">';

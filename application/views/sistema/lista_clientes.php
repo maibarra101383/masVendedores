@@ -1,23 +1,44 @@
+<body id="wrapper_cli">
 <h3>Mi Lista de Clientes</h3> 
-<br>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<tr><td><a href="<?= base_url('clientes/alta_cliente'); ?>">
-  <img src="<?=base_url('assets/imagenes/agregarcli.jpg');?>"align="left" WIDTH=35 HEIGHT=35  HSPACE="10"  title="Alta Clientes" /> 
-        </a>
-   </td>
-<td>
-   <a href="<?= base_url('login/logout'); ?>">
-      <img src="<?=base_url('assets/imagenes/salida.jpg');?>"align="left" WIDTH=35 HEIGHT=35 HSPACE="10"  title="Salida"/>  
-   </a>
-</td>
-<td>
-  <?php if($this->session->userdata('admin')==1): ?>
+<script>
+  $(function() {
+    $( "#menu" ).menu();
+  });
+  </script>
+  <style>
+  .ui-menu { width: 150px; }
+  </style>
+</head>
+<body>
+ 
+<ul id="menu" class="menu">
+	 <li>
+    <a href="#">Herramientas</a>
+
+    <ul>
+      <li><a href="#"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <a href="<?= base_url('clientes/alta_cliente'); ?>">
+      <img src="<?=base_url('assets/imagenes/agregarcli.jpg');?>"align="left" WIDTH=20 HEIGHT=20  HSPACE="10"  title="Alta Clientes" />Alta Clientes </a></li>
+      
+      <li><a href="#"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      	<a href="<?= base_url('login/logout'); ?>">
+      <img src="<?=base_url('assets/imagenes/salida.jpg');?>"align="left" WIDTH=20 HEIGHT=20 HSPACE="10"  title="Salida"/>Salida  
+      </a></li>
+		<?php if($this->session->userdata('admin')==1): ?>
+      <li><a href="#">
+       
+       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <a href="<?= base_url('vendedores'); ?>">
-     <img src="<?=base_url('assets/imagenes/listavn.jpg');?>"align="left" WIDTH=35 HEIGHT=35 HSPACE="10" title="Lista Vendedores" /> 
-    </a>
-</td>
-</tr>
-<?php endif; ?>
+     <img src="<?=base_url('assets/imagenes/listavn.jpg');?>"align="left" WIDTH=20 HEIGHT=20 HSPACE="10" title="Lista Vendedores" />Regresar a lista vendedores
+     </a></li>
+      <?php endif; ?> 
+    </ul>
+  </li>
+</a>
+</ul>
+
+
+
 <div class="subir">
 	<form method="post" action="<?=base_url()?>lista_clientes/pdfs/generar" />
 <table align="center">
@@ -176,6 +197,6 @@ echo form_open();
 				
 		
 	?>
-
+</body>
 </tbody>
 </table></div>

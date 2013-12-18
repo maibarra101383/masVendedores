@@ -1,3 +1,4 @@
+<body id="wrapper_cli">
 <script>
 $(function() {
 $( "#tabs" ).tabs();

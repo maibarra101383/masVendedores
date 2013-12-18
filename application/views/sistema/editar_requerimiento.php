@@ -1,3 +1,4 @@
+<body id="wrapper_cli">
 <h1>Requerimiento para propuesta de solución</h1> 
 <div id="login_form" 
 	 style="width:700px; margin:100px auto; border-radius:5px; border:5px solid #58ACFA; pading:20px" >

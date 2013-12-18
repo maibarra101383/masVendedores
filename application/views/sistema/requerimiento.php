@@ -1,3 +1,4 @@
+<body id="wrapper_cli">
 <h3>Requerimiento para propuesta de solución</h3> 
 <a href="<?= base_url('clientes/'); ?>">Regresar a Lista Clientes</a>
 <div id="login_form" 

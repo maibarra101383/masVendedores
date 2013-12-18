@@ -39,7 +39,13 @@ div .error{
 /********* Estilos para imagen reload *********/
 
 
+#wrapper_cli{
+  background-image: url(../imagenes/cli.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  min-height: 400px;
 
+}
 
 
 
@@ -108,7 +114,7 @@ div .error{
 
 
 .bienvenido {
-   color:blue;
+   color:white;
   font-weight: bold;
   font-size: 13px;
   margin: 3px;
@@ -117,11 +123,17 @@ div .error{
 
 
 .nombre {
-   color:#167AE6;
+   color:blue;
   font-size: 15px;
   margin: 3px;
 display: inline-block;
 }
+
+.menu {
+   color:black;
+  font-size: 13px;
+}
+
 
 
 /*tablas*/

@@ -1,3 +1,4 @@
+<body id="wrapper_cli">
  <h1>Pagina de Registro</h1>
 
 <script>
