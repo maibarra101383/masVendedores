@@ -1,4 +1,5 @@
 <body id="wrapper_cli">
+	<a href="<?= base_url('clientes/'); ?>">Regresar a Lista Clientes</a>
 <script>
 $(function() {
 $( "#tabs" ).tabs();
@@ -16,12 +17,12 @@ echo'<br>';
 echo'<body>';
 echo'<div id="tabs">';
 echo'<ul>';
-echo'<li><a href="#tabs-1">DATOS DEL CLIENTE</a></li>';
-echo'<li><a href="#tabs-2">DATOS GENERALES DEL CONTACTO</a></li>';
-echo'<li><a href="#tabs-3">DATOS DEL PROYECTO O PRODUCTO</a></li>';
+echo'<li><a href="#tabs-1" style= background-color:#00BFFF>DATOS DEL CLIENTE</a></li>';
+echo'<li><a href="#tabs-2"style= background-color:#819FF7 >DATOS GENERALES DEL CONTACTO</a></li>';
+echo'<li><a href="#tabs-3" style= background-color:#81BEF7>DATOS DEL PROYECTO O PRODUCTO</a></li>';
 echo'</ul>';
 
-echo'<div id="tabs-1">';
+echo'<div id="tabs-1" style= background-color:#00BFFF>';
 echo'<table>';
 
         echo'<tr>';
@@ -86,7 +87,7 @@ echo'</div>';
 
 
 
-echo'<div id="tabs-2">';
+echo'<div id="tabs-2" style= background-color:#819FF7 >';
 echo'<table>';
  echo'<tr>'; 
             echo '<td width=15% valing="top">';
@@ -284,7 +285,7 @@ echo'</table>';
 echo'</div>';
 
 
-echo'<div id="tabs-3">';
+echo'<div id="tabs-3" style= background-color:#81BEF7>';
 echo'<table>';
 
             echo'<tr>';
@@ -390,6 +391,7 @@ echo'<table>';
                 $data = array(
 		 		'name'  => 'login',
 		 		'id'    => 'login',
+		 		'class' => 'abutton',
 		 		'value' => 'Actualizar',
 		 		'style' => 'width:20%'
 		 	);

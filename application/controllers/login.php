@@ -59,7 +59,7 @@ class Login extends CI_Controller {
 	         if($usu->id){
 
 	         	$usu->datos_general->get();
-
+                
 	         	$userdata = array('usuario' => $usu->usuario,
                               	  'admin'     => $usu->es_admin,
                               	  'id_user'   => $usu->id,

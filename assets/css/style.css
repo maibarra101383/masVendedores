@@ -64,8 +64,17 @@ div .error{
 #wrapper_vend{
   background-image: url(../imagenes/vend.jpg);
   background-repeat: no-repeat;
-  background-size: 100%;
-  min-height: 400px;
+  background-size: 180%;
+  min-height: 800px;
+  padding-top: 100px;
+}
+
+input:focus
+{ 
+  border:2px solid #0000FF;
 
 }
 
+.custom-checkbox label {
+  position: relative;
+  padding-left: 16px;

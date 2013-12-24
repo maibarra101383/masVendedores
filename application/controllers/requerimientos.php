@@ -6,7 +6,7 @@ class Requerimientos extends CI_Controller{
     {
     	parent::__construct();
     	if(!$this->session->userdata('id_user')){
-    		//redirect(base_url('login'));
+    		redirect(base_url('login'));
     	}
     	define("FILEPATH", "/var/www/masVendedores/propuestas/");
     }
@@ -56,7 +56,7 @@ class Requerimientos extends CI_Controller{
 			$data['title']          = "pagina de registro";
 
 		    $data['view']      = "sistema/editar_requerimiento";
-		    $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+		    $data['cssFiles']  = array('themes/base/jquery-ui.css','sistema.css');
             $data['jsFiles']   = array('jquery.js', 
             						   'jquery-ui/ui/jquery-ui.js',
             						   'jquery-timepicker.js');
@@ -174,7 +174,7 @@ class Requerimientos extends CI_Controller{
 			$data['title'] = "pagina de registro";
 
 		    $data['view']      = "sistema/requerimiento";
-		    $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+		    $data['cssFiles']  = array('themes/base/jquery-ui.css','sistema.css');
             $data['jsFiles']   = array('jquery.js', 
             						   'jquery-ui/ui/jquery-ui.js',
             						   'jquery-timepicker.js');

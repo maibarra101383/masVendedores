@@ -1,19 +1,20 @@
-<body id="wrapper_cli">
-<h3>Mi Lista de Clientes</h3> 
+<body id="wrapper_cli"> 
 <script>
   $(function() {
     $( "#menu" ).menu();
   });
   </script>
   <style>
-  .ui-menu { width: 150px; }
+  .ui-menu { width: 150px; height:30px; }
   </style>
 </head>
 <body>
  
 <ul id="menu" class="menu">
 	 <li>
-    <a href="#">Herramientas</a>
+    <a href="#">
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<img src="<?=base_url('assets/imagenes/h.jpg');?>"align="left" WIDTH=25 HEIGHT=25 HSPACE="10"  title="Herramientas"/>Herramientas</a>
 
     <ul>
       <li><a href="#"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -37,10 +38,10 @@
 </a>
 </ul>
 
-
+<h3>Mi Lista de Clientes</h3>
 
 <div class="subir">
-	<form method="post" action="<?=base_url()?>lista_clientes/pdfs/generar" />
+	<form method="post" action="<?=base_url()?>clientes/pdf" />
 <table align="center">
 	 <input type="submit" value="Crear PDF" title="Crear PDF" />
 

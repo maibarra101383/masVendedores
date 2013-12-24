@@ -1,3 +1,6 @@
+<script>
+	$(function(){ Valid.login() });
+</script>
 <body id="wrapper_login">
  <h1>BIENVENIDO</h1> 
 <div  style="width:470px; height:270px; margin:0 auto; border-radius:5px; border:1px solid #909090; padding:20px align='center'"; class="login" >
@@ -48,20 +51,20 @@
                echo'</table>';
 
 		 	
-       echo " <br /> <a href=" . base_url('vendedores/alta_vendedor') . ">Registro</a><br />";
-       
-		 	$data = array(
-		 		'name'  =>  'login',
-		 		'id'    => 'login',
-		 		'value' => 'Login',
-		 		'class' => 'login',
-		 		'style' => 'width:40%'
-		 	);
+        echo " <br /> <a href=" . base_url('vendedores/alta_vendedor') . ">Registro</a><br />";
 
-		 	echo form_submit($data);
-		 	
+                         $data = array(
+                                 'name'  =>  'login',
+                                 'id'    => 'login',
+                                 'value' => 'Login',
+                                 'class' => 'abutton',
+                                 'style' => 'width:40%'
+                         );
 
-	 	echo form_close(); 
+                         echo form_submit($data);
+                         $data['cssFiles'] = array('login/css/style.css');
+
+                 echo form_close();  
 	 ?>
 	</div>
 </div>

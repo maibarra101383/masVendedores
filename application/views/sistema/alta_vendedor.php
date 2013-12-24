@@ -1,4 +1,5 @@
 <body id="wrapper_cli">
+	<a href="<?= base_url('vendedores/'); ?>">Regresar a Login</a>
  <h1>Pagina de Registro</h1>
 
 <script>
@@ -15,11 +16,11 @@ echo'<br>';
 echo'<body>';
 echo'<div id="tabs">';
 echo'<ul>';
-echo'<li><a href="#tabs-1">DATOS DEL USUARIO</a></li>';
-echo'<li><a href="#tabs-2">DATOS GENERALES DEL USUARIO</a></li>';
+echo'<li><a href="#tabs-1" style= background-color:#00BFFF>DATOS DEL USUARIO</a></li>';
+echo'<li><a href="#tabs-2" style= background-color:#819FF7>DATOS GENERALES DEL USUARIO</a></li>';
 echo'</ul>';
 
-echo'<div id="tabs-1">';
+echo'<div id="tabs-1" style= background-color:#00BFFF>';
 echo'<table>';
         echo'<tr>';
         echo '<td width=20% valing="top">';
@@ -100,7 +101,7 @@ echo'</div>';
 
 
 
-echo'<div id="tabs-2">';
+echo'<div id="tabs-2" style= background-color:#819FF7>';
 echo'<table>';
  echo'<tr>'; 
             echo '<td width=15% valing="top">';
@@ -305,6 +306,7 @@ echo'<table>';
                 $data = array(
 		 		'name'  => 'login',
 		 		'id'    => 'login',
+		 		'class' => 'abutton',
 		 		'value' => 'Guardar',
 		 		'style' => 'width:20%'
 		 	);

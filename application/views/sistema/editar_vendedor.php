@@ -1,4 +1,5 @@
 <body id="wrapper_cli">
+	<a href="<?= base_url('vendedores/'); ?>">Regresar a Lista Vendedores</a>
 <script>
 $(function() {
 $( "#tabs" ).tabs();
@@ -13,11 +14,11 @@ echo'<br>';
 echo'<body>';
 echo'<div id="tabs">';
 echo'<ul>';
-echo'<li><a href="#tabs-1">DATOS DEL USUARIO</a></li>';
-echo'<li><a href="#tabs-2">DATOS GENERALES DEL USUARIO</a></li>';
+echo'<li><a href="#tabs-1" style= background-color:#00BFFF>DATOS DEL USUARIO</a></li>';
+echo'<li><a href="#tabs-2" style= background-color:#819FF7>DATOS GENERALES DEL USUARIO</a></li>';
 echo'</ul>';
 
-echo'<div id="tabs-1">';
+echo'<div id="tabs-1" style= background-color:#00BFFF>';
 echo'<table>';
 
         echo'<tr>';
@@ -42,6 +43,7 @@ echo'<table>';
 		   
 		    echo'<tr>';
             echo '<td width=15% valing="top">';
+            $aVendedor->datos_general->get();
            echo form_label('Zona: ');
             echo'</td>';
 
@@ -63,7 +65,7 @@ echo'</div>';
 
 
 
-echo'<div id="tabs-2">';
+echo'<div id="tabs-2"  style= background-color:#819FF7>';
 echo'<table>';
  echo'<tr>'; 
             echo '<td width=15% valing="top">';
@@ -269,10 +271,12 @@ echo'<table>';
 		 		'name'  => 'login',
 		 		'id'    => 'login',
 		 		'value' => 'Actualizar',
+		 		'class' => 'abutton',
 		 		'style' => 'width:20%'
 		 	);
             echo'</center>';
 		 	echo form_submit($data);
+
 		 	
 		 	echo form_close(); 
 		 	?>

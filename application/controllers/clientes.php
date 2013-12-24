@@ -6,7 +6,7 @@ class Clientes extends CI_Controller{
     {
     	parent::__construct();
     	if(!$this->session->userdata('id_user')){
-    		//redirect(base_url('login'));
+    		redirect(base_url('login'));
     	}
     }
 
@@ -158,7 +158,7 @@ class Clientes extends CI_Controller{
 				$clientes->datos_general_id = $datosGenerales->id;
 				$clientes->usuario_id       = $this->session->userdata('id_user');
 				$productos->where_in('id',$this->input->post('productos'))->get();
-				$clientes->save($productos->all);
+				$clientes->save($productos->all)&& $clientes->save();
 
 			}
 				redirect(base_url('clientes'));
@@ -267,7 +267,8 @@ public function editar_cliente($id_cliente)
 			$productos->where_in('id',$this->input->post('productos'))->get()->save();
 
 
-			if ($oCliente->save($productos->all) && $oCliente->datos_general->save()){
+			if ($oCliente->save($productos->all) && $oCliente->datos_general->save()
+				                                 && $oCliente->save()){
 
 
 				redirect(base_url('clientes/index/'.$id_vendedor));
@@ -278,11 +279,45 @@ public function editar_cliente($id_cliente)
 
 
  
-    public function generar() {
+    public function pdf()
+    {     
+    	$clientes = new Cliente();
+$clientes->where('usuario_id', $this->session->userdata('id_user'))->get();
+ $clientes->datos_general->get();  
+
+  $html = ''; 
+  $html .= "<table>";
+ 
+foreach($clientes->all as $cliente){
+	   
+              $html.="<tr><td>".$clientes->nombre."</td>";
+              $html.="<td>".$cliente->cargo_cliente."</td>";
+              $html.="<td>".$cliente->giro_empresa."</td>";
+              $html.="<td>".$clientes->datos_general->nombre."</td>";
+              $html.="<td>".$clientes->datos_general->apellido_p."</td>";
+              $html.="<td>".$clientes->datos_general->apellido_m."</td>";
+              $html.="<td>".$clientes->datos_general->email."</td>";
+              $html.="<td>".$clientes->datos_general->lada1."</td>";
+              $html.="<td>".$clientes->datos_general->telefono1."</td>";
+              $html.="<td>".$clientes->datos_general->ext1."</td>";
+              $html.="<td>".$clientes->datos_general->lada2."</td>";
+              $html.="<td>".$clientes->datos_general->telefono2."</td>";
+              $html.="<td>".$clientes->datos_general->ext2."</td></tr>";
+             
+
+        
+                      
+            }
+            $html .= "</table>";
+         
+
+             //print_r($html);
+
         $this->load->library('Pdf');
         $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
-        $pdf->SetTitle('Lista de Clientes');
+        $pdf->SetAuthor('Israel Parra');
+        $pdf->SetTitle('Ejemplo de provincías con TCPDF');
         $pdf->SetSubject('Tutorial TCPDF');
         $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
  
@@ -326,24 +361,17 @@ public function editar_cliente($id_cliente)
 //fijar efecto de sombra en el texto
         $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
  
-
-        //preparamos y maquetamos el contenido a crear
-        $html = '';
-        $html .= "<style type=text/css>";
-        $html .= "th{color: #fff; font-weight: bold; background-color: #222}";
-        $html .= "td{background-color: #AAC7E3; color: #fff}";
-        $html .= "</style>";
-        $html .= "<table width='100%'>";
-        
-        
+// Establecemos el contenido para imprimir
+  
  
 // Imprimimos el texto con writeHTMLCell()
-        $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
  
 // ---------------------------------------------------------
 // Cerrar el documento PDF y preparamos la salida
 // Este método tiene varias opciones, consulte la documentación para más información.
-       /* $nombre_archivo = utf8_decode("Localidades de ".$prov.".pdf");
-        $pdf->Output($nombre_archivo, 'I');*/
+        $nombre_archivo = utf8_decode("archivo.pdf");
+        $pdf->Output($nombre_archivo, 'I');
     }
 }
+    

@@ -13,6 +13,12 @@
   border: none;
 }
 
+input:focus
+{ 
+  border:2px solid #0000FF;
+
+}
+
 div .error{
   color:red;
   font-weight: bold;
@@ -42,8 +48,8 @@ div .error{
 #wrapper_cli{
   background-image: url(../imagenes/cli.jpg);
   background-repeat: no-repeat;
-  background-size: 100%;
-  min-height: 400px;
+  background-size: 130%;
+  min-height: 300px;
 
 }
 
@@ -135,6 +141,13 @@ display: inline-block;
 }
 
 
+.requerimiento {
+   color:white;
+  font-size: 15px;
+  margin: 3px;
+  background-color: #444;
+display: inline-block;
+}
 
 /*tablas*/
 table.header tr:first-child {
@@ -147,4 +160,12 @@ table.header tr:first-child {
 /*Todas las filas a partir de la segunda*/
 table.header tr:nth-child(n+2) {
     text-align: right;
+}
+
+
+
+input .custom-checkbox {
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute;
 }
