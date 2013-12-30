@@ -11,7 +11,7 @@ class Vendedores extends CI_Controller{
     	}
     }
 	
-	public function index()
+	public function index($page = 1, $id_vendedor = NULL)
 	{       
 		 if($this->session->userdata('admin')==0)        		
 
@@ -23,12 +23,31 @@ class Vendedores extends CI_Controller{
 
      
     	$data['aVendedores'] = $vendedor->get();
+
         $data['view'] = 'sistema/lista_vendedores';
         $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
         $data['jsFiles']   = array('jquery.js', 
             					   'jquery-ui/ui/jquery-ui.js',
             					   'jquery-timepicker.js');
-            $data['return']       = 'clientes/index/1/'.$id_vendedor; 
+            $data['return']       = 'clientes/index/1/'.$vendedor; 
+
+
+
+           
+    		$vendedor->get_paged_iterated($page,10);
+
+    		$data['aVendedores'] = $vendedor;
+    	
+		
+				
+		$data['paginaActual'] = $page;        
+        $data['view']         ='sistema/lista_vendedores';
+    	$data['cssFiles']  = array('themes/base/jquery-ui.css','sistema.css','style.css');
+        $data['jsFiles']   = array('jquery.js', 
+            					   'jquery-ui/ui/jquery-ui.js',
+            					'jquery-timepicker.js','jquery.ui.datepicker-es.js');
+    	$data['return']       = 'vendedor/index/1/'.$id_vendedor; 
+
 
 		$this->load->view('template',$data);
 

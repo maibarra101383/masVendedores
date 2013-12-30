@@ -4,8 +4,7 @@
 .datagrid {
         font: normal 15px/150% 
         Arial, Helvetica, sans-serif; 
-        background: #8258FA; overflow: hidden;
-     border: 1px solid #006699; 
+     border: 1px solid transparent; 
      -webkit-border-radius: 3px; 
      -moz-border-radius: 3px; 
      border-radius: 3px; 
@@ -39,6 +38,7 @@
 .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}
 tr:nth-child(even) { background: #ddd }
 tr:nth-child(odd) { background: #fff}
+
 
 div .error{
   color:red;

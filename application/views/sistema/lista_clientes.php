@@ -19,12 +19,11 @@
     <ul>
       <li><a href="#"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
        <a href="<?= base_url('clientes/alta_cliente'); ?>">
-      <img src="<?=base_url('assets/imagenes/agregarcli.jpg');?>"align="left" WIDTH=20 HEIGHT=20  HSPACE="10"  title="Alta Clientes" />Alta Clientes </a></li>
+      <img src="<?=base_url('assets/imagenes/agregarcli.jpg');?>"align="left" WIDTH=20 HEIGHT=20  HSPACE="10"  title="Alta Clientes" />Alta Clientes </a></li></a>
       
       <li><a href="#"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       	<a href="<?= base_url('login/logout'); ?>">
-      <img src="<?=base_url('assets/imagenes/salida.jpg');?>"align="left" WIDTH=20 HEIGHT=20 HSPACE="10"  title="Salida"/>Salida  
-      </a></li>
+      <img src="<?=base_url('assets/imagenes/salida.jpg');?>"align="left" WIDTH=20 HEIGHT=20 HSPACE="10"  title="Salida"/>Salida</a></li></a>
 		<?php if($this->session->userdata('admin')==1): ?>
       <li><a href="#">
        
@@ -39,11 +38,14 @@
 </ul>
 
 <h3>Mi Lista de Clientes</h3>
+<div class="datagrid">
+	   <form method="post" action="<?=base_url()?>clientes/pdf/1/<?= $id_vendedor ?>" />
 
-<div class="subir">
-	<form method="post" action="<?=base_url()?>clientes/pdf" />
+
 <table align="center">
-	 <input type="submit" value="Crear PDF" title="Crear PDF" />
+         <input  type="submit" value="Crear PDF" title="Crear PDF" />
+           </form>
+           </div>
 
 <?php
 echo form_open();
@@ -63,16 +65,15 @@ echo form_open();
                            'value' => 'Buscar',
                            'style' => 'margin:0px'));
 
-            echo form_submit($data);	
-		 	echo '<a href="'.base_url($return).'" class="abutton_cancel">Cancelar</a>';
-			echo form_close(); 
+            echo form_submit($data);        
+                         echo '<a href="'.base_url($return).'" class="abutton_cancel">Cancelar</a>';
+                        echo form_close(); 
 
-  
-  echo form_close();
+
+
 
 ?>
-<br>
-<br>
+
 <div class="datagrid"><table>
 <thead>
 	<tr>

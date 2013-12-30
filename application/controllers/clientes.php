@@ -21,7 +21,7 @@ class Clientes extends CI_Controller{
 			$clientes->where('usuario_id', $this->session->userdata('id_user'));
 			$clientes->order_by ('TIMESTAMPDIFF(MINUTE,fecha_a ,now())DESC');
     		$clientes->limit('10');
-    		$clientes->get_paged_iterated($page,10);
+    		$clientes->get_paged_iterated($page,8);
 
     		$data['aClientes'] = $clientes;
 
@@ -31,7 +31,7 @@ class Clientes extends CI_Controller{
     		$clientes->order_by ('TIMESTAMPDIFF(MINUTE,fecha_a ,now())DESC');
     		$clientes->limit('10');
            
-    		$clientes->get_paged_iterated($page,10);
+    		$clientes->get_paged_iterated($page,8);
 
     		$data['aClientes'] = $clientes;
     	}
@@ -193,7 +193,7 @@ public function editar_cliente($id_cliente)
         $this->form_validation->set_rules('fecha_v', 'Fecha de Visita', 'strip_tags|trim');
         
 
-         //$this->form_validation->set_rules('id_user');
+         $this->form_validation->set_rules('id_user');
 
 		$clientes = new Cliente();
 		$productos = new Producto();
@@ -234,7 +234,7 @@ public function editar_cliente($id_cliente)
 			$oCliente->fecha_v = $this->input->post('fecha_v').':00';
 			$oCliente->fecha_m = date("Y-m-d H:i:s");
 
-			$oCliente->datos_general->save();
+			$oCliente->datos_general->save()&& $oCliente->save();
 
 			//print_r($this->input->post('fecha_v').':00');exit();
 			if($this->input->post('status') && $this->input->post('status') == 1){
@@ -279,93 +279,89 @@ public function editar_cliente($id_cliente)
 
 
  
-    public function pdf()
-    {     
-    	$clientes = new Cliente();
-$clientes->where('usuario_id', $this->session->userdata('id_user'))->get();
- $clientes->datos_general->get();  
-
-  $html = ''; 
-  $html .= "<table>";
- 
-foreach($clientes->all as $cliente){
-	   
-              $html.="<tr><td>".$clientes->nombre."</td>";
-              $html.="<td>".$cliente->cargo_cliente."</td>";
-              $html.="<td>".$cliente->giro_empresa."</td>";
-              $html.="<td>".$clientes->datos_general->nombre."</td>";
-              $html.="<td>".$clientes->datos_general->apellido_p."</td>";
-              $html.="<td>".$clientes->datos_general->apellido_m."</td>";
-              $html.="<td>".$clientes->datos_general->email."</td>";
-              $html.="<td>".$clientes->datos_general->lada1."</td>";
-              $html.="<td>".$clientes->datos_general->telefono1."</td>";
-              $html.="<td>".$clientes->datos_general->ext1."</td>";
-              $html.="<td>".$clientes->datos_general->lada2."</td>";
-              $html.="<td>".$clientes->datos_general->telefono2."</td>";
-              $html.="<td>".$clientes->datos_general->ext2."</td></tr>";
-             
-
-        
-                      
-            }
-            $html .= "</table>";
-         
-
-             //print_r($html);
+    public function pdf($page = 1, $id_vendedor=NULL)
+    {   
 
         $this->load->library('Pdf');
-        $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->SetCreator(PDF_CREATOR);
-        $pdf->SetAuthor('Israel Parra');
-        $pdf->SetTitle('Ejemplo de provincías con TCPDF');
-        $pdf->SetSubject('Tutorial TCPDF');
-        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
- 
+        $pdf = new Pdf('PDF_PAGE_ORIENTATION', 'L', 'mm', 'B4', true, 'UTF-8', false);
+        
 // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config_alt.php de libraries/config
-        $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE . ' 001', PDF_HEADER_STRING, array(0, 64, 255), array(0, 64, 128));
-        $pdf->setFooterData($tc = array(0, 64, 0), $lc = array(0, 64, 128));
- 
-// datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config.php de libraries/config
-        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
- 
-// se pueden modificar en el archivo tcpdf_config.php de libraries/config
-        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
- 
-// se pueden modificar en el archivo tcpdf_config.php de libraries/config
-        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
- 
-// se pueden modificar en el archivo tcpdf_config.php de libraries/config
-        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
- 
-//relación utilizada para ajustar la conversión de los píxeles
-        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
- 
- 
-// ---------------------------------------------------------
-// establecer el modo de fuente por defecto
-        $pdf->setFontSubsetting(true);
- 
+
+
 // Establecer el tipo de letra
  
 //Si tienes que imprimir carácteres ASCII estándar, puede utilizar las fuentes básicas como
 // Helvetica para reducir el tamaño del archivo.
-        $pdf->SetFont('freemono', '', 14, '', true);
+        $pdf->SetFont('Helvetica', '', 10, '', true);
  
 // Añadir una página
 // Este método tiene varias opciones, consulta la documentación para más información.
         $pdf->AddPage();
- 
+        $pdf->SetPageOrientation('L');
 //fijar efecto de sombra en el texto
         $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
- 
+       $pdf->Image(base_url('assets/imagenes/masqweb.jpg'), 10, 10, 50, 25, '', '', '', false, 300);
 // Establecemos el contenido para imprimir
-  
+  $clientes = new Cliente();
+
+  if(!$id_vendedor){
+
+			$clientes->where('usuario_id', $this->session->userdata('id_user'));
+
+    	} else {
+
+			$clientes->where('usuario_id',  $id_vendedor);
+
+    	}
+
+$clientes->order_by ('TIMESTAMPDIFF(MINUTE,fecha_v ,now())DESC');
+$clientes->get();    		 
+
+ $html  = $this->_estilo().' <table class="table">';
+ $html.="<br>";
+ $html.="<br>";
+ $html.="<br>";
+ $html .= '<thead>';
+ $html .= '<tr>';
+ $html .= '<th class="th">Cliente</th>';
+ $html .= '<th class="th">Cargo</th>';
+ $html .= '<th class="th">Giro</th>';
+ $html .= '<th class="th">Nombre</th>';
+ $html .= '<th class="th">Apellido Paterno</th>';
+ $html .= '<th class="th">Apellido Materno</th>';
+ $html .= '<th class="th">Email</th>';
+ $html .= '<th class="th">Lada</th>';
+ $html .= '<th class="th">Teléfono</th>';
+ $html .= '<th class="th">Extención</th>';
+ $html .= '<th class="th">Dirección</th>';
+ $html .= '</tr>';
+ $html .= '</thead>';
+ $html .= '<tbody>'; 
+
+ 
+foreach($clientes->all as $cliente){
+	    $cliente->datos_general->get();
+	          $html.="<br>";
+	          $html.="<br>";
+              $html.="<tr><td>".$cliente->nombre."</td>";
+              $html.="<td>".$cliente->cargo_cliente."</td>";
+              $html.="<td>".$cliente->giro_empresa."</td>";
+              $html.="<td>".$cliente->datos_general->nombre."</td>";
+              $html.="<td>".$cliente->datos_general->apellido_p."</td>";
+              $html.="<td>".$cliente->datos_general->apellido_m."</td>";
+              $html.="<td>".$cliente->datos_general->email."</td>";
+              $html.="<td>".$cliente->datos_general->lada1."</td>";
+              $html.="<td>".$cliente->datos_general->telefono1."</td>";
+              $html.="<td>".$cliente->datos_general->ext1."</td>";
+              $html.="<td>".$cliente->datos_general->direccion."</td></tr>";
+                     
+            }
+             $html .= '</tbody>'; 
+            $html .= "</table>";
+           
  
 // Imprimimos el texto con writeHTMLCell()
-$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '40%', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
  
 // ---------------------------------------------------------
 // Cerrar el documento PDF y preparamos la salida
@@ -373,5 +369,43 @@ $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 
         $nombre_archivo = utf8_decode("archivo.pdf");
         $pdf->Output($nombre_archivo, 'I');
     }
+
+
+    private function _estilo(){
+     
+     return " <style> 
+          
+        .table {
+          width: 100%; 
+        }
+
+        th {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.04, #006699),
+   color-stop(1, #00557F) );
+  background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );
+  background: #ddd; 
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F')
+        ;background-color:#006699; color:#FFFFFF; font-size: 9px; font-weight: bold; border-left: 1px solid #0070A8; }
+
+        .td {
+        padding: 3px 5px;
+        font-size: 6px;
+        border: 0.5px solid #0070A8;
+        background: #fff;
+        }
+
+        .even {
+            background: #ddd;  
+        }
+
+odd { 
+	background: #fff;
 }
-    
+
+    </style>";
+
+    }
+
+}
+
+

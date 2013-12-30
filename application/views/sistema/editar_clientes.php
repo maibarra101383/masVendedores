@@ -1,5 +1,34 @@
 <body id="wrapper_cli">
-	<a href="<?= base_url('clientes/'); ?>">Regresar a Lista Clientes</a>
+	
+<script>
+  $(function() {
+    $( "#menu" ).menu();
+  });
+  </script>
+  <style>
+  .ui-menu { width: 150px; height:30px; }
+  </style>
+</head>
+<body>
+ 
+<ul id="menu" class="menu">
+	 <li>
+    <a href="#">
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<img src="<?=base_url('assets/imagenes/h.jpg');?>"align="left" WIDTH=25 HEIGHT=25 HSPACE="10"  title="Herramientas"/>Herramientas</a>
+
+    <ul>
+      <li>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<a href="<?= base_url('clientes/'); ?>"</a>
+     <img src="<?=base_url('assets/imagenes/lista.jpg');?>"align="left" WIDTH=20 HEIGHT=20 HSPACE="10" title="Lista Clientes" />Regresar a lista Clientes
+     </a></li>
+    </ul>
+     </ul>
+
+
+
+
 <script>
 $(function() {
 $( "#tabs" ).tabs();
