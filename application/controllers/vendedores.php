@@ -7,10 +7,11 @@ class Vendedores extends CI_Controller{
     	parent::__construct();
     	if(!$this->session->userdata('id_user')){
     		
+    		
     	}
     }
 	
-	public function index()
+	public function index($page = 1, $id_vendedor = NULL)
 	{       
 		 if($this->session->userdata('admin')==0)        		
 
@@ -20,9 +21,34 @@ class Vendedores extends CI_Controller{
 
         $vendedor = new Usuario();
 
+     
     	$data['aVendedores'] = $vendedor->get();
+
         $data['view'] = 'sistema/lista_vendedores';
-        $data['cssFiles']  = array('style.css','sistema.css');
+        $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+        $data['jsFiles']   = array('jquery.js', 
+            					   'jquery-ui/ui/jquery-ui.js',
+            					   'jquery-timepicker.js');
+            $data['return']       = 'clientes/index/1/'.$vendedor; 
+
+
+
+           
+    		$vendedor->get_paged_iterated($page,10);
+
+    		$data['aVendedores'] = $vendedor;
+    	
+		
+				
+		$data['paginaActual'] = $page;        
+        $data['view']         ='sistema/lista_vendedores';
+    	$data['cssFiles']  = array('themes/base/jquery-ui.css','sistema.css','style.css');
+        $data['jsFiles']   = array('jquery.js', 
+            					   'jquery-ui/ui/jquery-ui.js',
+            					'jquery-timepicker.js','jquery.ui.datepicker-es.js');
+    	$data['return']       = 'vendedor/index/1/'.$id_vendedor; 
+
+
 		$this->load->view('template',$data);
 
 	}
@@ -48,13 +74,15 @@ class Vendedores extends CI_Controller{
        
         $vendedor = new Usuario();
  		$datosGenerales = new Datos_general();
+
        
  		$data['title'] = "pagina de registro";
 		$data['view']  = "sistema/alta_vendedor";
-		$data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+		$data['cssFiles']  = array('themes/base/jquery-ui.css','sistema.css');
             $data['jsFiles']   = array('jquery.js', 
             						   'jquery-ui/ui/jquery-ui.js',
             						   'jquery-timepicker.js');
+            //$data['return']       = 'vendedores/index/1/'.$id_vendedor; 
   
 if ($this->form_validation->run() === false){
 
@@ -125,17 +153,18 @@ if ($this->form_validation->run() === false){
 			$data['error_message'] = "";
 			$data['title'] = "pagina de registro";
 		    $data['view']  = "sistema/editar_vendedor";
-		    $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+		    $data['cssFiles']  = array('themes/base/jquery-ui.css','sistema.css','sistema.css');
             $data['jsFiles']   = array('jquery.js', 
             						   'jquery-ui/ui/jquery-ui.js',
             						   'jquery-timepicker.js');
+            $data['return']       = 'vendedores/index/1/'.$id_vendedor; 
 		    
 			$this->load->view('template', $data);
 
 		} else {
 
 			$oVendedor->datos_general->get();
-
+            $vendedor->usuario  = $this->input->post('usuario');
 			$oVendedor->nombre = $this->input->post('usuario');
 			if($this->input->post('status') && $this->input->post('status') == 1){
 		  		$status = 1;
@@ -165,23 +194,3 @@ if ($this->form_validation->run() === false){
 
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	

@@ -2,18 +2,23 @@
          border-collapse: collapse; text-align: left; width: 100%;
           } 
 .datagrid {
-        font: normal 12px/150% 
+        font: normal 15px/150% 
         Arial, Helvetica, sans-serif; 
-        background: #fff; overflow: hidden;
-     border: 1px solid #006699; 
+     border: 1px solid transparent; 
      -webkit-border-radius: 3px; 
      -moz-border-radius: 3px; 
      border-radius: 3px; 
  }
 .datagrid table td, 
-.datagrid table th { padding: 3px 10px; }
-.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) )
-        ;background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F')
+.datagrid table th {
+ padding: 3px 10px; 
+}
+
+.datagrid table thead th {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699),
+   color-stop(1, #00557F) );
+  background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F')
         ;background-color:#006699; color:#FFFFFF; font-size: 15px; font-weight: bold; border-left: 1px solid #0070A8; }
 .datagrid table thead th:first-child { border: none; }
 .datagrid table tbody td { color: #00496B; border-left: 1px solid #E1EEF4;font-size: 12px;font-weight: normal; }
@@ -33,6 +38,7 @@
 .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}
 tr:nth-child(even) { background: #ddd }
 tr:nth-child(odd) { background: #fff}
+
 
 div .error{
   color:red;
@@ -55,6 +61,20 @@ div .error{
   margin: 3px;
   }
 
+#wrapper_vend{
+  background-image: url(../imagenes/vend.jpg);
+  background-repeat: no-repeat;
+  background-size: 180%;
+  min-height: 800px;
+  padding-top: 100px;
+}
 
+input:focus
+{ 
+  border:2px solid #0000FF;
 
-  
+}
+
+.custom-checkbox label {
+  position: relative;
+  padding-left: 16px;

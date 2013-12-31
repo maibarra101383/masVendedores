@@ -1,8 +1,36 @@
- <H3> BIENVENIDO ADMINISTRADOR</H3> 
 
-<a href="<?= base_url('login/logout'); ?>">
-  <img src="<?=base_url('assets/imagenes/salida.jpg');?>"align="left" WIDTH=35 HEIGHT=35 /> 
+<body id="wrapper_cli">
+<script>
+  $(function() {
+    $( "#menu" ).menu();
+  });
+  </script>
+  <style>
+  .ui-menu { width: 150px; height:30px;  }
+  </style>
+<body>
+ 
+<ul id="menu" class="menu">
+	 <li>
+    <a href="#">
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<img src="<?=base_url('assets/imagenes/h.jpg');?>"align="left" WIDTH=25 HEIGHT=25 HSPACE="10"  title="Herramientas"/>Herramientas</a>
+
+    <ul>
+<li><a href="#"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      	<a href="<?= base_url('login/logout'); ?>">
+      <img src="<?=base_url('assets/imagenes/salida.jpg');?>"align="left" WIDTH=20 HEIGHT=20 HSPACE="10"  title="Salida"/>Salida  
+      </a></li></ul>
+		<?php if($this->session->userdata('admin')==1): ?>
+		<?php endif; ?> 
+    
+
 </a>
+  </li>
+</ul>
+</body>
+
+ <H3 color="white"> BIENVENIDO ADMINISTRADOR</H3> 
   <br> 
   <br>
 <div class="datagrid"><table>
@@ -23,50 +51,58 @@
 		<th>Editar</th>
 		<th>Lista de clientes</th>
 	</tr></thead>
-<tfoot>
-	<tr>
-		<td colspan="100%">
-			<div id="paging">
-				<ul>
-					<li>
-						<a href="#">
-							<span>Previous</span>
-						</a>
-					</li>
-					<li>
-						<a href="#" class="active">
-							<span>1</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<span>2</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<span>3</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<span>4</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<span>5</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<span>Next</span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</tr>
-	</tfoot>
+
+<?php if($aVendedores->paged->total_pages > 1): ?>
+			<tfoot>
+				<tr>
+					<td colspan="100%">
+						<div id="paging">
+							<ul>
+								<?php if($aVendedores->paged->has_previous): ?>
+									<li>
+										<a href="<?= base_url('vendedores/index/1/'.$id_vendedor); ?>">
+											<span>Inicio</span>
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url('vendedores/index/'.$aVendedores->paged->previous_page.'/'.$id_vendedor); ?>">
+											<span>Anterior</span>
+										</a>
+									</li>
+								<?php endif; ?>
+
+								<?php 
+									for($x = 1; $x <= $aVendedores->paged->total_pages; $x++): 
+										if($paginaActual == $x){
+											$pagActiva = 'active';
+										} else {
+											$pagActiva = '';
+										}
+								?>
+											<li>
+												<a href="<?= base_url('vendedores/index/'.$x.'/'.$id_vendedor); ?>" class="<?= $pagActiva ?>">
+													<span><?= $x; ?></span>
+												</a>
+											</li>
+								<?php endfor; ?>
+
+								<?php if($aVendedores->paged->has_next): ?>
+									<li>
+										<a href="<?= base_url('vendedores/index/'.$aVendedores->paged->next_page.'/'.$id_vendedor); ?>">
+											<span>Siguiente</span>
+										</a>
+									</li>
+									<li>
+										<a href="<?= base_url('vendedores/index/'.$aVendedores->paged->total_pages.'/'.$id_vendedor); ?>">
+											<span>Fin</span>
+										</a>
+									</li>
+								<?php endif; ?>
+							</ul>
+						</div>
+					</tr>
+				</tfoot>
+		<?php endif; ?>
 <tbody>
 	<?php
 
@@ -97,4 +133,6 @@
 
 </tbody>
 </table>
+</body>
+</div>
 </div>

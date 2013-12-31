@@ -1,134 +1,23 @@
-/********* Estilos para Datagrid *********/
-
-.datagrid table {
-  border-collapse: collapse;
-  color:#58ACFA;
-  text-align: left;
-  width: 100%; }
-
-.datagrid {
-    background: #fff;
-    overflow: hidden;
-    border: 1px solid #006699;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px; }
-
-.datagrid table td,
-.datagrid table th {
-  padding: 3px 5px;
-  }
-
-.datagrid table thead th {
-/*background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );
-background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );
-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');*/
-background-color:#4cbade;
-color:#FFFFFF;
-font-size: 15px;
-font-weight: bold;
-border-left: 1px solid #0070A8;
-border-bottom: 1px solid #0070A8;
-}
-
-.datagrid table thead th:first-child {
-border-left: none;
-}
-
-.datagrid table tbody td {
-  color: #00496B;
-  border-left: 1px solid #E1EEF4;
-  font-size: 12px;
-  font-weight: normal;
-  }
-
-.datagrid table tbody .alt td {
-  background: #E1EEF4;
-  color: #00496B; }
-
-.datagrid table tbody td:first-child {
-  
-  }
-
-.datagrid table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.datagrid table tbody tr.even {
-  background-color: #CEECF5;  
-}
-
-.datagrid table tfoot td div {
-  border-top: 1px solid #006699;
-  background: #E1EEF4;
-
-  }
-.datagrid table tfoot td {
-  padding: 0;
-  font-size: 12px
-
-  }
-
-.datagrid table tfoot td div{
-  padding: 2px;
-  }
-
-.datagrid table tfoot td ul {
-  margin: 0;
-  padding:0;
-  list-style: none;
-  text-align: right;
-  }
-
-.datagrid table tfoot li {
-  display: inline;
-  }
-
-.datagrid table tfoot li a {
-  text-decoration: none;
+.abutton {
   display: inline-block;
-  padding: 2px 8px;
-  margin: 1px;
-  color: #FFFFFF;
-  border: 1px solid #006699;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );
-  background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');
-  background-color:#006699; }
-
-.datagrid table tfoot ul a.active, .datagrid table tfoot ul a:hover {
-    text-decoration: none;
-    color: #000000;
-    background: none;
-    background-color:#4cbade;
+  background: #006699;
+  padding: 6px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: helvetica;
+  border: none;
 }
 
-.datagrid a {
-    text-decoration: none;
+input:focus
+{ 
+  border:2px solid #0000FF;
+
 }
-
-/********* Estilos para Formulario *********/
-
-label{
-  
-  color:black;
-  margin: 5px;
-}
-
-form .capitalize
-{
-text-transform:capitalize;
-}
-
-.subir{
-  display: inline-block; 
-  margin_buttom: 8px;
-}
-
-/********* Estilos para error de validacion en formularios *********/
 
 div .error{
   color:red;
@@ -155,20 +44,19 @@ div .error{
 
 /********* Estilos para imagen reload *********/
 
-.abutton {
-  display: inline-block;
-  background: #006699;
-  padding: 6px;
-  text-align: center;
-  border-radius: 5px;
-  color: white;
-  text-decoration: none;
-  margin: 10px;
-  cursor: pointer;
-  font-size: 13px;
-  font-family: helvetica;
-  border: none;
+
+#wrapper_cli{
+  background-image: url(../imagenes/cli.jpg);
+  background-repeat: no-repeat;
+  background-size: 130%;
+  min-height: 300px;
+
 }
+
+
+
+
+
 
 
 .abutton_cancel {
@@ -232,7 +120,7 @@ div .error{
 
 
 .bienvenido {
-   color:blue;
+   color:white;
   font-weight: bold;
   font-size: 13px;
   margin: 3px;
@@ -241,12 +129,25 @@ div .error{
 
 
 .nombre {
-   color:#167AE6;
+   color:blue;
   font-size: 15px;
   margin: 3px;
 display: inline-block;
 }
 
+.menu {
+   color:black;
+  font-size: 13px;
+}
+
+
+.requerimiento {
+   color:white;
+  font-size: 15px;
+  margin: 3px;
+  background-color: #444;
+display: inline-block;
+}
 
 /*tablas*/
 table.header tr:first-child {
@@ -259,4 +160,12 @@ table.header tr:first-child {
 /*Todas las filas a partir de la segunda*/
 table.header tr:nth-child(n+2) {
     text-align: right;
+}
+
+
+
+input .custom-checkbox {
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute;
 }

@@ -28,7 +28,7 @@ class Login extends CI_Controller {
    
 		 	         $data['error_message'] = "";
                      $data['view'] = 'login';
-                     $data['cssFiles'] = array('style.css','sistema.css','login/8-login-form/css/style.css');
+                     $data['cssFiles'] = array('style_login.css','sistema_login.css');
 
 		             $data['jsFiles']  = array('jquery.js',
 								  'jquery-validation/dist/jquery.validate.js',
@@ -59,7 +59,7 @@ class Login extends CI_Controller {
 	         if($usu->id){
 
 	         	$usu->datos_general->get();
-
+                
 	         	$userdata = array('usuario' => $usu->usuario,
                               	  'admin'     => $usu->es_admin,
                               	  'id_user'   => $usu->id,

@@ -1,0 +1,27 @@
+.abutton {
+  display: inline-block;
+  background: #006699;
+  padding: 6px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: helvetica;
+  border: none;
+}
+
+
+
+div .error{
+  color:red;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 3px;
+}
+
+.error{
+  color:red;
+}

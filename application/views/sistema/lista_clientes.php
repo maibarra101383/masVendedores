@@ -1,23 +1,51 @@
-<h3>Mi Lista de Clientes</h3> 
-<br>
-<tr><td><a href="<?= base_url('clientes/alta_cliente'); ?>">
-  <img src="<?=base_url('assets/imagenes/agregarcli.jpg');?>"align="left" WIDTH=35 HEIGHT=35  HSPACE="10"  title="Alta Clientes" /> 
-        </a>
-   </td>
-<td>
-   <a href="<?= base_url('login/logout'); ?>">
-      <img src="<?=base_url('assets/imagenes/salida.jpg');?>"align="left" WIDTH=35 HEIGHT=35 HSPACE="10"  title="Salida"/>  
-   </a>
-</td>
-<td>
-  <?php if($this->session->userdata('admin')==1): ?>
+<body id="wrapper_cli"> 
+<script>
+  $(function() {
+    $( "#menu" ).menu();
+  });
+  </script>
+  <style>
+  .ui-menu { width: 150px; height:30px; }
+  </style>
+</head>
+<body>
+ 
+<ul id="menu" class="menu">
+	 <li>
+    <a href="#">
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<img src="<?=base_url('assets/imagenes/h.jpg');?>"align="left" WIDTH=25 HEIGHT=25 HSPACE="10"  title="Herramientas"/>Herramientas</a>
+
+    <ul>
+      <li><a href="#"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <a href="<?= base_url('clientes/alta_cliente'); ?>">
+      <img src="<?=base_url('assets/imagenes/agregarcli.jpg');?>"align="left" WIDTH=20 HEIGHT=20  HSPACE="10"  title="Alta Clientes" />Alta Clientes </a></li></a>
+      
+      <li><a href="#"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      	<a href="<?= base_url('login/logout'); ?>">
+      <img src="<?=base_url('assets/imagenes/salida.jpg');?>"align="left" WIDTH=20 HEIGHT=20 HSPACE="10"  title="Salida"/>Salida</a></li></a>
+		<?php if($this->session->userdata('admin')==1): ?>
+      <li><a href="#">
+       
+       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <a href="<?= base_url('vendedores'); ?>">
-     <img src="<?=base_url('assets/imagenes/listavn.jpg');?>"align="left" WIDTH=35 HEIGHT=35 HSPACE="10" title="Lista Vendedores" /> 
-    </a>
-</td>
-</tr>
-<?php endif; ?>
-<div class="subir">
+     <img src="<?=base_url('assets/imagenes/listavn.jpg');?>"align="left" WIDTH=20 HEIGHT=20 HSPACE="10" title="Lista Vendedores" />Regresar a lista vendedores
+     </a></li>
+      <?php endif; ?> 
+    </ul>
+  </li>
+</a>
+</ul>
+
+<h3>Mi Lista de Clientes</h3>
+<div class="datagrid">
+	   <form method="post" action="<?=base_url()?>clientes/pdf/1/<?= $id_vendedor ?>" />
+
+
+<table align="center">
+         <input  type="submit" value="Crear PDF" title="Crear PDF" />
+           </form>
+           </div>
 
 <?php
 echo form_open();
@@ -37,16 +65,15 @@ echo form_open();
                            'value' => 'Buscar',
                            'style' => 'margin:0px'));
 
-            echo form_submit($data);	
-		 	echo '<a href="'.base_url($return).'" class="abutton_cancel">Cancelar</a>';
-			echo form_close(); 
+            echo form_submit($data);        
+                         echo '<a href="'.base_url($return).'" class="abutton_cancel">Cancelar</a>';
+                        echo form_close(); 
 
-  
-  echo form_close();
+
+
 
 ?>
-<br>
-<br>
+
 <div class="datagrid"><table>
 <thead>
 	<tr>
@@ -172,6 +199,6 @@ echo form_open();
 				
 		
 	?>
-
+</body>
 </tbody>
 </table></div>

@@ -1,3 +1,4 @@
+<body id="wrapper_cli">
 <div id="login_form" 
 	 style="width:400px; margin:100px auto; border-radius:5px; border:5px solid #58ACFA; pading:20px" >
 

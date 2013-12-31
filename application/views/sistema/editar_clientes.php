@@ -1,3 +1,34 @@
+<body id="wrapper_cli">
+	
+<script>
+  $(function() {
+    $( "#menu" ).menu();
+  });
+  </script>
+  <style>
+  .ui-menu { width: 150px; height:30px; }
+  </style>
+</head>
+<body>
+ 
+<ul id="menu" class="menu">
+	 <li>
+    <a href="#">
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<img src="<?=base_url('assets/imagenes/h.jpg');?>"align="left" WIDTH=25 HEIGHT=25 HSPACE="10"  title="Herramientas"/>Herramientas</a>
+
+    <ul>
+      <li>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<a href="<?= base_url('clientes/'); ?>"</a>
+     <img src="<?=base_url('assets/imagenes/lista.jpg');?>"align="left" WIDTH=20 HEIGHT=20 HSPACE="10" title="Lista Clientes" />Regresar a lista Clientes
+     </a></li>
+    </ul>
+     </ul>
+
+
+
+
 <script>
 $(function() {
 $( "#tabs" ).tabs();
@@ -6,18 +37,21 @@ $( "#tabs" ).tabs();
 
 
 <?php
+
+
+echo'<br>';
 echo'<br>';
 echo'<br>';
 echo'<br>';
 echo'<body>';
 echo'<div id="tabs">';
 echo'<ul>';
-echo'<li><a href="#tabs-1">DATOS DEL CLIENTE</a></li>';
-echo'<li><a href="#tabs-2">DATOS GENERALES DEL CONTACTO</a></li>';
-echo'<li><a href="#tabs-3">DATOS DEL PROYECTO O PRODUCTO</a></li>';
+echo'<li><a href="#tabs-1" style= background-color:#00BFFF>DATOS DEL CLIENTE</a></li>';
+echo'<li><a href="#tabs-2"style= background-color:#819FF7 >DATOS GENERALES DEL CONTACTO</a></li>';
+echo'<li><a href="#tabs-3" style= background-color:#81BEF7>DATOS DEL PROYECTO O PRODUCTO</a></li>';
 echo'</ul>';
 
-echo'<div id="tabs-1" "style= background-color:#c2ECCFA">';
+echo'<div id="tabs-1" style= background-color:#00BFFF>';
 echo'<table>';
 
         echo'<tr>';
@@ -40,7 +74,7 @@ echo'<table>';
 		 	echo'</tr>';
 		    
 		   
-		    echo'<tr BGCOLOR=>';
+		    echo'<tr>';
             echo '<td width=15% valing="top">';
             echo form_label('Cargo del Cliente : ');
             echo'</td>';
@@ -82,7 +116,7 @@ echo'</div>';
 
 
 
-echo'<div id="tabs-2">';
+echo'<div id="tabs-2" style= background-color:#819FF7 >';
 echo'<table>';
  echo'<tr>'; 
             echo '<td width=15% valing="top">';
@@ -280,7 +314,7 @@ echo'</table>';
 echo'</div>';
 
 
-echo'<div id="tabs-3">';
+echo'<div id="tabs-3" style= background-color:#81BEF7>';
 echo'<table>';
 
             echo'<tr>';
@@ -293,7 +327,7 @@ echo'<table>';
 		 		'name'  => 'fecha_c_show',
 		 		'id'    => 'fecha_c_show',
 		 		'value' => set_value('fecha_c_show',$aCliente->fecha_c),
-		 		'style' => 'width:10%'
+		 		'style' => 'width:20%'
 		 	);
 
 		 	echo form_input($data);
@@ -311,7 +345,7 @@ echo'<table>';
 		 		'name'  => 'fecha_v_show',
 		 		'id'    => 'fecha_v_show',
 		 		'value' => set_value('fecha_v_show',$aCliente->fecha_v),
-		 		'style' => 'width:15%'
+		 		'style' => 'width:25%'
 		 	);
 
 		 	echo form_input($data);
@@ -321,7 +355,7 @@ echo'<table>';
 
             
 		 	echo'<tr>';
-            echo '<td width=18%>';
+            echo '<td width=20%>';
             echo form_label('Proyecto en Proceso : ');
             echo '</td>';
             echo '<td colpan="15%">';
@@ -371,7 +405,7 @@ echo'<table>';
               echo'</tr>';
              }
               
- echo '<input name="fecha_v" type="hidden" id="fecha_v_show" value="'.$aCliente->fecha_v.'"/>';
+ echo '<input name="fecha_v" type="hidden" id="fecha_v" value="'.$aCliente->fecha_v.'"/>';
  echo '<input name="fecha_c" type="hidden" id="fecha_c_show" value="'.$aCliente->fecha_c.'"/>';
  
 
@@ -386,6 +420,7 @@ echo'<table>';
                 $data = array(
 		 		'name'  => 'login',
 		 		'id'    => 'login',
+		 		'class' => 'abutton',
 		 		'value' => 'Actualizar',
 		 		'style' => 'width:20%'
 		 	);
