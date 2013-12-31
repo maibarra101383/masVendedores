@@ -280,7 +280,7 @@ echo'<table>';
 
              
             echo'<tr>';
-            echo '<td width=15% valing="top">';
+            echo '<td colspan ="20%">';
              echo form_label('Dirección : ');
              echo '</td>';
 
@@ -289,7 +289,7 @@ echo'<table>';
 		 		'name'  => 'direccion',
 		 		'id'    => 'direccion',
 		 		'value' => set_value('direccion'),
-		 		'style' => 'width:100%'
+		 		'style' => 'width:35%'
 		 	);
 
 		 	echo form_input($data);

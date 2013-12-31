@@ -1,4 +1,31 @@
 <body id="wrapper_cli">
+
+<script>
+  $(function() {
+    $( "#menu" ).menu();
+  });
+  </script>
+  <style>
+  .ui-menu { width: 150px; height:30px; }
+  </style>
+</head>
+<body>
+ 
+<ul id="menu" class="menu">
+   <li>
+    <a href="#">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <img src="<?=base_url('assets/imagenes/h.jpg');?>"align="left" WIDTH=25 HEIGHT=25 HSPACE="10"  title="Herramientas"/>Herramientas</a>
+
+    <ul>
+      <li>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<a href="<?= base_url('requerimientos/requerimiento/'.$id_cliente); ?>"</a>
+     <img src="<?=base_url('assets/imagenes/v.png');?>"align="left" WIDTH=20 HEIGHT=20 HSPACE="10" />Regresar a Requerimientos
+     </a></li>
+    </ul>
+     </ul>
+
 <h1>Requerimiento para propuesta de solución</h1> 
 <div id="login_form" 
 	 style="width:700px; margin:100px auto; border-radius:5px; border:5px solid #58ACFA; pading:20px" >
@@ -31,8 +58,9 @@
                 $data = array(
 		 		'name'  => 'login',
 		 		'id'    => 'login',
+		 		'class' => 'abutton',
 		 		'value' => 'Registro',
-		 		'style' => 'width:100%',
+		 		'style' => 'width:98%',
 		 		'onClick' => "alert('Tu requerimiento se guardó y se envió por correo al administrador de masQweb');"
 		 	);
 

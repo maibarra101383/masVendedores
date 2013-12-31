@@ -1,5 +1,30 @@
 <body id="wrapper_cli">
-	<a href="<?= base_url('vendedores/'); ?>">Regresar a Lista Vendedores</a>
+<script>
+  $(function() {
+    $( "#menu" ).menu();
+  });
+  </script>
+  <style>
+  .ui-menu { width: 150px; height:30px;  }
+  </style>
+<body>
+ 
+<ul id="menu" class="menu">
+	 <li>
+    <a href="#">
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<img src="<?=base_url('assets/imagenes/h.jpg');?>"align="left" WIDTH=25 HEIGHT=25 HSPACE="10"  title="Herramientas"/>Herramientas</a>
+
+    <ul>
+<li><li><a href="#">
+       
+       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <a href="<?= base_url('vendedores'); ?>">
+     <img src="<?=base_url('assets/imagenes/listavn.jpg');?>"align="left" WIDTH=20 HEIGHT=20 HSPACE="10" title="Lista Vendedores" />Regresar a lista vendedores
+     </a></li></ul> </a></ul> 
+</body>
+
+<body id="wrapper_cli">
 <script>
 $(function() {
 $( "#tabs" ).tabs();
@@ -251,12 +276,12 @@ echo'<table>';
             echo form_label('Direccion : ');
             echo '</td>';
 
-             echo '<td width=15% valing="top">';
+             echo '<td colspan ="20%">';
 		 	$data = array(
 		 		'name'  => 'direccion',
 		 		'id'    => 'direccion',
 		 		'value' => set_value('direccion',$aVendedor->datos_general->direccion),
-		 		'style' => 'width:50%'
+		 		'style' => 'width:30%'
 		 	);
 
 		 	echo form_input($data);

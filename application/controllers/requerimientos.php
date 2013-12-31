@@ -111,8 +111,8 @@ class Requerimientos extends CI_Controller{
 
 		if (!$this->input->post()){
 
-			$data['title']          = "pagina de registro";
-
+			$data['id_cliente'] = $id_cliente;
+			$data['title']      = "pagina de registro";
 		    $data['view']      = "sistema/alta_requerimiento";
 		    $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
             $data['jsFiles']   = array('jquery.js', 
@@ -166,7 +166,7 @@ class Requerimientos extends CI_Controller{
         $oRequerimiento = $requerimientos->where('cliente_id',$id_cliente)->get();
 
 		if (!$this->input->post()){
-    
+            $data['id_cliente']       = $id_cliente;
 			$data['aCliente']         = $oCliente;
 			$data['aRequerimiento']   = $oRequerimiento;
 

@@ -297,12 +297,12 @@ echo'<table>';
             echo form_label('Direccion : ');
             echo '</td>';
 
-             echo '<td width=15% valing="top">';
+             echo '<td colspan ="20%">';
 		 	$data = array(
 		 		'name'  => 'direccion',
 		 		'id'    => 'direccion',
 		 		'value' => set_value('direccion',$aCliente->datos_general->direccion),
-		 		'style' => 'width:100%'
+		 		'style' => 'width:35%'
 		 	);
 
 		 	echo form_input($data);

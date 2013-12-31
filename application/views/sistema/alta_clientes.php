@@ -298,12 +298,12 @@ echo'<table>';
              echo form_label('Dirección : ');
              echo '</td>';
 
-             echo '<td width=15% valing="top">';
+             echo '<td colspan ="20%">';
 		 	$data = array(
 		 		'name'  => 'direccion',
 		 		'id'    => 'direccion',
 		 		'value' => set_value('direccion'),
-		 		'style' => 'width:100%'
+		 		'style' => 'width:35%'
 		 	);
 
 		 	echo form_input($data);
@@ -357,7 +357,7 @@ echo'<table>';
 
 		 	echo'<tr>';
             echo '<td width=15%>';
-            echo form_label('<br><br>Proyecto en Proceso :');
+            echo form_label('<br><br>Proyecto en Proceso:');
             echo '</td>';
             echo'<br>';
             echo '<td colpan="15%">';

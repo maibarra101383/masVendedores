@@ -184,6 +184,7 @@ echo'<table>';
                 $data = array(
 		 		'name'  => 'login',
 		 		'id'    => 'login',
+        'class' => 'abutton',
 		 		'value' => 'Guardar',
 		 		'style' => 'width:100%'
 		 	);
