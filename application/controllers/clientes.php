@@ -227,16 +227,16 @@ public function editar_cliente($id_cliente)
 		} else {
 
 			$oCliente->datos_general->get();
-			$oCliente->nombre = $this->input->post('cliente');
-			$oCliente->cargo_cliente= $this->input->post('cargo_cliente');
-			$oCliente->giro_empresa = $this->input->post('giro_empresa');
-			$oCliente->fecha_c = $this->input->post('fecha_c');
-			$oCliente->fecha_v = $this->input->post('fecha_v').':00';
-			$oCliente->fecha_m = date("Y-m-d H:i:s");
+			$oCliente->nombre        = $this->input->post('cliente');
+			$oCliente->cargo_cliente = $this->input->post('cargo_cliente');
+			$oCliente->giro_empresa  = $this->input->post('giro_empresa');
+			$oCliente->fecha_c       = $this->input->post('fecha_c');
+			$oCliente->fecha_v       = $this->input->post('fecha_v').':00';
+			$oCliente->fecha_m       = date("Y-m-d H:i:s");
 
 			$oCliente->datos_general->save()&& $oCliente->save();
 
-			//print_r($this->input->post('fecha_v').':00');exit();
+			
 			if($this->input->post('status') && $this->input->post('status') == 1){
 		  		$status = 1;
 			}else{
@@ -280,10 +280,11 @@ public function editar_cliente($id_cliente)
 
  
     public function pdf($page = 1, $id_vendedor=NULL)
-    {   
+    {  
+
 
         $this->load->library('Pdf');
-        $pdf = new Pdf('PDF_PAGE_ORIENTATION', 'L', 'mm', 'B4', true, 'UTF-8', false);
+        $pdf = new Pdf( 'mm', 'B4', true, 'UTF-8', false);
         
 // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config_alt.php de libraries/config
 
@@ -292,7 +293,7 @@ public function editar_cliente($id_cliente)
  
 //Si tienes que imprimir carácteres ASCII estándar, puede utilizar las fuentes básicas como
 // Helvetica para reducir el tamaño del archivo.
-        $pdf->SetFont('Helvetica', '', 10, '', true);
+        $pdf->SetFont('Helvetica', '', 8, '', true);
  
 // Añadir una página
 // Este método tiene varias opciones, consulta la documentación para más información.
@@ -384,6 +385,7 @@ $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '40%', $html, $border = 0, $ln
    color-stop(1, #00557F) );
   background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );
   background: #ddd; 
+
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F')
         ;background-color:#006699; color:#FFFFFF; font-size: 9px; font-weight: bold; border-left: 1px solid #0070A8; }
 

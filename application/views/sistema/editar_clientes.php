@@ -405,7 +405,7 @@ echo'<table>';
               echo'</tr>';
              }
               
- echo '<input name="fecha_v" type="hidden" id="fecha_v_show" value="'.$aCliente->fecha_v.'"/>';
+ echo '<input name="fecha_v" type="hidden" id="fecha_v" value="'.$aCliente->fecha_v.'"/>';
  echo '<input name="fecha_c" type="hidden" id="fecha_c_show" value="'.$aCliente->fecha_c.'"/>';
  
 
