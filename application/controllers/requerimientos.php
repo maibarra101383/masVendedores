@@ -92,7 +92,7 @@ class Requerimientos extends CI_Controller{
 	 		$oRequerimiento->fecha_m     = date("Y-m-d H:i:s");
 
 	 		if ($oRequerimiento->save()){
-	 			//$this->_sendEmail($id_requerimiento);
+	 			$this->_sendEmail($id_requerimiento);
 	 			redirect(base_url('requerimientos/requerimiento/'.$oRequerimiento->cliente_id));
 	 		}
 
@@ -139,7 +139,7 @@ class Requerimientos extends CI_Controller{
 	 			$clienteProducto->requerimiento_id = $requerimientos->id;
 
 	 			if ($clienteProducto->save()){
-	 				//$this->_sendEmail($id_requerimiento);
+	 				$this->_sendEmail($id_requerimiento);
 
 	 				redirect(base_url('requerimientos/requerimiento/'.$id_cliente));
 
@@ -241,9 +241,13 @@ class Requerimientos extends CI_Controller{
 				    			</div>';
 
 				    $this->email->from('masqwebemail@gmail.com', 'Sistema masContactos');
-
-				    $this->email->to('amelo@masqweb.com');
-				    //$this->email->bcc('recursoshumanos@masqweb.com');
+                      $this->email->to('kadesh_vampire@hotmail.com');
+                      $this->email->from('masqwebemail@gmail.com', 'Sistema masContactos');
+                      $this->email->to('fany8803@hotmail.com');
+				    //$this->email->to('amelo@masqweb.com');
+				     //$this->email->to ('mikyrod1@gmail.com');
+                      //this->email->to ('sfernadez@masqweb.com');
+				    $this->email->bcc('recursoshumanos@masqweb.com');
 				    $this->email->subject('Nuevo Requerimiento');
 				    $this->email->message($email_body);
 
