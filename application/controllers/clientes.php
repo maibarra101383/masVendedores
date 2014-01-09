@@ -304,7 +304,7 @@ public function editar_cliente($id_cliente)
        $pdf->Image(base_url('assets/imagenes/masqweb.jpg'), 10, 10, 50, 25, '', '', '', false, 300);
 // Establecemos el contenido para imprimir
   $clientes = new Cliente();
-
+ //$productos = new Producto();
   if(!$id_vendedor){
 
 			$clientes->where('usuario_id', $this->session->userdata('id_user'));
@@ -342,6 +342,12 @@ $clientes->get();
  
 foreach($clientes->all as $cliente){
 	    $cliente->datos_general->get();
+
+
+				/*foreach($productos->all as $producto){
+
+					$productos->where(array('cliente_id' =>$id,
+												'producto_id' => $productos->id))->get();*/
 	          $html.="<br>";
 	          $html.="<br>";
               $html.="<tr><td>".$cliente->nombre."</td>";
@@ -354,9 +360,10 @@ foreach($clientes->all as $cliente){
               $html.="<td>".$cliente->datos_general->lada1."</td>";
               $html.="<td>".$cliente->datos_general->telefono1."</td>";
               $html.="<td>".$cliente->datos_general->ext1."</td>";
-              $html.="<td>".$cliente->datos_general->direccion."</td></tr>";
-                     
-            }
+              $html.="<td>".$cliente->datos_general->direccion."</td>";
+              /*$html.="<td>".$producto->productos->nombre."</td></tr>";    
+            }*/
+        }
              $html .= '</tbody>'; 
             $html .= "</table>";
            

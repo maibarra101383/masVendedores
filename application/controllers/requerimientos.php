@@ -241,12 +241,7 @@ class Requerimientos extends CI_Controller{
 				    			</div>';
 
 				    $this->email->from('masqwebemail@gmail.com', 'Sistema masContactos');
-                      $this->email->to('kadesh_vampire@hotmail.com');
-                      $this->email->from('masqwebemail@gmail.com', 'Sistema masContactos');
-                      $this->email->to('fany8803@hotmail.com');
-				    //$this->email->to('amelo@masqweb.com');
-				     //$this->email->to ('mikyrod1@gmail.com');
-                      //this->email->to ('sfernadez@masqweb.com');
+                      $this->email->to('ventas[A2] @masqweb.com');
 				    $this->email->bcc('recursoshumanos@masqweb.com');
 				    $this->email->subject('Nuevo Requerimiento');
 				    $this->email->message($email_body);

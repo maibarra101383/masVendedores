@@ -124,7 +124,7 @@ echo'<table>';
 		 	echo'</td>';
 
 		 	echo '<td width=20% valing="top">';
-		echo form_label ($aCliente->datos_general->cargo_cliente );
+		echo form_label ($aCliente->cargo_cliente);
           echo'</td>';
             echo'</tr>';
                 
@@ -134,7 +134,7 @@ echo'<table>';
 		 		 echo'</td>';
 
 		 	echo '<td width=20% valing="top">';
-		  echo form_label ($aCliente->datos_general->giro_empresa);
+		  echo form_label ($aCliente->giro_empresa);
 		  echo'</td>';
             echo'</tr>';
             echo'</table>';		 	

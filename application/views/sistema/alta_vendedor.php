@@ -280,11 +280,11 @@ echo'<table>';
 
              
             echo'<tr>';
-            echo '<td colspan ="20%">';
+            echo '<td width=15% valing="top" >';
              echo form_label('Dirección : ');
              echo '</td>';
 
-             echo '<td width=15% valing="top">';
+             echo '<td colspan="100%" >';
 		 	$data = array(
 		 		'name'  => 'direccion',
 		 		'id'    => 'direccion',
