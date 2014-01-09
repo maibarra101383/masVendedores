@@ -363,7 +363,7 @@ echo'<table>';
 		 		'name'  => 'status',
 		 		'id'    => 'status',
 		 		'value' => 1,
-		 		'checked' => ($aCliente->status)?"checked":"",
+		 		'checked' => ($aCliente->status)/*?"checked":""*/,
 		 		'style' => 'width:5%'
 		 	);
              echo form_checkbox($data);

@@ -36,7 +36,7 @@ class Requerimientos extends CI_Controller{
 
 	}
 
- public function editar_requerimiento($id_requerimiento)
+ public function editar_requerimiento($id_requerimiento, $id_cliente = null)
 	{
  		
  		if(!$this->session->userdata('id_user')){
@@ -51,7 +51,7 @@ class Requerimientos extends CI_Controller{
 		if (!$this->input->post()){
 			
 			$data['oRequerimiento'] = $oRequerimiento;
-
+             $data['id_cliente'] = $id_cliente;
 			$data['error_message']  = "";
 			$data['title']          = "pagina de registro";
 
@@ -93,7 +93,7 @@ class Requerimientos extends CI_Controller{
 
 	 		if ($oRequerimiento->save()){
 	 			$this->_sendEmail($id_requerimiento);
-	 			redirect(base_url('requerimientos/requerimiento/'.$oRequerimiento->cliente_id));
+	 			redirect(base_url('requerimientos/requerimiento/'.$id_cliente));
 	 		}
 
 		}
@@ -151,7 +151,7 @@ class Requerimientos extends CI_Controller{
 
 
 
-         public function requerimiento($id_cliente)
+         public function requerimiento($id_cliente=null)
 	{
  		
  		if(!$this->session->userdata('id_user')){
@@ -201,18 +201,27 @@ class Requerimientos extends CI_Controller{
 		 		$requerimientosEdit->fecha_m     = date("Y-m-d H:i:s");
 		 		$requerimientosEdit->save();
 
+
+
 		 		$clienteProducto->where(array('cliente_id'  => $id_cliente,
 		 									  'producto_id' => $producto->id))->get();
 
 		 		$clienteProducto->requerimiento_id = $requerimientosEdit->id;
 
 		           if ($clienteProducto->save()){
-						
-					}
+					
+
+
+	 				
+
+	 			}
+
+				redirect(base_url('requerimientos/requerimiento/'.$id_cliente));
+	
 
 			}
 
-			redirect(base_url('clientes/index/'.$id_vendedor));
+	
 
 	}
   }
