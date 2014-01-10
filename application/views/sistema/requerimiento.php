@@ -166,7 +166,7 @@ echo'<table>';
           	 		<img src="'.base_url('assets/imagenes/agregar.png').'" width="20" height="20"/> 
           	 	  </a>';
           } else {
-          	echo '<a href="'.base_url('requerimientos/editar_requerimiento/'.$valid_req->requerimiento_id).'" style="text-decoration:none"> 
+          	echo '<a href="'.base_url('requerimientos/editar_requerimiento/'.$valid_req->requerimiento_id.'/'.$aCliente->id).'" style="text-decoration:none"> 
           	 		<img src="'.base_url('assets/imagenes/Edit.png').'" width="20" height="20"/> 
           	 	  </a>';
 

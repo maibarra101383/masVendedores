@@ -33,6 +33,36 @@
  <H3 color="white"> BIENVENIDO ADMINISTRADOR</H3> 
   <br> 
   <br>
+
+<?php
+echo form_open();
+    
+    echo form_label('Usuario:','usuario');
+   
+
+    echo form_input(array('name'  => 'usuario', 
+                          'id'    => 'usuario', 
+                          'size'  => '20', 
+                          'value' => set_value('usuario'),
+                          'class' => 'color_form'));
+  
+        ($data     = array('name'  => 'buscar', 
+                           'id'    => 'buscar',
+                           'class' => 'abutton',
+                           'value' => 'Buscar',
+                           'style' => 'margin:0px'));
+
+            echo form_submit($data);        
+                         echo '<a href="'.base_url($return).'" class="abutton_cancel">Cancelar</a>';
+                        echo form_close(); 
+
+
+
+
+?>
+
+
+
 <div class="datagrid"><table>
 <thead>
 	<tr>
@@ -51,61 +81,8 @@
 		<th>Editar</th>
 		<th>Lista de clientes</th>
 	</tr></thead>
- 
-<?php if($aVendedores->paged->total_pages > 1): ?>
-      <tfoot>
-        <tr>
-          <td colspan="100%">
-            <div id="paging">
-              <ul>
-                <?php if($aVendedores->paged->has_previous): ?>
-                  <li>
-                    <a href="<?= base_url('vendedores/index/1/'.$id_vendedor); ?>">
-                      <span>Inicio</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url('vendedores/index/'.$aVendedores->paged->previous_page.'/'.$id_vendedor); ?>">
-                      <span>Anterior</span>
-                    </a>
-                  </li>
-                <?php endif; ?>
 
-                <?php 
-                  for($x = 1; $x <= $aVendedores->paged->total_pages; $x++): 
-                    if($paginaActual == $x){
-                      $pagActiva = 'active';
-                    } else {
-                      $pagActiva = '';
-                    }
-                ?>
-                      <li>
-                        <a href="<?= base_url('vendedores/index/'.$x.'/'.$id_vendedor); ?>" class="<?= $pagActiva ?>">
-                          <span><?= $x; ?></span>
-                        </a>
-                      </li>
-                <?php endfor; ?>
-
-                <?php if($aVendedores->paged->has_next): ?>
-                  <li>
-                    <a href="<?= base_url('vendedores/index/'.$aVendedores->paged->next_page.'/'.$id_vendedor); ?>">
-                      <span>Siguiente</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url('vendedores/index/'.$aVendedores->paged->total_pages.'/'.$id_vendedor); ?>">
-                      <span>Fin</span>
-                    </a>
-                  </li>
-                <?php endif; ?>
-              </ul>
-            </div>
-          </tr>
-        </tfoot>
-    <?php endif; ?>
-<tbody>
-
-
+ <tbody>
 	<?php
 
 		foreach($aVendedores as $aItem){

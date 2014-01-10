@@ -11,7 +11,7 @@ class Vendedores extends CI_Controller{
     	}
     }
 	
-	public function index($page = 1)
+	public function index($page = 1, $id_vendedor = NULL)
 	{       
 		 if($this->session->userdata('admin')==0)        		
 
@@ -19,24 +19,71 @@ class Vendedores extends CI_Controller{
     		redirect(base_url('clientes'));
     	}
 
-        $id_vendedor = new Usuario();
+        $vendedor = new Usuario();
 
      
-    	$data['aVendedores'] = $id_vendedor->get();		
-		$data['paginaActual'] = $page;  
-		$data['aVendedores'] = $id_vendedor;      
+    	$data['aVendedores'] = $vendedor->get();
+
+        $data['view'] = 'sistema/lista_vendedores';
+        $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
+        $data['jsFiles']   = array('jquery.js', 
+            					   'jquery-ui/ui/jquery-ui.js',
+            					   'jquery-timepicker.js');
+            $data['return']       = 'clientes/index/1/'.$vendedor; 
+
+
+
+           
+    		$vendedor->get_paged_iterated($page,10);
+
+    		$data['aVendedores'] = $vendedor;
+    	
+		
+				
+		$data['paginaActual'] = $page;        
         $data['view']         ='sistema/lista_vendedores';
     	$data['cssFiles']  = array('themes/base/jquery-ui.css','sistema.css','style.css');
         $data['jsFiles']   = array('jquery.js', 
             					   'jquery-ui/ui/jquery-ui.js',
             					'jquery-timepicker.js','jquery.ui.datepicker-es.js');
-    	$data['return']       = 'vendedor/index/1/'.$id_vendedor; 
+    	$data['return']       = 'vendedor/index/'.$id_vendedor; 
 
-	$id_vendedor->get_paged_iterated($page,10);
 
-		$this->load->view('template',$data);
 
-	}
+
+		if($this->input->post()){
+			
+			
+
+			$input_count = 0;
+
+			foreach ($this->input->post() as $input_name => $input) {
+				if($input_name != 'buscar' && $input_name != 'usuario_value' && $input != ''){
+			 		$vendedor->like($input_name, $input);
+			 		$input_count++;
+			 	}
+			 } 
+
+			if($input_count > 0){
+				/*if($id_vendedor == NULL){
+					$clientes->where('usuario_id',$this->session->userdata('id_user'));
+				} else {
+					$clientes->where('usuario_id',$id_vendedor);
+				}*/
+				$vendedor->order_by('usuario');
+				$vendedor->get_paged_iterated($page, 8);
+
+		
+				$data['paginaActual'] = $page;
+				$data['buscar']       = true;
+
+
+			}
+
+		}
+			$this->load->view('template',$data);
+	
+    }
 
    public function alta_vendedor(){
 

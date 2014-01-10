@@ -3,7 +3,7 @@
 <div id="login_form" 
 	 style="width:700px; margin:100px auto; border-radius:5px; border:5px solid #58ACFA; pading:20px" >
 
-	 <?php
+	 <?php 
 	 echo form_open_multipart();
 	      
           echo form_label(' <br><br>  DESCRIPCION:  <br><br>');
