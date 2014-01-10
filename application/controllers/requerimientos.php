@@ -36,7 +36,7 @@ class Requerimientos extends CI_Controller{
 
 	}
 
- public function editar_requerimiento($id_requerimiento, $id_cliente = null)
+ public function editar_requerimiento($id_requerimiento=null, $id_cliente = null)
 	{
  		
  		if(!$this->session->userdata('id_user')){
@@ -52,6 +52,7 @@ class Requerimientos extends CI_Controller{
 			
 			$data['oRequerimiento'] = $oRequerimiento;
              $data['id_cliente'] = $id_cliente;
+             $data['id_requerimiento'] = $id_requerimiento;
 			$data['error_message']  = "";
 			$data['title']          = "pagina de registro";
 
@@ -92,7 +93,7 @@ class Requerimientos extends CI_Controller{
 	 		$oRequerimiento->fecha_m     = date("Y-m-d H:i:s");
 
 	 		if ($oRequerimiento->save()){
-	 			$this->_sendEmail($id_requerimiento);
+	 		
 	 			redirect(base_url('requerimientos/requerimiento/'.$id_cliente));
 	 		}
 

@@ -360,8 +360,8 @@ foreach($clientes->all as $cliente){
               $html.="<td>".$cliente->datos_general->lada1."</td>";
               $html.="<td>".$cliente->datos_general->telefono1."</td>";
               $html.="<td>".$cliente->datos_general->ext1."</td>";
-              $html.="<td>".$cliente->datos_general->direccion."</td>";
-              /*$html.="<td>".$producto->productos->nombre."</td></tr>";    
+              $html.="<td>".$cliente->datos_general->direccion."</td></tr>";
+              /*$html.="<td>".$producto->productos->nombre."</td>    
             }*/
         }
              $html .= '</tbody>'; 
