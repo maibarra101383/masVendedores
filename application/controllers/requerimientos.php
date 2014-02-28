@@ -36,10 +36,10 @@ class Requerimientos extends CI_Controller{
 
 	}
 
- public function editar_requerimiento($id_requerimiento=null, $id_cliente = null)
-	{
+ 	public function editar_requerimiento($id_requerimiento=null, $id_cliente = null){
  		
  		if(!$this->session->userdata('id_user')){
+    		
     		redirect(base_url('login'));
     	}
 
@@ -50,11 +50,11 @@ class Requerimientos extends CI_Controller{
 
 		if (!$this->input->post()){
 			
-			$data['oRequerimiento'] = $oRequerimiento;
-             $data['id_cliente'] = $id_cliente;
-             $data['id_requerimiento'] = $id_requerimiento;
-			$data['error_message']  = "";
-			$data['title']          = "pagina de registro";
+			$data['oRequerimiento']   = $oRequerimiento;
+            $data['id_cliente']       = $id_cliente;
+            $data['id_requerimiento'] = $id_requerimiento;
+			$data['error_message']    = "";
+			$data['title']            = "pagina de registro";
 
 		    $data['view']      = "sistema/editar_requerimiento";
 		    $data['cssFiles']  = array('themes/base/jquery-ui.css','sistema.css');
@@ -101,8 +101,7 @@ class Requerimientos extends CI_Controller{
 }
 
 
- public function alta_requerimiento($id_producto = null, $id_cliente = null)
-	{
+ 	public function alta_requerimiento($id_producto = null, $id_cliente = null){
  		
  		if(!$this->session->userdata('id_user')){
     		redirect(base_url('login'));
@@ -114,9 +113,9 @@ class Requerimientos extends CI_Controller{
 
 			$data['id_cliente'] = $id_cliente;
 			$data['title']      = "pagina de registro";
-		    $data['view']      = "sistema/alta_requerimiento";
-		    $data['cssFiles']  = array('themes/base/jquery-ui.css','style.css','sistema.css');
-            $data['jsFiles']   = array('jquery.js', 
+		    $data['view']      	= "sistema/alta_requerimiento";
+		    $data['cssFiles']  	= array('themes/base/jquery-ui.css','style.css','sistema.css');
+            $data['jsFiles']   	= array('jquery.js', 
             						   'jquery-ui/ui/jquery-ui.js',
             						   'jquery-timepicker.js');
 		    

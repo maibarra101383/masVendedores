@@ -10,6 +10,6 @@ class Usuario extends DataMapper
 
     public $has_one = array('datos_general');
 
-	public $has_many = array('cliente');
+	public $has_many = array('cliente','citas');
 
 }

@@ -4,10 +4,10 @@
 .datagrid {
         font: normal 15px/150% 
         Arial, Helvetica, sans-serif; 
-     border: 1px solid transparent; 
-     -webkit-border-radius: 3px; 
-     -moz-border-radius: 3px; 
-     border-radius: 3px; 
+        border: 1px solid transparent; 
+        -webkit-border-radius: 3px; 
+        -moz-border-radius: 3px; 
+        border-radius: 3px; 
  }
 .datagrid table td, 
 .datagrid table th {

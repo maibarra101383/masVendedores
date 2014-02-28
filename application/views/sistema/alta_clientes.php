@@ -27,8 +27,6 @@
      </ul>
 
 
-
-
 <script>
 $(function() {
 $( "#tabs" ).tabs();
@@ -314,10 +312,8 @@ echo'<table>';
 echo'</table>';		 	
 echo'</div>';
 
-
 echo'<div id="tabs-3" style= background-color:#81BEF7>';
 echo'<table>';
-
             echo'<tr>';
            echo '<td width=15% valing="top">';
             echo form_label('Fecha de Contacto : ');
@@ -340,8 +336,9 @@ echo'<table>';
              echo '<td width=15% valing="top">';
 		 	 echo form_label('<br><br>Fecha de Visita : ');
 		 	 echo '</td>';
-
 		 	 echo '<td colpan="15%">';
+		 	 echo '<br>';
+		 	 echo '<br>';
 		 	$data = array(
 		 		'name'  => 'fecha_v_show',
 		 		'id'    => 'fecha_v_show',
@@ -354,20 +351,33 @@ echo'<table>';
 		 	echo '</td>';
 		 	echo'</tr>';
 
+		 	echo'<tr>';
+            echo '<td width=15%>';
+            echo form_label('<br>Nivel de interes:');
+            echo '</td>';            
+            echo '<td>';
+            echo '<br>';
+            echo '<select name="interes">';
+            echo '<option value"null"> </option>';
+            echo '<option value="Alta">Alta</option>';
+            echo '<option value="Media">Media</option>';
+			echo '<option value="Baja">Baja</option>';            
+            echo '</select>';
+            echo '</td>';
+		 	echo '</tr>';
 
 		 	echo'<tr>';
             echo '<td width=15%>';
-            echo form_label('<br><br>Proyecto en Proceso:');
+            echo form_label('<br>Proyecto en Proceso:');
             echo '</td>';
-            echo'<br>';
             echo '<td colpan="15%">';
+            echo'<br>';
 		 	$data = array(
 		 		'name'  => 'status',
 		 		'id'    => 'status',
 		 		'value' => 1,
 		 		'style' => 'width:5%',
 		 	);
-
 		 	echo form_checkbox($data);
 		 	echo '</td>';
 		 	echo'</tr>';
@@ -383,11 +393,9 @@ echo'<table>';
                 echo '<td width=15% valing="top">';
             	echo form_label($aItem->nombre);
             	echo'</td>';
-            	echo'</tr>';
-
-            	echo'<tr>';
-            echo '<td width=15% valing="top">';
-            	$data = array(
+            	echo '<br>';
+            	echo '<td>';
+                   	$data = array(
                 	'name'        => 'productos[]',
                 	'value'       => $aItem->id, 
                 	'style'       => 'margin:10px',

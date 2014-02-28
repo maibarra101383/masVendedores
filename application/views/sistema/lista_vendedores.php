@@ -6,21 +6,31 @@
   });
   </script>
   <style>
-  .ui-menu { width: 150px; height:30px;  }
+  .ui-menu { width: 150px;}
   </style>
 <body>
  
 <ul id="menu" class="menu">
 	 <li>
-    <a href="#">
+      <a href="#">
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    	<img src="<?=base_url('assets/imagenes/h.jpg');?>"align="left" WIDTH=25 HEIGHT=25 HSPACE="10"  title="Herramientas"/>Herramientas</a>
+    	<img src="<?=base_url('assets/imagenes/h.jpg');?>"align="left" WIDTH=23 HEIGHT=23 HSPACE="10"  title="Herramientas"/>Herramientas</a>
+<ul>
+   
+   <li>
+      <a href="<?= base_url('vendedores/historial'); ?>">
+      <img src="<?=base_url('assets/imagenes/visita.jpg');?>"align="left" WIDTH=20 HEIGHT=20 HSPACE="10"  title="Historial"/>Historial Visita  
+      </a>  
+   </li>
 
-    <ul>
-<li><a href="#"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      	<a href="<?= base_url('login/logout'); ?>">
+   <li>
+      
+      <a href="<?= base_url('login/logout'); ?>">
       <img src="<?=base_url('assets/imagenes/salida.jpg');?>"align="left" WIDTH=20 HEIGHT=20 HSPACE="10"  title="Salida"/>Salida  
-      </a></li></ul>
+      </a>
+   
+   </li>
+</ul>
 		<?php if($this->session->userdata('admin')==1): ?>
 		<?php endif; ?> 
     
@@ -61,15 +71,12 @@ echo form_open();
 
 ?>
 
-
-
 <div class="datagrid"><table>
 <thead>
 	<tr>
 		<th>Nombre del Vendedor</th>
 		<th>Apellido Paterno</th>
 		<th>Apellido Materno</th>
-		<th>Activo</th>
 		<th>Zona</th>
 		 <th>Lada 1</th>
         <th>Telefono 1</th>
@@ -86,15 +93,15 @@ echo form_open();
 	<?php
 
 		foreach($aVendedores as $aItem){
-			//print_r($aItem);
-			$aItem->datos_general->get();
+			//print_r($aItem);(
+            $aItem->datos_general->get();
+                       
 			echo '<tr>';
 				
-                echo '<td>'.$aItem->datos_general->nombre.'</td>';
-                echo '<td>'.$aItem->datos_general->apellido_p.'</td>';
-                echo '<td>'.$aItem->datos_general->apellido_m.'</td>';
-                    echo '<td>'.$aItem->status.'</td>';
-				echo '<td>'.$aItem->datos_general->zona.'</td>';
+        echo '<td>'.$aItem->datos_general->nombre.'</td>';
+        echo '<td>'.$aItem->datos_general->apellido_p.'</td>';
+        echo '<td>'.$aItem->datos_general->apellido_m.'</td>';
+       	echo '<td>'.$aItem->datos_general->zona.'</td>';
 				echo '<td>'.$aItem->datos_general->lada1.'</td>';
 				echo '<td>'.$aItem->datos_general->telefono1.'</td>';
 				echo '<td>'.$aItem->datos_general->ext1.'</td>';
@@ -107,6 +114,7 @@ echo form_open();
 				echo '<td> <center> <a href="'.base_url('clientes/index/1/'.$aItem->id).'">
 				<img src="'.base_url('assets/imagenes/list.jpg').'" width=30 heigth=30 title="Lista"></center></a></td>';
 			echo '</tr>';
+            
 		}
 	?>
 

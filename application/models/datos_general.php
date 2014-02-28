@@ -8,6 +8,6 @@ class Datos_general extends DataMapper
 
 	public $table = 'datos_generales';
 
-	public $has_many = array('cliente','usuario');
+	public $has_many = array('cliente','usuario','citas');
 
 }

@@ -20,6 +20,11 @@
       <li><a href="#"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
        <a href="<?= base_url('clientes/alta_cliente'); ?>">
       <img src="<?=base_url('assets/imagenes/agregarcli.jpg');?>"align="left" WIDTH=20 HEIGHT=20  HSPACE="10"  title="Alta Clientes" />Alta Clientes </a></li></a>
+
+      <li><a href="#"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <a href="<?= base_url('clientes/agendar'); ?>">
+      <img src="<?=base_url('assets/imagenes/agenda.jpg');?>"align="left" WIDTH=24 HEIGHT=24  HSPACE="10"  title="Hacer Cita" />Hacer Cita Visita </a></li></a>
+
       
       <li><a href="#"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       	<a href="<?= base_url('login/logout'); ?>">
@@ -80,18 +85,15 @@ echo form_open();
 		<th>Cliente</th>
 		<th>Proyecto en Proceso</th>
         <th>Nombre</th>
-         <th>Lada 1</th>
         <th>Telefono 1</th>
-        <th>Extencion 1</th>
-         <th>Lada 2</th>
-         <th>Telefono2</th>
-          <th>Extencion 2</th>
-          <th>Email</th>
-         <th>Fecha Contacto</th>
-         <th>Fecha Visita</th>
-         <th>Producto</th>
-         <th>Requerimientos</th>
-             <th>Editar</th>
+        <th>Telefono2</th>
+        <th>Email</th>
+        <th>Fecha Contacto</th>
+        <th>Fecha 1er visita</th>
+        <th>Visita Actual</th>
+        <th>Producto</th>
+        <th>Requerimientos</th>
+        <th>Editar</th>
          
     </tr></thead>
 <?php if($aClientes->paged->total_pages > 1): ?>
@@ -151,19 +153,18 @@ echo form_open();
 		foreach($aClientes as $aItem){
 			//print_r($aItem);
 			$aItem->datos_general->get();
+			$cita = new Cita();
+			$cita->where('cliente_id',$aItem->id)->get();
 			echo '<tr>';
 				echo '<td>'.$aItem->nombre.'</td>';
 				echo '<td>'.$aItem->status.'</td>';
-				echo '<td>'.$aItem->datos_general->nombre.'</td>';
-				echo '<td>'.$aItem->datos_general->lada1.'</td>';
-				echo '<td>'.$aItem->datos_general->telefono1.'</td>';
-                echo '<td>'.$aItem->datos_general->ext1.'</td>';
-                echo '<td>'.$aItem->datos_general->lada2.'</td>';
-                echo '<td>'.$aItem->datos_general->telefono2.'</td>';
-                echo '<td>'.$aItem->datos_general->ext2.'</td>';
-                 echo '<td>'.$aItem->datos_general->email.'</td>';
+				echo '<td>'.$aItem->datos_general->nombre." ".$aItem->datos_general->apellido_p." ".$aItem->datos_general->apellido_m.'</td>';
+				echo '<td>'."(".$aItem->datos_general->lada1.") ".$aItem->datos_general->telefono1." ext. ".$aItem->datos_general->ext1.'</td>';
+				echo '<td>'."(".$aItem->datos_general->lada2.")".$aItem->datos_general->telefono2." ext. ".$aItem->datos_general->ext2.'</td>';
+                echo '<td>'.$aItem->datos_general->email.'</td>';
                 echo '<td>'.$aItem->fecha_c.'</td>';
-                echo '<td>'.$aItem->fecha_v.'</td>'; 
+                echo '<td>'.$aItem->fecha_v.'>/td>';
+                echo '<td>'.$cita->fecha_visita.'</td>'; 
                   $aItem->producto->get();
 				           echo '<td>';
 

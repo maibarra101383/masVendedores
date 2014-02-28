@@ -103,11 +103,12 @@ class Clientes extends CI_Controller{
         $this->form_validation->set_rules('giro_empresa', 'Giro de la Empresa', 'strip_tags|trim|required|ctype_alpha');
         $this->form_validation->set_rules('fecha_c_show', 'Fecha de Contacto', 'strip_tags|trim|required');
         $this->form_validation->set_rules('fecha_v_show', 'Fecha de Visita', 'strip_tags|trim|required');
+ 		
  		$clientes = new Cliente();
- 		$productos = new Producto();
+ 		$citas = new cita();
  		$datosGenerales = new Datos_general();
     
-        $data['aProductos'] = $productos->get();
+        $data['acitas'] = $citas->get();
 		$data['title']      = "pagina de registro";
 		$data['view']       = "sistema/alta_clientes";
 		
@@ -148,7 +149,8 @@ class Clientes extends CI_Controller{
 				$clientes->giro_empresa     = $this->input->post('giro_empresa');
 				$clientes->fecha_c          = $this->input->post('fecha_c');
 				$clientes->fecha_v          = $this->input->post('fecha_v').':00';
-				$clientes->fecha_a = date("Y-m-d H:i:s");
+				$clientes->fecha_a 	        = date("Y-m-d H:i:s");
+				$clientes->nivel_interes    = $this->input->post('interes');
 				if($this->input->post('status') && $this->input->post('status') == 1){
 		  			$status = 1;
 				}else{
@@ -157,8 +159,14 @@ class Clientes extends CI_Controller{
 				$oCliente->status = $status;
 				$clientes->datos_general_id = $datosGenerales->id;
 				$clientes->usuario_id       = $this->session->userdata('id_user');
-				$productos->where_in('id',$this->input->post('productos'))->get();
-				$clientes->save($productos->all)&& $clientes->save();
+				$citas->where_in('id',$this->input->post('citas'))->get();
+				if($clientes->nivel_interes != null){
+					$clientes->save($citas->all)&& $clientes->save();
+				}else{
+
+					 
+				}
+				
 
 			}
 				redirect(base_url('clientes'));
@@ -196,7 +204,7 @@ public function editar_cliente($id_cliente)
          $this->form_validation->set_rules('id_user');
 
 		$clientes = new Cliente();
-		$productos = new Producto();
+		$citas = new cita();
 
 
 		$oCliente = $clientes->where('id', $id_cliente)->get();
@@ -215,7 +223,7 @@ public function editar_cliente($id_cliente)
     
 
 			$data['aCliente']   = $oCliente;
-			$data['aProductos'] = $productos->get();
+			$data['acitas'] = $citas->get();
 
 			$data['error_message'] = "";
 			$data['title'] = "pagina de registro";
@@ -242,6 +250,7 @@ public function editar_cliente($id_cliente)
 			}else{
   				$status = 0;
 			}
+
 			$oCliente->status = $status;
 			
 			$oCliente->datos_general->nombre       = $this->input->post('nombre');
@@ -256,18 +265,18 @@ public function editar_cliente($id_cliente)
 		    $oCliente->datos_general->ext2         = $this->input->post('ext2');
 			$oCliente->datos_general->direccion    = $this->input->post('direccion');
             $id_vendedor = $this->input->post('id_vendedor');
-			$oCliente->producto->get();
+			$oCliente->cita->get();
 		
-			foreach($oCliente->producto->all as $producto){
-				if(!in_array($producto->id, $this->input->post('productos'))){
-					$oCliente->delete($producto);
+			foreach($oCliente->cita->all as $cita){
+				if(!in_array($cita->id, $this->input->post('citas'))){
+					$oCliente->delete($cita);
 				}	
 			}
 
-			$productos->where_in('id',$this->input->post('productos'))->get()->save();
+			$citas->where_in('id',$this->input->post('citas'))->get()->save();
 
-
-			if ($oCliente->save($productos->all) && $oCliente->datos_general->save()
+ 
+			if ($oCliente->save($citas->all) && $oCliente->datos_general->save()
 				                                 && $oCliente->save()){
 
 
@@ -279,8 +288,7 @@ public function editar_cliente($id_cliente)
 
 
  
-    public function pdf($page = 1, $id_vendedor=NULL)
-    {  
+    public function pdf($page = 1, $id_vendedor=NULL){  
 
 
         $this->load->library('Pdf');
@@ -304,7 +312,7 @@ public function editar_cliente($id_cliente)
        $pdf->Image(base_url('assets/imagenes/masqweb.jpg'), 10, 10, 50, 25, '', '', '', false, 300);
 // Establecemos el contenido para imprimir
   $clientes = new Cliente();
- //$productos = new Producto();
+ //$citas = new cita();
   if(!$id_vendedor){
 
 			$clientes->where('usuario_id', $this->session->userdata('id_user'));
@@ -344,10 +352,10 @@ foreach($clientes->all as $cliente){
 	    $cliente->datos_general->get();
 
 
-				/*foreach($productos->all as $producto){
+				/*foreach($citas->all as $cita){
 
-					$productos->where(array('cliente_id' =>$id,
-												'producto_id' => $productos->id))->get();*/
+					$citas->where(array('cliente_id' =>$id,
+												'cita_id' => $citas->id))->get();*/
 	          $html.="<br>";
 	          $html.="<br>";
               $html.="<tr><td>".$cliente->nombre."</td>";
@@ -361,7 +369,7 @@ foreach($clientes->all as $cliente){
               $html.="<td>".$cliente->datos_general->telefono1."</td>";
               $html.="<td>".$cliente->datos_general->ext1."</td>";
               $html.="<td>".$cliente->datos_general->direccion."</td></tr>";
-              /*$html.="<td>".$producto->productos->nombre."</td>    
+              /*$html.="<td>".$cita->citas->nombre."</td>    
             }*/
         }
              $html .= '</tbody>'; 
@@ -377,8 +385,8 @@ $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '40%', $html, $border = 0, $ln
         $nombre_archivo = utf8_decode("archivo.pdf");
         $pdf->Output($nombre_archivo, 'I');
     }
-
-
+    
+    
     private function _estilo(){
      
      return " <style> 
@@ -414,6 +422,77 @@ odd {
     </style>";
 
     }
+
+    public function agendar(){
+
+		if(!$this->session->userdata('id_user')){
+    		redirect(base_url('login'));
+    	}
+
+    		$cliente = new Cliente();
+    	  	$citas = new Cita();
+    	  	$vendedor= new Usuario();
+
+
+    	//$cliente->where('usuario_id', $cliente)->order_by('fecha_v', 'DESC')->get();
+
+ 		$data['title'] 		 = "citas";
+ 		$data['return']	     = "clientes";
+		$data['view']  		 = "sistema/cita";
+		$data['cssFiles']    = array('themes/base/jquery-ui.css','sistema.css');
+        $data['jsFiles']     = array('jquery.js', 
+            					   'jquery-ui/ui/jquery-ui.js',
+            					   'jquery-timepicker.js','jquery.ui.datepicker-es.js');
+
+        $data['error_message'] = "";
+       
+        
+			$this->load->view('template', $data);
+
+		if($this->input->post()){
+
+			$cita     = new Cita();
+					
+			$cita->cliente_id     = $this->input->post('clienteId'); 
+			$cita->fecha_visita   = $this->input->post('fecha_alt'); 
+			$cita->motivo_id      = $this->input->post('motivo');
+			$cita->comentarios    = $this->input->post('anotacion');
+			$cita->user_id        = $this->session->userdata('id_user');
+						 
+	 		if($cita->save()){
+	 						
+				redirect(base_url('clientes'));				
+
+			} else {
+
+				echo $cita->error->string;
+				
+			}
+
+		}
+
+
+ 	}
+
+
+    public function lista(){
+
+		$cliente= new Cliente();
+				
+		$cliente->where('usuario_id', $this->session->userdata('id_user'));
+		$cliente->where('nombre like "%'.$_GET['term'].'%"')->get();
+	
+		$aCliente = array();
+
+		foreach($cliente as $client){
+			 $aCliente[] = array ("Id"        => $client->id, 
+			 					  "label"     => $client->nombre,
+			 					  "value"     => $client->nombre,);
+		}
+	
+		echo json_encode($aCliente);
+
+	}
 
 }
 
